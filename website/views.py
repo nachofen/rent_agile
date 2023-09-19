@@ -27,9 +27,10 @@ def agregar_vehiculo():
 
 
 @views.route('/mis-datos', methods=['GET', 'POST'])
+@login_required
 def update_info():
     # Retrieve the current user (you may need to implement authentication)
-    current_user = User.query.first()
+
 
     if request.method == 'POST':
         # Retrieve form data
