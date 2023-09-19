@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Registro {% endblock%}
+
+{% block content %} 
+<form method="POST">
+    <h3 align="center">Actualizar Información Personal</h3>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="{{ user.email }}">
+    
+    </div>
+    <div class="form-group">
+        <label for="PrimerNombre">Nombre</label>
+        <input type="text" id="name" name="name" required value="{{ user.nombre }}">
+    </div>
+    <div class="form-group">
+        <label for="PrmerApellido">Apellido</label>
+        <input type="text" id="apellido" name="apellido" required value="{{ user.apellido }}">
+    </div>
+    <div class="form-group">
+        <label for="firstpass">Ingrese Su Contraseña </label>
+        <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            name="password" 
+            placeholder="Ingrese Su Contraseña"
+        />
+    </div>
+    <div class="form-group">
+        <label for="secondpass">Repita Su Contraseña </label>
+        <input 
+            type="password" 
+            class="form-control" 
+            id="password2" 
+            name="password2" 
+            placeholder="Repita Su Contraseña"
+        />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Actualizar
+    </button>
+</form>
+{% endblock %}
