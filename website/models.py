@@ -11,3 +11,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     nombre = db.Column(db.String(150))
     apellido = db.Column(db.String(150))
+    departamento = db.Column(db.String(150))
+    reviews = db.Column(db.Boolean, default=False)
+
+

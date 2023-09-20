@@ -7,7 +7,6 @@
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required value="{{ user.email }}">
-    
     </div>
     <div class="form-group">
         <label for="PrimerNombre">Nombre</label>
@@ -18,7 +17,15 @@
         <input type="text" id="apellido" name="apellido" required value="{{ user.apellido }}">
     </div>
     <div class="form-group">
-        <label for="firstpass">Ingrese Su Contraseña </label>
+        <label for="departamento">Departamento</label>
+        <select class="form-control" id="departamento" name="departamento">
+            {% for dept in departamentos %}
+                <option value="{{ dept }}" {% if user.departamento == dept %}selected{% endif %}>{{ dept }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="firstpass">Ingrese Su Contraseña</label>
         <input 
             type="password" 
             class="form-control" 
@@ -28,7 +35,7 @@
         />
     </div>
     <div class="form-group">
-        <label for="secondpass">Repita Su Contraseña </label>
+        <label for="secondpass">Repita Su Contraseña</label>
         <input 
             type="password" 
             class="form-control" 
@@ -38,7 +45,6 @@
         />
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Actualizar
-    </button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 {% endblock %}

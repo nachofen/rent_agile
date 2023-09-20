@@ -42,6 +42,7 @@ def registro():
         apellido = request.form.get('apellido')
         password = request.form.get('password')
         password2 = request.form.get('password2')
+        departamento = request.form.get('departamento')
         user = User.query.filter_by(email=email).first()
         if user:
             flash('ya existe una cuenta con este correo asosiado', category='error')
@@ -59,7 +60,7 @@ def registro():
             flash('Su contraseña debe tener almenos 6 caracteres.', category='error')
         else:
             #all info is correct so create user to database
-            new_user = User(email=email, nombre=nombre, apellido=apellido, password=generate_password_hash(password, method='sha256'))
+            new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, password=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             flash('Cuenta creada con exito! ya puedes iniciar sesión!', category='success')

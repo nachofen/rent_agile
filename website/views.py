@@ -24,14 +24,32 @@ def agregar_vehiculo():
     """add vehicle url"""
     return render_template("agregar-vehiculo.html", user=current_user)
 
-
+departamentos = [
+    "Artigas",
+    "Canelones",
+    "Cerro Largo",
+    "Colonia",
+    "Durazno",
+    "Flores",
+    "Florida",
+    "Lavalleja",
+    "Maldonado",
+    "Montevideo",
+    "Paysandú",
+    "Río Negro",
+    "Rivera",
+    "Rocha",
+    "Salto",
+    "San José",
+    "Soriano",
+    "Tacuarembó",
+    "Treinta y Tres"
+]
 
 @views.route('/mis-datos', methods=['GET', 'POST'])
 @login_required
 def update_info():
-    # Retrieve the current user (you may need to implement authentication)
-
-
+    """update personal information"""
     if request.method == 'POST':
         # Retrieve form data
         email = request.form.get('email')
@@ -39,8 +57,8 @@ def update_info():
         apellido = request.form.get('apellido')
         password = request.form.get('password')
         password2 = request.form.get('password2')
-        # Update user information in the database (you'll need to implement this)
-        # Example: current_user.update(email=email, name=name, password=password)
+        departamento = request.form.get('departamento')
+        
         if len(email) < 4:
             flash('Email debe tener al menos 4 caracteres.', category='error')
         elif len(nombre) < 3:
@@ -59,7 +77,7 @@ def update_info():
             current_user.nombre = nombre
             current_user.apellido = apellido
             current_user.password = generate_password_hash(password, method='sha256')
-            
+            current_user.departamento = departamento
             # Commit the changes to the database
             db.session.commit()
             
@@ -70,4 +88,4 @@ def update_info():
         return redirect(url_for('views.update_info'))
 
     # Pass user data to the template
-    return render_template('mis-datos.html', user=current_user)
+    return render_template('mis-datos.html', user=current_user, departamentos=departamentos)
