@@ -1,5 +1,94 @@
 {% extends "base.html" %}
 {% block title %} Agregar Vehiculo {% endblock%}
 
-{% block content %} <h1>Agrega Tu Vehiculo</h1>
+{% block content %}
+<form method="POST">
+    <h3 align="center">Agregar Auto</h3>
+    <div class="form-group">
+        <label for="Marca">Marca </label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="marca" 
+            name="marca" 
+            placeholder="Marca del Vehículo"
+        />
+    </div>
+    <div class="form-group">
+        <label for="Modelo">Modelo</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="modelo" 
+            name="modelo" 
+            placeholder="Ingrese el modelo del vehículo"
+        />
+    </div>
+    <div class="form-group">
+        <label for="Año">Año</label>
+        <input 
+            type="number" 
+            class="form-control" 
+            id="año" 
+            name="año" 
+            placeholder="Ingrese el año del vehículo"
+        />
+    </div>
+    <div class="form-group">
+        <label for="Categoria">Categoria</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="categoria" 
+            name="categoria" 
+            placeholder="tipo de vehículo, ej: sedan, hatch, etc"
+        />
+    </div>
+    <div class="form-group">
+        <label for="departamento">Departamento</label>
+        <select class="form-control" id="departamento" name="departamento">
+            <option value="artigas">Artigas</option>
+            <option value="canelones">Canelones</option>
+            <option value="cerro-largo">Cerro Largo</option>
+            <option value="colonia">Colonia</option>
+            <option value="durazno">Durazno</option>
+            <option value="flores">Flores</option>
+            <option value="florida">Florida</option>
+            <option value="lavalleja">Lavalleja</option>
+            <option value="maldonado">Maldonado</option>
+            <option value="montevideo">Montevideo</option>
+            <option value="paysandu">Paysandú</option>
+            <option value="rio-negro">Río Negro</option>
+            <option value="rivera">Rivera</option>
+            <option value="rocha">Rocha</option>
+            <option value="salto">Salto</option>
+            <option value="san-jose">San José</option>
+            <option value="soriano">Soriano</option>
+            <option value="tacuarembo">Tacuarembó</option>
+            <option value="treinta-y-tres">Treinta y Tres</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Tarifa">Tarifa($)</label>
+        <input 
+            type="number" 
+            class="form-control" 
+            id="tarifa" 
+            name="tarifa" 
+            placeholder="ingrese el precio por día"
+        />
+    </div>
+    <div class="form-group">
+        <label for="Descripcion">Descripcion</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="descripcion" 
+            name="descripcion" 
+            placeholder="escriba una breve descripción de su vehículo"
+        />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
 {% endblock %}

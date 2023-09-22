@@ -77,7 +77,7 @@ def registro():
             flash('Las contraseñas no coinciden.', category='error')
         elif len(password) < 6:
             flash('La contraseña debe tener al menos 6 caracteres.', category='error')
-        if not es_mayor(fecha_nacimiento):
+        elif not es_mayor(fecha_nacimiento):
             return redirect(url_for('auth.registro'))
         else:
             # Todo está correcto, crear el usuario en la base de datos

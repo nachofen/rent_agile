@@ -25,11 +25,45 @@ def admin_home():
     """admin home url"""
     return render_template("indexp.html", user=current_user)
 
-@views.route('/agregar-vehiculo')
+@views.route('/agregar-vehiculo', methods=['GET', 'POST'])
 @login_required
 def agregar_vehiculo():
     """add vehicle url"""
+    from .models import Auto
+    
+    if request.method == 'POST':
+        # Obtener datos del formulario
+        marca = request.form.get('marca')
+        modelo = request.form.get('modelo')
+        año = request.form.get('año')
+        categoria = request.form.get('categoria')
+        departamento = request.form.get('departamento')
+        tarifa = request.form.get('tarifa')
+        descripcion = request.form.get('descrpicion')
+
+        nuevo_vehiculo = Auto(
+            marca=marca,
+            modelo=modelo,
+            año=año,
+            categoria=categoria,
+            departamento=departamento,
+            tarifa=tarifa,
+            descripcion=descripcion,
+            usuario_id=current_user.id  # Asociar el vehículo al usuario actual
+        )
+
+        # Agregar el nuevo vehículo a la lista de vehículos del usuario
+        current_user.autos.append(nuevo_vehiculo)
+
+        # Commit los cambios en la base de datos
+        db.session.add(nuevo_vehiculo)
+        db.session.commit()
+
+        flash('El nuevo vehículo se ha agregado con éxito!', category='success')
+        return redirect(url_for('views.update_info'))
+    
     return render_template("agregar-vehiculo.html", user=current_user)
+
 
 @views.route('/perfil')
 @login_required
