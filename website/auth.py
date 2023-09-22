@@ -3,6 +3,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_required, login_user, logout_user, current_user
+from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
@@ -33,9 +34,23 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+def es_mayor(fecha_nacimiento):
+    if not fecha_nacimiento:
+        flash('Debe seleccionar su fecha de nacimiento.', category='error')
+        return False
+    
+    fecha_nacimiento = datetime.strptime(fecha_nacimiento, '%Y-%m-%d').date()
+    today = datetime.today().date()
+    age = today.year - fecha_nacimiento.year - ((today.month, today.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+
+    if age < 18:
+        flash('Debe ser mayor de edad para registrarse.', category='error')
+        return False
+
+    return True
+
 @auth.route('registro', methods=['GET', 'POST'])
 def registro():
-    """registro url"""
     if request.method == 'POST':
         email = request.form.get('email')
         nombre = request.form.get('nombre')
@@ -43,28 +58,33 @@ def registro():
         password = request.form.get('password')
         password2 = request.form.get('password2')
         departamento = request.form.get('departamento')
+        direccion = request.form.get('direccion')
+        fecha_nacimiento = request.form.get('fecha_nacimiento')
+
+        # Validar que se haya ingresado una fecha de nacimiento
+        
+
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('ya existe una cuenta con este correo asosiado', category='error')
+            flash('Ya existe una cuenta con este correo asociado.', category='error')
         elif len(email) < 4:
-            flash('Email debe tener al menos 4 caracteres.', category='error')
+            flash('El correo electrónico debe tener al menos 4 caracteres.', category='error')
         elif len(nombre) < 3:
-            flash('Nombre debe tener al menos 3 caracteres.', category='error')
+            flash('El nombre debe tener al menos 3 caracteres.', category='error')
         elif len(apellido) < 3:
-            flash('Apellido debe tener al menos 3 caracteres.', category='error')
+            flash('El apellido debe tener al menos 3 caracteres.', category='error')
         elif password != password2:
             flash('Las contraseñas no coinciden.', category='error')
         elif len(password) < 6:
-            flash('Su contraseña debe tener al menos 6 caracteres.', category='error')
-        elif len(password2) < 6:
-            flash('Su contraseña debe tener almenos 6 caracteres.', category='error')
+            flash('La contraseña debe tener al menos 6 caracteres.', category='error')
+        if not es_mayor(fecha_nacimiento):
+            return redirect(url_for('auth.registro'))
         else:
-            #all info is correct so create user to database
-            new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, password=generate_password_hash(password, method='sha256'))
+            # Todo está correcto, crear el usuario en la base de datos
+            new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, direccion=direccion, fecha_nacimiento=fecha_nacimiento, password=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            flash('Cuenta creada con exito! ya puedes iniciar sesión!', category='success')
+            flash('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.', category='success')
             return redirect(url_for('views.home'))
 
     return render_template("registro.html", user=current_user)
-

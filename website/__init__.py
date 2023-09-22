@@ -6,13 +6,13 @@ from flask_login import LoginManager
 
 
 db = SQLAlchemy()
-DB_NAME = "database.db"
+DB_NAME = "rent_agile_DB"
 
 def create_app():
     """create app"""
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'topsecret'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(os.getcwd(), "website", DB_NAME)}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://u9qa2hbw6ktwmdun:PVOm3sa2s114KTWE2FDX@bhkoe56efo2orbc1igit-mysql.services.clever-cloud.com:3306/bhkoe56efo2orbc1igit'
     db.init_app(app)
 
     from .views import views
@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from .models import User
-    
+
     create_database(app)
 
     login_manager = LoginManager()

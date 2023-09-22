@@ -4,8 +4,15 @@ import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
+from werkzeug.utils import secure_filename
 
 views = Blueprint('views', __name__)
+UPLOAD_FOLDER = os.path.abspath('website/static/img/uploads')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    """to validate allowed extensions"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @views.route('/')
 def home():
@@ -23,6 +30,13 @@ def admin_home():
 def agregar_vehiculo():
     """add vehicle url"""
     return render_template("agregar-vehiculo.html", user=current_user)
+
+@views.route('/perfil')
+@login_required
+def perfil_usuario():
+    """perfil de usuario"""
+    print(current_user.nombre)
+    return render_template("perfil.html", user=current_user)
 
 departamentos = [
     "Artigas",
@@ -45,19 +59,25 @@ departamentos = [
     "Tacuarembó",
     "Treinta y Tres"
 ]
+UPLOAD_FOLDER = 'website/static/img/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    """Función para validar extensiones de archivo permitidas"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @views.route('/mis-datos', methods=['GET', 'POST'])
 @login_required
 def update_info():
-    """update personal information"""
     if request.method == 'POST':
-        # Retrieve form data
+        # Obtener datos del formulario
         email = request.form.get('email')
         nombre = request.form.get('name')
         apellido = request.form.get('apellido')
         password = request.form.get('password')
         password2 = request.form.get('password2')
         departamento = request.form.get('departamento')
+        direccion = request.form.get('direccion')
         
         if len(email) < 4:
             flash('Email debe tener al menos 4 caracteres.', category='error')
@@ -70,22 +90,29 @@ def update_info():
         elif len(password) < 6:
             flash('Su contraseña debe tener al menos 6 caracteres.', category='error')
         elif len(password2) < 6:
-            flash('Su contraseña debe tener almenos 6 caracteres.', category='error')
+            flash('Su contraseña debe tener al menos 6 caracteres.', category='error')
         else:
-            # Update user information in the database
+            if 'image' in request.files:
+                image = request.files['image']
+                if image.filename != '' and allowed_file(image.filename):
+                    # Guarda la imagen en el directorio UPLOAD_FOLDER
+                    filename = f"{current_user.id}_profile.jpg"
+                    image.save(os.path.join(UPLOAD_FOLDER, filename))
+                    current_user.image_path = os.path.join('static/img/uploads', filename)
+                    
+
+            # Actualiza la información del usuario en la base de datos
             current_user.email = email
             current_user.nombre = nombre
             current_user.apellido = apellido
             current_user.password = generate_password_hash(password, method='sha256')
             current_user.departamento = departamento
-            # Commit the changes to the database
+            current_user.direccion = direccion
+            # Commit los cambios en la base de datos
             db.session.commit()
             
-            flash('Sus datos se han actualizado con exito!', category='success')
+            flash('Sus datos se han actualizado con éxito!', category='success')
             return redirect(url_for('views.update_info'))
 
-        # Redirect to a success page or user profile
-        return redirect(url_for('views.update_info'))
-
-    # Pass user data to the template
+    # Pasa los datos del usuario a la plantilla
     return render_template('mis-datos.html', user=current_user, departamentos=departamentos)

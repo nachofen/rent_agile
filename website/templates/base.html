@@ -47,7 +47,7 @@
             {% if user.is_authenticated %}
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-toggle="dropdown">
-                    <img src="profile.jpg" alt="Profile Picture" class="rounded-circle" width="30" height="30">
+                    <img src="{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     {% if request.path == '/host' %}
@@ -60,7 +60,7 @@
                     {% else %}
                         <a class="dropdown-item" href="#">Mis Reservas</a>
                         <a class="dropdown-item" href="#">Favoritos</a>
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="/perfil">Perfil</a>
                         <a class="dropdown-item" href="/mis-datos">Cuenta</a>
                         <a class="dropdown-item" href="/logout">Cerrar Sesion</a>
 
