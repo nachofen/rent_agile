@@ -33,14 +33,8 @@ class Auto(db.Model):
     disponible = db.Column(db.Boolean, default=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-class Imagenes_auto():
+class Imagenes_auto(db.Model):
     id_imagen = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(150))
-    auto_id = db.Column(db.Integer, db.ForeignKey('auto.id'))
+    auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
     auto = db.relationship('Auto', backref='imagenes_auto')
-
-
-
-
-
-

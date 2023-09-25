@@ -2,7 +2,7 @@
 {% block title %} Agregar Vehiculo {% endblock%}
 
 {% block content %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <h3 align="center">Agregar Auto</h3>
     <div class="form-group">
         <label for="Marca">Marca </label>
@@ -89,6 +89,39 @@
         />
     </div>
     
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <div id="image-upload1">
+        <div class="form-group">
+            <label for="images">Cargar imágenes de auto:</label>
+            <input type="file" name="images[]" class="image-input" multiple>
+        </div>
+    </div>
+    <div id="image-upload2">
+        <div class="form-group">
+            <label for="images">Cargar imágenes de auto:</label>
+            <input type="file" name="images[]" class="image-input" multiple>
+        </div>
+    </div>
+    <div id="image-upload3">
+        <div class="form-group">
+            <label for="images">Cargar imágenes de auto:</label>
+            <input type="file" name="images[]" class="image-input" multiple>
+        </div>
+    </div>
+    <div id="image-upload4">
+        <div class="form-group">
+            <label for="images">Cargar imágenes de auto:</label>
+            <input type="file" name="images[]" class="image-input" multiple>
+        </div>
+    </div>
+
+    <button type="submit">Guardar</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </form>
+
+
+
+</body>
+</html>
 {% endblock %}
