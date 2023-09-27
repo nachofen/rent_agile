@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -31,7 +32,7 @@
             {% if user.is_authenticated %}
                 <a class="nav-item nav-link" id="home" href="/">Inicio</a>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
-                {% if request.path == '/host' %}
+                {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' %}
                     <a class="nav-item nav-link" id="special" href="/">Menu Cliente</a>
                 {% else %}
                     <a class="nav-item nav-link" id="Host" href="/host">Menu Anfitrión</a>
@@ -49,11 +50,11 @@
                     <img src="{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                    {% if request.path == '/host' %}
+                    {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' %}
                         <a class="dropdown-item" href="#">Perfil</a>
                         <a class="dropdown-item" href="/mis-datos">Cuenta</a>
                         <a class="dropdown-item" href="/agregar-vehiculo">Agregar Vehiculo</a>
-                        <a class="dropdown-item" href="#">Gestionar Vehiculos</a>
+                        <a class="dropdown-item" href="mis-vehiculos">Gestionar Vehiculos</a>
                         <a class="dropdown-item" href="/logout">Cerrar Sesion</a>
                 </div>
                     {% else %}

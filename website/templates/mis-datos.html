@@ -53,6 +53,24 @@
         />
     </div>
     <br />
+    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Borrar cuenta</button>
+
+    <!-- Update Button -->
     <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+
+<!-- JavaScript to trigger the delete confirmation -->
+<script>
+function confirmDelete() {
+    if (confirm('¿Estás seguro de que deseas eliminar esta cuenta?')) {
+        // If the user confirms, submit the nested delete form
+        document.getElementById('delete-account-form').submit();
+    }
+}
+</script>
+
+<!-- Delete Account Form -->
+<form id="delete-account-form" action="/delete-usuario/{{ user.id }}" method="POST" style="display: none;">
+    <!-- Add any necessary CSRF token or other hidden fields here -->
 </form>
 {% endblock %}

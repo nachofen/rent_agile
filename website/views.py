@@ -66,7 +66,7 @@ def agregar_vehiculo():
             if image.filename != '' and allowed_file(image.filename):
                 # Guardar la imagen en el directorio UPLOAD_FOLDER
                 filename = secure_filename(image.filename)
-                unique_filename = f"auto_{auto.id_auto}_{filename}"  # Nombre único de archivo
+                unique_filename = f"auto_{str(auto.id_auto)}_{filename}"  # Nombre único de archivo
                 image.save(os.path.join(UPLOAD_FOLDER, unique_filename))
 
                 # Crear una entrada en la tabla Imagenes_auto para la imagen
@@ -170,3 +170,44 @@ def update_info():
 
     # Pasa los datos del usuario a la plantilla
     return render_template('mis-datos.html', user=current_user, departamentos=departamentos)
+
+@views.route('/mis-vehiculos')
+@login_required
+def mis_vehiculos():
+    """ list the cars of loged user"""
+    vehiculos = current_user.autos
+
+    return render_template("mis-vehiculos.html", user=current_user, vehiculos=vehiculos)
+
+@views.route('/delete-vehiculo/<int:id>', methods=['POST'])
+@login_required
+def borrar_vehiculo(id):
+    from .models import Auto
+    """Deletes a car by id"""
+    car_to_delete = Auto.query.get_or_404(id)
+    try:
+        db.session.delete(car_to_delete)
+        db.session.commit()
+        flash("Se ha eliminado el auto correctamente")
+    except:
+        flash("Ha ocurrido un error, vuelve a intentarlo")
+    
+    return redirect(url_for('views.mis_vehiculos'))
+
+@views.route('/delete-usuario/<int:id>', methods=['POST'])
+@login_required
+def borrar_usuario(id):
+    from .models import User
+
+    # Busca y elimina el usuario por ID
+    user_to_delete = User.query.get_or_404(id)
+
+    try:
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        flash("Su usuario se ha eliminado correctamente")
+    except:
+        flash("Ha ocurrido un error, vuelve a intentarlo")
+
+    logout_user()
+    return redirect(url_for('auth.login'))

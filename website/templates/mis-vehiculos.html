@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Mis Vehículos {% endblock %}
+
+{% block content %}
+  <h3 align="center">Mis Vehículos</h3>
+  <ul>
+    {% for vehiculo in vehiculos %}
+      <li>
+        <h3> {{ loop.index }}-&nbsp;{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3> <br>
+        <!-- Obtén la primera imagen asociada al vehículo -->
+        {% with primera_imagen = vehiculo.imagenes_auto[0] %}
+          {% if primera_imagen %}
+            <img src="{{ primera_imagen.url }}" alt="Imagen del Auto">
+          {% else %}
+            <p>No hay imágenes disponibles</p>
+          {% endif %}
+        {% endwith %}
+        <div>
+            <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
+                <button type="submit" class="btn btn-danger">Borrar</button>
+            </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
