@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     direccion = db.Column(db.String(150))
     reviews = db.Column(db.Boolean, default=False)
     image_path = db.Column(db.String(255))
-    autos = db.relationship('Auto', backref='owner', foreign_keys='Auto.usuario_id', lazy=True, cascade='all, delete-orphan')
+    autos = db.relationship('Auto', backref='owner', foreign_keys='Auto.usuario_id', lazy=True)
 
 
 class Auto(db.Model):
@@ -32,7 +32,6 @@ class Auto(db.Model):
     descripcion = db.Column(db.Text)
     disponible = db.Column(db.Boolean, default=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
 
 class Imagenes_auto(db.Model):
     id_imagen = db.Column(db.Integer, primary_key=True)

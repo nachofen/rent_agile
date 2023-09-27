@@ -197,15 +197,22 @@ def borrar_vehiculo(id):
 @views.route('/delete-usuario/<int:id>', methods=['POST'])
 @login_required
 def borrar_usuario(id):
-    from .models import User
+    from .models import User, Auto, Imagenes_auto
 
     # Busca y elimina el usuario por ID
     user_to_delete = User.query.get_or_404(id)
 
     try:
+        # Elimina todos los autos del usuario y sus imágenes asociadas
+        for auto in user_to_delete.autos:
+            for imagen in auto.imagenes_auto:
+                db.session.delete(imagen)
+            db.session.delete(auto)
+
+        # Finalmente, elimina al usuario
         db.session.delete(user_to_delete)
         db.session.commit()
-        flash("Su usuario se ha eliminado correctamente")
+        flash("Su usuario y todas las imágenes asociadas se han eliminado correctamente")
     except:
         flash("Ha ocurrido un error, vuelve a intentarlo")
 
