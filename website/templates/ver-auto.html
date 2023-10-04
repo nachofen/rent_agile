@@ -16,9 +16,10 @@
 
   <h3>Imágenes del Vehículo</h3>
   <ul>
-      {% for imagen in imagenes_auto %}
+      {% for imagen in imagenes_url %}
         <li>
-          <img src="{{ url_for('static', filename=imagen.url) }}" alt="Imagen del Auto">
+          <img src="/{{ imagen }}" alt="Imagen del Auto">
+          <p> {{ imagen }}</p>
         </li>
       {% endfor %}
   </ul>

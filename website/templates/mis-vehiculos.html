@@ -11,6 +11,7 @@
         {% with primera_imagen = vehiculo.imagenes_auto[0] %}
           {% if primera_imagen %}
             <img src="{{ primera_imagen.url }}" alt="Imagen del Auto">
+            <p>{{ primera_imagen.url }}</p>
           {% else %}
             <p>No hay imágenes disponibles</p>
           {% endif %}

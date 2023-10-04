@@ -67,7 +67,7 @@ def agregar_vehiculo():
                 # Guardar la imagen en el directorio UPLOAD_FOLDER
                 filename = secure_filename(image.filename)
                 unique_filename = f"auto_{str(auto.id_auto)}_{filename}"  # Nombre único de archivo
-                image.save(os.path.join(UPLOAD_FOLDER, unique_filename))
+                image.save(url_for('static', filename='img/uploads/' + unique_filename))
 
                 # Crear una entrada en la tabla Imagenes_auto para la imagen
                 nueva_imagen = Imagenes_auto(url=os.path.join('static/img/uploads', unique_filename), auto=auto)
@@ -185,10 +185,10 @@ def mostrar_vehiculo(id):
     """shows one car by id"""
     from .models import Auto, Imagenes_auto
     vehiculo = Auto.query.get_or_404(id)
-    imagenes_auto = Imagenes_auto.query.filter_by(auto_id=id).all()
-    
-    return render_template("ver-auto.html", vehiculo=vehiculo, imagenes_auto=imagenes_auto, user=current_user)
+    imagenes_url = [imagen.url for imagen in vehiculo.imagenes_auto]
+    print("Imágenes asociadas:", imagenes_url)
 
+    return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url)
 
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
 @login_required

@@ -47,7 +47,7 @@
             {% if user.is_authenticated %}
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-toggle="dropdown">
-                    <img src="{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
+                    <img src="/{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' %}
