@@ -67,7 +67,7 @@ def agregar_vehiculo():
                 # Guardar la imagen en el directorio UPLOAD_FOLDER
                 filename = secure_filename(image.filename)
                 unique_filename = f"auto_{str(auto.id_auto)}_{filename}"  # Nombre único de archivo
-                image.save(url_for('static', filename='img/uploads/' + unique_filename))
+                image.save(os.path.join(UPLOAD_FOLDER, unique_filename))
 
                 # Crear una entrada en la tabla Imagenes_auto para la imagen
                 nueva_imagen = Imagenes_auto(url=os.path.join('static/img/uploads', unique_filename), auto=auto)
