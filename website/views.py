@@ -77,7 +77,7 @@ def agregar_vehiculo():
         db.session.commit()
 
         flash('El nuevo vehículo se ha agregado con éxito!', category='success')
-        return redirect(url_for('views.update_info'))
+        return redirect(url_for('views.agregar_vehiculo'))
 
     return render_template("agregar-vehiculo.html", user=current_user)
 
@@ -179,11 +179,22 @@ def mis_vehiculos():
 
     return render_template("mis-vehiculos.html", user=current_user, vehiculos=vehiculos)
 
+@views.route('/ver-vehiculo/<int:id>', methods=['GET', 'POST'])
+@login_required
+def mostrar_vehiculo(id):
+    """shows one car by id"""
+    from .models import Auto, Imagenes_auto
+    vehiculo = Auto.query.get_or_404(id)
+    imagenes_auto = Imagenes_auto.query.filter_by(auto_id=id).all()
+    
+    return render_template("ver-auto.html", vehiculo=vehiculo, imagenes_auto=imagenes_auto, user=current_user)
+
+
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
 @login_required
 def borrar_vehiculo(id):
-    from .models import Auto
     """Deletes a car by id"""
+    from .models import Auto
     car_to_delete = Auto.query.get_or_404(id)
     try:
         db.session.delete(car_to_delete)

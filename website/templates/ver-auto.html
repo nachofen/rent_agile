@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Detalles del Vehículo {% endblock %}
+
+{% block content %}
+  <h3 align="center">Detalles del Vehículo</h3>
+  <ul>
+    <li>
+      <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+      <p>Año: {{ vehiculo.año }}</p>
+      <p>Categoría: {{ vehiculo.categoria }}</p>
+      <p>Departamento: {{ vehiculo.departamento }}</p>
+      <p>Tarifa: {{ vehiculo.tarifa }}</p>
+      <p>Descripción: {{ vehiculo.descripcion }}</p>
+    </li>
+  </ul>
+
+  <h3>Imágenes del Vehículo</h3>
+  <ul>
+      {% for imagen in imagenes_auto %}
+        <li>
+          <img src="{{ url_for('static', filename=imagen.url) }}" alt="Imagen del Auto">
+        </li>
+      {% endfor %}
+  </ul>
+  
+{% endblock %}

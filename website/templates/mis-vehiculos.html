@@ -16,9 +16,12 @@
           {% endif %}
         {% endwith %}
         <div>
-            <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
-                <button type="submit" class="btn btn-danger">Borrar</button>
-            </form>
+          <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
+            <button type="submit" class="btn btn-danger">Borrar</button>
+          </form>
+          <form action="/ver-vehiculo/{{ vehiculo.id_auto }}" method="GET">
+            <button type="submit" class="btn btn-primary">Ver Vehículo</button>
+          </form>
         </div>
       </li>
     {% endfor %}
