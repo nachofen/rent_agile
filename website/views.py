@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
 from werkzeug.utils import secure_filename
+from datetime import datetime
 
 views = Blueprint('views', __name__)
 UPLOAD_FOLDER = os.path.abspath('website/static/img/uploads')
@@ -17,7 +18,9 @@ def allowed_file(filename):
 @views.route('/')
 def home():
     """home url"""
-    return render_template("index.html", user=current_user)
+    from .models import Auto
+    autos = Auto.query.all()
+    return render_template("index.html", user=current_user, autos=autos)
 
 @views.route('/host')
 @login_required
@@ -190,6 +193,62 @@ def mostrar_vehiculo(id):
 
     return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url)
 
+@views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
+@login_required
+def editar_vehiculo(id):
+    """allows to edit car details"""
+    from .models import Auto, Imagenes_auto
+
+    vehiculo = Auto.query.get_or_404(id)
+    if current_user.id != vehiculo.usuario_id:
+        flash('Este vehiculo no le pertenece', category='error')
+        return redirect(url_for('views.mis_vehiculos'))
+
+    imagenes_url = [imagen.url for imagen in vehiculo.imagenes_auto]
+    if request.method == 'POST':
+
+        marca = request.form.get('marca')
+        modelo = request.form.get('modelo')
+        año = request.form.get('año')
+        categoria = request.form.get('categoria')
+        departamento = request.form.get('departamento')
+        tarifa = request.form.get('tarifa')
+        descripcion = request.form.get('descripcion')
+
+        
+        vehiculo.marca = marca
+        vehiculo.modelo = modelo
+        vehiculo.año = año
+        vehiculo.categoria = categoria
+        vehiculo.departamento = departamento
+        vehiculo.tarifa = tarifa
+        vehiculo.descripcion = descripcion
+        nuevas_imagenes = request.files.getlist('nuevas_imagenes[]')
+        for nueva_imagen in nuevas_imagenes:
+            if nueva_imagen and allowed_file(nueva_imagen.filename):
+                # Guardar la nueva imagen en el directorio UPLOAD_FOLDER
+                filename = secure_filename(nueva_imagen.filename)
+                unique_filename = f"auto_{str(vehiculo.id_auto)}_{filename}"  # Nombre único de archivo
+                nueva_imagen.save(os.path.join(UPLOAD_FOLDER, unique_filename))
+
+                # Crear una entrada en la tabla Imagenes_auto para la nueva imagen
+                nueva_imagen_db = Imagenes_auto(url=os.path.join('static/img/uploads', unique_filename), auto=vehiculo)
+                db.session.add(nueva_imagen_db)
+        # Obtén la lista de imágenes a quitar desde el html
+        imagenes_quitar = request.form.getlist('imagenes_quitar[]')
+                # Elimina las imágenes a quitar de la base de datos
+        for url in imagenes_quitar:
+            imagen = Imagenes_auto.query.filter_by(url=url, auto=vehiculo).first()
+            if imagen:
+                db.session.delete(imagen)
+        
+        db.session.commit()
+        flash('Sus datos se han actualizado con éxito!', category='success')
+        return redirect(url_for('views.mis_vehiculos'))
+    return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url)
+    
+
+
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
 @login_required
 def borrar_vehiculo(id):
@@ -229,3 +288,28 @@ def borrar_usuario(id):
 
     logout_user()
     return redirect(url_for('auth.login'))
+
+@views.route('/enviar-mensaje/<int:id>', methods=['GET', 'POST'])
+@login_required
+def enviar_mensaje(id):
+    from .models import Auto, User, Mensaje
+    """ list the cars of loged user"""
+    car_to_msg = Auto.query.get_or_404(id)
+    imagen_perfil = car_to_msg.owner.image_path
+    imagenes = car_to_msg.imagenes_auto
+    if request.method == 'POST':
+        contenido_mensaje = request.form.get('mensaje')
+        fecha = datetime.utcnow()
+
+        nuevo_mensaje = Mensaje(
+            contenido_mensaje=contenido_mensaje,
+            fecha=fecha,
+            id_usuario=current_user.id,
+            auto_id=car_to_msg.id_auto
+        )
+        db.session.add(nuevo_mensaje)
+        db.session.commit()
+        flash('Mensaje enviado correctamente', 'success')
+        return redirect(url_for('views.home'))
+
+    return render_template("enviar-mensaje.html", user=current_user, auto=car_to_msg, imagen_perfil=imagen_perfil, imagenes=imagenes)

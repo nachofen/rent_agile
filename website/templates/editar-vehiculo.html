@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %} Editar Vehiculo {% endblock%}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <h3 align="center">Editar vehiculo</h3>
+    <div class="form-group">
+        <label for="Marca">Marca </label>
+        <input type="text" id="marca" name="marca" required value="{{ vehiculo.marca }}">
+    </div>
+    <div class="form-group">
+        <label for="Modelo">Modelo</label>
+        <input type="text" id="modelo" name="modelo" required value="{{ vehiculo.modelo }}">
+    </div>
+    <div class="form-group">
+        <label for="Año">Año</label>
+        <input type="number" id="año" name="año" required value="{{ vehiculo.año }}">
+    </div>
+    <div class="form-group">
+        <label for="Categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria" required value="{{ vehiculo.categoria }}">
+    </div>
+    <div class="form-group">
+        <label for="departamento">Departamento</label>
+        <select class="form-control" id="departamento" name="departamento">
+            {% for dept in departamentos %}
+                <option value="{{ dept }}" {% if vehiculo.departamento == dept %}selected{% endif %}>{{ dept }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Tarifa">Tarifa($)</label>
+        <input type="number" id="tarifa" name="tarifa" required value="{{ vehiculo.tarifa }}">
+    </div>
+    <div class="form-group">
+        <label for="Descripcion">Descripcion</label>
+        <input type="text" id="descripcion" name="descripcion" required value="{{ vehiculo.descripcion }}">
+    </div>
+    
+    <ul>
+        {% for imagen in imagenes_url %}
+        <li>
+            <div class="image-container">
+                <img src="/{{ imagen }}" alt="Imagen del Auto" width="150" height="100">
+                <label class="btn btn-primary">
+                    Cambiar Imagen
+                    <input type="file" class="imagen-input" accept="image/*" name="nuevas_imagenes[]" style="display: none;">
+                </label>
+            </div>
+        </li>
+        {% endfor %}
+        {% for _ in range(4 - imagenes_url|length) %}
+    <li>
+        <div class="image-container">
+            <label class="btn btn-primary">
+                Cargar Imagen
+                <input type="file" class="imagen-input" accept="image/*" name="nuevas_imagenes[]" style="display: none;">
+            </label>
+        </div>
+    </li>
+    {% endfor %}
+    </ul>
+
+    <!-- Agregar una lista oculta para las imágenes a quitar -->
+    <input type="hidden" name="imagenes_quitar[]" class="imagenes-quitar-input">
+
+    <button type="submit">Guardar</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</form>
+    <script src="/static/js/events.js"></script>
+
+
+</body>
+</html>
+{% endblock %}

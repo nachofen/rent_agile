@@ -1,22 +1,31 @@
-$(document).ready(function() {
-    // Add a click event listener to all delete buttons with the class "delete-vehiculo"
-    $(".delete-vehiculo").click(function() {
-        // Get the vehicle ID from the data-vehiculo-id attribute
-        var vehiculoId = $(this).data("vehiculo-id");
+document.addEventListener('DOMContentLoaded', function() {
+    const cambiarImagenInputs = document.querySelectorAll('.imagen-input');
+    const imagenesQuitarInput = document.querySelector('.imagenes-quitar-input');
+    
+    cambiarImagenInputs.forEach(function(input, index) {
+        input.addEventListener('change', function() {
+            // Cuando el usuario elige una nueva imagen, agrega la URL de la imagen anterior a imagenes_quitar[]
+            const imagenAnterior = input.closest('li').querySelector('img').getAttribute('src');
+            const imagenesQuitar = imagenesQuitarInput.value.split(',').filter(Boolean); // Eliminar elementos vacíos
 
-        // Send an AJAX request to delete the vehicle
-        $.ajax({
-            type: "POST", // Use POST or DELETE method, depending on your server configuration
-            url: "/delete-vehiculo/" + vehiculoId, // Replace with your server route for deleting a vehicle
-            success: function(response) {
-                // Handle success, e.g., remove the deleted vehicle from the list
-                alert("Vehicle deleted successfully");
-                location.reload(); // Refresh the page to reflect the updated list
-            },
-            error: function(error) {
-                // Handle error, if any
-                alert("Error deleting vehicle: " + error);
+            // Eliminar la barra diagonal al principio de la URL si está presente
+            const urlSinBarraDiagonal = imagenAnterior.startsWith('/') ? imagenAnterior.substring(1) : imagenAnterior;
+                // Obtener el nombre del archivo de la URL (la última parte de la ruta)
+            const nombreArchivo = urlSinBarraDiagonal.split('/').pop();
+
+            // Establecer un atributo personalizado en el input para almacenar el nombre del archivo
+            input.setAttribute('data-nombre-archivo', nombreArchivo);
+                
+            // Verifica si la URL de la imagen anterior ya existe en imagenes_quitar
+            if (imagenesQuitar.indexOf(urlSinBarraDiagonal) === -1) {
+                imagenesQuitar.push(urlSinBarraDiagonal);
             }
+
+            // Actualiza el valor del campo oculto
+            imagenesQuitarInput.value = imagenesQuitar.join(',');
+
+            // Agrega un console.log para verificar
+            console.log('Imagenes a quitar:', imagenesQuitar);
         });
     });
 });

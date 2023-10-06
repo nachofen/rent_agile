@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 {% block title %} Inicio {% endblock%}
 
-{% block content %} <h1>Pagina de inicio</h1>
+{% block content %}
+  <h1>Pagina de inicio</h1>
+
+  <div class="gallery">
+    {% for auto in autos %}
+      {% if auto.imagenes_auto %}
+        <div class="auto">
+            <a href="/ver-vehiculo/{{ auto.id_auto}}">
+                <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+            </a>
+            <p>{{ auto.marca }} {{ auto.modelo }}</p>
+            <p>Precio: {{ auto.tarifa }}$</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .auto {
+      width: 350px; /* 16.66% para 6 autos por fila, ajusta según tu diseño */
+      margin: 10px;
+      text-align: center;
+    }
+
+    .auto img {
+      max-width: 100%;
+      height: 300px; /* Establece la altura deseada para todas las imágenes */
+      object-fit: cover; /* Ajusta la imagen para que cubra el espacio sin distorsionarla */
+      border-radius: 10%;
+    }
+  </style>
 {% endblock %}

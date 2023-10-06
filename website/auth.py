@@ -39,15 +39,30 @@ def es_mayor(fecha_nacimiento):
         flash('Debe seleccionar su fecha de nacimiento.', category='error')
         return False
     
-    fecha_nacimiento = datetime.strptime(fecha_nacimiento, '%Y-%m-%d').date()
+    try:
+        fecha_nacimiento = datetime.strptime(fecha_nacimiento, '%Y-%m-%d').date()
+    except ValueError:
+        flash('Formato de fecha de nacimiento inválido. Utilice YYYY-MM-DD.', category='error')
+        return False
+
     today = datetime.today().date()
     age = today.year - fecha_nacimiento.year - ((today.month, today.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
-
-    if age < 18:
-        flash('Debe ser mayor de edad para registrarse.', category='error')
+    if fecha_nacimiento > today:
+        flash('todavia no naciste pichon', category='error')
+    elif age < 18:
+        flash('debe ser mayor de edad para registrarse', category='error')
         return False
 
     return True
+
+def contiene_numero(cadena):
+    """verificar que no haya numeros en un campo de solo texto"""
+    for caracter in cadena:
+        # Verifica si el carácter es un dígito numérico
+        if caracter.isdigit():
+            return True
+    # Si no se encontraron dígitos numéricos en la cadena
+    return False
 
 @auth.route('registro', methods=['GET', 'POST'])
 def registro():
@@ -69,8 +84,12 @@ def registro():
             flash('Ya existe una cuenta con este correo asociado.', category='error')
         elif len(email) < 4:
             flash('El correo electrónico debe tener al menos 4 caracteres.', category='error')
+        elif contiene_numero(nombre):
+            flash('El nombre no puede contenter numeros', category='error')
         elif len(nombre) < 3:
             flash('El nombre debe tener al menos 3 caracteres.', category='error')
+        elif contiene_numero(apellido):
+            flash('El apellido no puede contenter numeros', category='error')
         elif len(apellido) < 3:
             flash('El apellido debe tener al menos 3 caracteres.', category='error')
         elif password != password2:
@@ -78,13 +97,13 @@ def registro():
         elif len(password) < 6:
             flash('La contraseña debe tener al menos 6 caracteres.', category='error')
         elif not es_mayor(fecha_nacimiento):
-            return redirect(url_for('auth.registro'))
+            pass
         else:
             # Todo está correcto, crear el usuario en la base de datos
             new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, direccion=direccion, fecha_nacimiento=fecha_nacimiento, password=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             flash('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.login'))
 
     return render_template("registro.html", user=current_user)

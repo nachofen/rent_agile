@@ -29,10 +29,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
+          {% set my_tuple = ('/host', '/agregar-vehiculo', '/mis-vehiculos') %}
             {% if user.is_authenticated %}
                 <a class="nav-item nav-link" id="home" href="/">Inicio</a>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
-                {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' %}
+                {% if request.path in my_tuple or '/ver-vehiculo' in request.path %}
                     <a class="nav-item nav-link" id="special" href="/">Menu Cliente</a>
                 {% else %}
                     <a class="nav-item nav-link" id="Host" href="/host">Menu Anfitrión</a>
@@ -50,7 +51,7 @@
                     <img src="/{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                    {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' %}
+                    {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' or request.path == '/ver-vehiculo' %}
                         <a class="dropdown-item" href="#">Perfil</a>
                         <a class="dropdown-item" href="/mis-datos">Cuenta</a>
                         <a class="dropdown-item" href="/agregar-vehiculo">Agregar Vehiculo</a>

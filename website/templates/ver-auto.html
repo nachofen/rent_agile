@@ -21,6 +21,23 @@
           <img src="/{{ imagen }}" alt="Imagen del Auto">
         </li>
       {% endfor %}
+      <div>
+        {% if current_user.id == vehiculo.usuario_id %}
+          <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')" style="display: inline-block;">
+            <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
+          </form>
+          <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Editar Vehículo</button>
+          </form>
+          {% else %}
+          <form action="/enviar-mensaje/{{ vehiculo.id_auto}}" method="get" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+          </form>          
+          <form action="/enviar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Alquilar</button>
+          </form>
+
+          {% endif %}
   </ul>
   
 {% endblock %}

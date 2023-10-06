@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     reviews = db.Column(db.Boolean, default=False)
     image_path = db.Column(db.String(255))
     autos = db.relationship('Auto', backref='owner', foreign_keys='Auto.usuario_id', lazy=True)
+    mensajes_enviados = db.relationship('Mensaje', backref='remitente', foreign_keys='Mensaje.id_usuario', lazy='dynamic')
 
 
 class Auto(db.Model):
@@ -32,9 +33,17 @@ class Auto(db.Model):
     descripcion = db.Column(db.Text)
     disponible = db.Column(db.Boolean, default=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    mensajes = db.relationship('Mensaje', backref='auto_relacionado', foreign_keys='Mensaje.auto_id', lazy='dynamic')
 
 class Imagenes_auto(db.Model):
     id_imagen = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(150))
     auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
     auto = db.relationship('Auto', backref='imagenes_auto')
+
+class Mensaje(db.Model):
+    id_mensaje = db.Column(db.Integer, primary_key=True)
+    contenido_mensaje = db.Column(db.String(1500))
+    fecha = db.Column(db.DateTime, default=datetime.utcnow)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('user.id'))
+    auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))

@@ -11,19 +11,22 @@
         {% with primera_imagen = vehiculo.imagenes_auto[0] %}
           {% if primera_imagen %}
             <img src="{{ primera_imagen.url }}" alt="Imagen del Auto">
-            <p>{{ primera_imagen.url }}</p>
           {% else %}
             <p>No hay imágenes disponibles</p>
           {% endif %}
         {% endwith %}
         <div>
-          <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
-            <button type="submit" class="btn btn-danger">Borrar</button>
+          <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')" style="display: inline-block;">
+            <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
           </form>
-          <form action="/ver-vehiculo/{{ vehiculo.id_auto }}" method="GET">
+          <form action="/ver-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
             <button type="submit" class="btn btn-primary">Ver Vehículo</button>
           </form>
+          <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
+            <button type="submit" class="btn btn-primary">Editar Vehículo</button>
+          </form>
         </div>
+        
       </li>
     {% endfor %}
   </ul>
