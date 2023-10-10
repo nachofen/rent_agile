@@ -47,3 +47,24 @@ class Mensaje(db.Model):
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
     id_usuario = db.Column(db.Integer, db.ForeignKey('user.id'))
     auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
+
+class Reserva(db.Model):
+    id_reserva = db.Column(db.Integer, primary_key=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id_auto = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
+    fecha_inicio = db.Column(db.Date, nullable=False)
+    fecha_fin = db.Column(db.Date, nullable=False)
+    reseña = db.relationship('Reseña', backref='reserva', uselist=False)
+
+class Reseña(db.Model):
+    id_resena = db.Column(db.Integer, primary_key=True)
+    reserva_id = db.Column(db.Integer, db.ForeignKey('reserva.id_reserva'))
+    calificacion = db.Column(db.Integer)
+    comentario = db.Column(db.Text)
+
+class FechasBloqueadas(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fecha_inicio = db.Column(db.Date, nullable=False)
+    fecha_fin = db.Column(db.Date, nullable=False)
+    auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
+    auto = db.relationship('Auto', backref='fechas_bloqueadas')

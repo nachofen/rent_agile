@@ -13,7 +13,7 @@
         {% if auto.imagenes_auto %}
           <div class="auto">
               <a href="/ver-vehiculo/{{ auto.id_auto}}">
-                  <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+                  <img src="/{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
               </a>
               <p>{{ auto.marca }} {{ auto.modelo }}</p>
               <p>Precio: {{ auto.tarifa }}$</p>

@@ -29,13 +29,23 @@
           <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
             <button type="submit" class="btn btn-primary">Editar Vehículo</button>
           </form>
+          
           {% else %}
           <form action="/enviar-mensaje/{{ vehiculo.id_auto}}" method="get" style="display: inline-block;">
             <button type="submit" class="btn btn-primary">Enviar mensaje</button>
           </form>          
-          <form action="/enviar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
+          <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
+            <div class="form-group">
+                <label for="fecha_inicio">Fecha de Inicio</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_fin">Fecha de Finalización</label>
+                <input type="date" id="fecha_fin" name="fecha_fin" required>
+            </div>
             <button type="submit" class="btn btn-primary">Alquilar</button>
-          </form>
+        </form>
+        
 
           {% endif %}
   </ul>

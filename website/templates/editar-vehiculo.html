@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %} Editar Vehiculo {% endblock%}
+{% block title %} Editar Vehiculo {% endblock %}
 
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
     <h3 align="center">Editar vehiculo</h3>
     <div class="form-group">
-        <label for="Marca">Marca </label>
+        <label for="Marca">Marca</label>
         <input type="text" id="marca" name="marca" required value="{{ vehiculo.marca }}">
     </div>
     <div class="form-group">
@@ -50,27 +50,47 @@
         </li>
         {% endfor %}
         {% for _ in range(4 - imagenes_url|length) %}
-    <li>
-        <div class="image-container">
-            <label class="btn btn-primary">
-                Cargar Imagen
-                <input type="file" class="imagen-input" accept="image/*" name="nuevas_imagenes[]" style="display: none;">
-            </label>
-        </div>
-    </li>
-    {% endfor %}
+        <li>
+            <div class="image-container">
+                <label class="btn btn-primary">
+                    Cargar Imagen
+                    <input type="file" class="imagen-input" accept="image/*" name="nuevas_imagenes[]" style="display: none;">
+                </label>
+            </div>
+        </li>
+        {% endfor %}
     </ul>
 
     <!-- Agregar una lista oculta para las imágenes a quitar -->
     <input type="hidden" name="imagenes_quitar[]" class="imagenes-quitar-input">
+    
+    <div class="form-group">
+        <label for="fecha_bloqueo_inicio">Fecha de Inicio de Bloqueo</label>
+        <input type="date" id="fecha_bloqueo_inicio" name="fecha_bloqueo_inicio">
+    </div>
+    <div class="form-group">
+        <label for="fecha_bloqueo_fin">Fecha de Finalización de bloqueo</label>
+        <input type="date" id="fecha_bloqueo_fin" name="fecha_bloqueo_fin">
+    </div>
+    
+    <div class="form-group">
+        <label for="fechas_bloqueadas">Fechas Bloqueadas Actuales</label>
+        <ul id="fechas_bloqueadas">
+            {% for fecha_bloqueada in fechas_bloqueadas %}
+                <li>{{ fecha_bloqueada.fecha_inicio }} - {{ fecha_bloqueada.fecha_fin }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="form-group">
+        <label for="Disponibilidad">Disponibilidad</label>
+        <select id="disponibilidad" name="disponibilidad">
+            <option value="1">Sí</option>
+            <option value="0">No</option>
+        </select>
+    </div>
 
     <button type="submit">Guardar</button>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </form>
-    <script src="/static/js/events.js"></script>
-
-
-</body>
-</html>
+<script src="/static/js/events.js"></script>
 {% endblock %}

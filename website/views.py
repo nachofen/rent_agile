@@ -6,6 +6,8 @@ from .models import User
 from . import db
 from werkzeug.utils import secure_filename
 from datetime import datetime
+from sqlalchemy import and_, or_
+from sqlalchemy.sql import func
 
 views = Blueprint('views', __name__)
 UPLOAD_FOLDER = os.path.abspath('website/static/img/uploads')
@@ -196,8 +198,7 @@ def mostrar_vehiculo(id):
 @views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
 @login_required
 def editar_vehiculo(id):
-    """allows to edit car details"""
-    from .models import Auto, Imagenes_auto
+    from .models import Auto, Imagenes_auto, FechasBloqueadas
 
     vehiculo = Auto.query.get_or_404(id)
     if current_user.id != vehiculo.usuario_id:
@@ -205,8 +206,9 @@ def editar_vehiculo(id):
         return redirect(url_for('views.mis_vehiculos'))
 
     imagenes_url = [imagen.url for imagen in vehiculo.imagenes_auto]
-    if request.method == 'POST':
+    fechas_bloqueadas = FechasBloqueadas.query.filter_by(auto_id=id).all()
 
+    if request.method == 'POST':
         marca = request.form.get('marca')
         modelo = request.form.get('modelo')
         año = request.form.get('año')
@@ -214,8 +216,20 @@ def editar_vehiculo(id):
         departamento = request.form.get('departamento')
         tarifa = request.form.get('tarifa')
         descripcion = request.form.get('descripcion')
+        fecha_bloqueo_inicio = request.form.get('fecha_bloqueo_inicio')
+        fecha_bloqueo_fin = request.form.get('fecha_bloqueo_fin')
 
-        
+        # Convierte las fechas en objetos datetime si se proporcionan
+        if fecha_bloqueo_inicio:
+            fecha_bloqueo_inicio = datetime.strptime(fecha_bloqueo_inicio, '%Y-%m-%d').date()
+
+        if fecha_bloqueo_fin:
+            fecha_bloqueo_fin = datetime.strptime(fecha_bloqueo_fin, '%Y-%m-%d').date()
+
+        if fecha_bloqueo_inicio and fecha_bloqueo_fin:
+            nueva_fecha_bloqueada = FechasBloqueadas(auto_id=id, fecha_inicio=fecha_bloqueo_inicio, fecha_fin=fecha_bloqueo_fin)
+            db.session.add(nueva_fecha_bloqueada)
+
         vehiculo.marca = marca
         vehiculo.modelo = modelo
         vehiculo.año = año
@@ -223,6 +237,8 @@ def editar_vehiculo(id):
         vehiculo.departamento = departamento
         vehiculo.tarifa = tarifa
         vehiculo.descripcion = descripcion
+        vehiculo.disponible = bool(int(request.form['disponibilidad']))  # Convierte a bool
+
         nuevas_imagenes = request.files.getlist('nuevas_imagenes[]')
         for nueva_imagen in nuevas_imagenes:
             if nueva_imagen and allowed_file(nueva_imagen.filename):
@@ -234,19 +250,21 @@ def editar_vehiculo(id):
                 # Crear una entrada en la tabla Imagenes_auto para la nueva imagen
                 nueva_imagen_db = Imagenes_auto(url=os.path.join('static/img/uploads', unique_filename), auto=vehiculo)
                 db.session.add(nueva_imagen_db)
+
         # Obtén la lista de imágenes a quitar desde el html
         imagenes_quitar = request.form.getlist('imagenes_quitar[]')
-                # Elimina las imágenes a quitar de la base de datos
+
+        # Elimina las imágenes a quitar de la base de datos
         for url in imagenes_quitar:
             imagen = Imagenes_auto.query.filter_by(url=url, auto=vehiculo).first()
             if imagen:
                 db.session.delete(imagen)
-        
+
         db.session.commit()
         flash('Sus datos se han actualizado con éxito!', category='success')
         return redirect(url_for('views.mis_vehiculos'))
-    return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url)
-    
+
+    return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url, fechas_bloqueadas=fechas_bloqueadas)
 
 
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
@@ -288,6 +306,128 @@ def borrar_usuario(id):
 
     logout_user()
     return redirect(url_for('auth.login'))
+    
+
+@views.route('/alquilar-vehiculo/<int:id>', methods=['GET', 'POST'])
+@login_required
+def alquilar_vehiculo(id):
+    """para alquilar un vehiculo"""
+    from .models import Auto, Reserva, FechasBloqueadas
+
+    auto = Auto.query.get_or_404(id)
+    if auto is None:
+        flash('El vehículo seleccionado no existe.', 'error')
+        return redirect(url_for('index'))
+
+    fecha_inicio = None
+    fecha_fin = None
+
+    if request.method == 'POST':
+        fecha_inicio = datetime.strptime(request.form['fecha_inicio'], '%Y-%m-%d').date()
+        fecha_fin = datetime.strptime(request.form['fecha_fin'], '%Y-%m-%d').date()
+        print("Fecha de inicio:", fecha_inicio)
+        print("Fecha de fin:", fecha_fin)
+
+    # Consulta las fechas bloqueadas para el auto seleccionado
+    fechas_bloqueadas = FechasBloqueadas.query.filter(
+        and_(
+            FechasBloqueadas.auto_id == auto.id_auto,
+            FechasBloqueadas.fecha_inicio <= fecha_fin,
+            FechasBloqueadas.fecha_fin >= fecha_inicio
+        )
+    ).all()
+    print("Fechasbloqueadas:", fechas_bloqueadas)
+    if fechas_bloqueadas:
+        flash('El vehículo no está disponible para las fechas seleccionadas debido a fechas bloqueadas.', 'error')
+    else:
+        # El vehículo está disponible para las fechas seleccionadas
+        reserva = Reserva(
+            id_usuario=current_user.id,  # Reemplaza con el ID del usuario actual
+            id_auto=auto.id_auto,
+            fecha_inicio=fecha_inicio,
+            fecha_fin=fecha_fin
+        )
+        db.session.add(reserva)
+
+        # Agregar las fechas a la tabla FechasBloqueadas
+        nueva_fecha_bloqueada = FechasBloqueadas(
+            auto_id=auto.id_auto,
+            fecha_inicio=fecha_inicio,
+            fecha_fin=fecha_fin
+        )
+        db.session.add(nueva_fecha_bloqueada)
+
+        db.session.commit()
+        flash('Reserva realizada con éxito.', 'success')
+
+    return redirect(url_for('views.home'))
+
+def filtrar_autos_disponibles(fecha_inicio, fecha_fin):
+    from .models import Auto, FechasBloqueadas
+    autos_disponibles = []
+
+    # Obtener todos los autos de la base de datos
+    todos_los_autos = Auto.query.all()
+
+    for auto in todos_los_autos:
+        # Obtener las fechas bloqueadas de este auto
+        fechas_bloqueadas = FechasBloqueadas.query.filter_by(auto_id=auto.id_auto).all()
+
+        # Verificar si alguna de las fechas bloqueadas coincide con el rango de fechas de los filtros
+        if fecha_inicio and fecha_fin:  # Comprobación de que las fechas no son None
+            fechas_bloqueadas_coincidentes = [fb for fb in fechas_bloqueadas if
+                                              fb.fecha_inicio <= fecha_fin and fb.fecha_fin >= fecha_inicio]
+        else:
+            # Si alguna de las fechas es None, no hay coincidencia con las fechas bloqueadas
+            fechas_bloqueadas_coincidentes = []
+
+        # Si no hay fechas bloqueadas coincidentes, agregar este auto a la lista de disponibles
+        if not fechas_bloqueadas_coincidentes:
+            autos_disponibles.append(auto)
+
+    return autos_disponibles
+
+@views.route('/resultados/', methods=['GET', 'POST'])
+def resultados():
+    """Resultados de búsqueda acorde a los filtros"""
+    from .models import Auto
+
+    # Obtener los valores de los filtros desde la solicitud GET
+    precio_min = request.args.get('precioMinimo')
+    precio_max = request.args.get('precioMaximo')
+    fecha_inicio_str = request.args.get('fechaInicio')  # Cadena de texto
+    fecha_fin_str = request.args.get('fechaFin')  # Cadena de texto
+    fecha_inicio = None
+    fecha_fin = None
+
+    # Convertir las cadenas de texto en objetos de fecha
+    if fecha_inicio_str:
+        fecha_inicio = datetime.strptime(fecha_inicio_str, '%Y-%m-%d').date()
+    if fecha_fin_str:
+        fecha_fin = datetime.strptime(fecha_fin_str, '%Y-%m-%d').date()
+
+    # Filtrar autos disponibles según las fechas
+    autos_disponibles = filtrar_autos_disponibles(fecha_inicio, fecha_fin)
+
+    # Consulta de autos
+    query = Auto.query
+
+    # Aplicar filtros de precio
+    if precio_min and precio_min != '':
+        query = query.filter(Auto.tarifa >= float(precio_min))
+
+    if precio_max and precio_max != '':
+        query = query.filter(Auto.tarifa <= float(precio_max))
+
+    # Filtrar autos disponibles por ID
+    autos_ids_disponibles = [auto.id_auto for auto in autos_disponibles]
+    query = query.filter(Auto.id_auto.in_(autos_ids_disponibles))
+
+    # Obtener los resultados de la consulta
+    autos_resultado = query.all()
+
+    return render_template("resultados.html", autos=autos_resultado, user=current_user)
+
 
 @views.route('/enviar-mensaje/<int:id>', methods=['GET', 'POST'])
 @login_required
