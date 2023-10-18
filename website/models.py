@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
 class Auto(db.Model):
     id_auto = db.Column(db.Integer, primary_key=True)
     marca = db.Column(db.String(150))
+    matricula = db.Column(db.String(150))
     modelo = db.Column(db.String(150))
     año = db.Column(db.Integer)
     categoria = db.Column(db.String(150))

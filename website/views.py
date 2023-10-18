@@ -41,6 +41,7 @@ def agregar_vehiculo():
         marca = request.form.get('marca')
         modelo = request.form.get('modelo')
         año = request.form.get('año')
+        matricula = request.form.get('matricula')
         categoria = request.form.get('categoria')
         departamento = request.form.get('departamento')
         tarifa = request.form.get('tarifa')
@@ -50,6 +51,7 @@ def agregar_vehiculo():
             marca=marca,
             modelo=modelo,
             año=año,
+            matricula=matricula,
             categoria=categoria,
             departamento=departamento,
             tarifa=tarifa,
@@ -92,6 +94,36 @@ def perfil_usuario():
     """perfil de usuario"""
     print(current_user.nombre)
     return render_template("perfil.html", user=current_user)
+marcas = [
+    "Alfa Romeo",
+    "Audi",
+    "BMW",
+    "BYD",
+    "Chevrolet",
+    "Chrysler",
+    "Dodge",
+    "Fiat",
+    "Ford",
+    "GMC",
+    "Honda",
+    "Hyundai",
+    "Jaguar",
+    "Jeep",
+    "Kia",
+    "Land Rover",
+    "Lexus",
+    "Mazda",
+    "Mercedes-Benz",
+    "Mini",
+    "Nissan",
+    "Porsche",
+    "Subaru",
+    "Tesla",
+    "Toyota",
+    "Volkswagen",
+    "Volvo"
+]
+
 
 departamentos = [
     "Artigas",
@@ -204,7 +236,6 @@ def editar_vehiculo(id):
     if current_user.id != vehiculo.usuario_id:
         flash('Este vehiculo no le pertenece', category='error')
         return redirect(url_for('views.mis_vehiculos'))
-
     imagenes_url = [imagen.url for imagen in vehiculo.imagenes_auto]
     fechas_bloqueadas = FechasBloqueadas.query.filter_by(auto_id=id).all()
 
@@ -264,7 +295,7 @@ def editar_vehiculo(id):
         flash('Sus datos se han actualizado con éxito!', category='success')
         return redirect(url_for('views.mis_vehiculos'))
 
-    return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url, fechas_bloqueadas=fechas_bloqueadas)
+    return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url, fechas_bloqueadas=fechas_bloqueadas, marcas=marcas)
 
 
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])

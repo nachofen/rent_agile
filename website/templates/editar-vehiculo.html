@@ -5,9 +5,15 @@
 <form method="POST" enctype="multipart/form-data">
     <h3 align="center">Editar vehiculo</h3>
     <div class="form-group">
-        <label for="Marca">Marca</label>
-        <input type="text" id="marca" name="marca" required value="{{ vehiculo.marca }}">
+
+        <label for="marca">Marca</label>
+        <select class="form-control" id="marca" name="marca">
+            {% for marca in marcas %}
+                <option value="{{ marca }}" {% if vehiculo.marca == marca %}selected{% endif %}>{{ marca }}</option>
+            {% endfor %}
+        </select>
     </div>
+    
     <div class="form-group">
         <label for="Modelo">Modelo</label>
         <input type="text" id="modelo" name="modelo" required value="{{ vehiculo.modelo }}">

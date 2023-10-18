@@ -3,15 +3,48 @@
 
 {% block content %}
 <form method="POST" enctype="multipart/form-data">
-    <h3 align="center">Agregar Auto</h3>
+    <h3 align="center">Agregar Auto</h3>   
     <div class="form-group">
-        <label for="Marca">Marca </label>
+        <label for="marca">Marca de Auto</label>
+        <select class="form-control" id="marca" name="marca">
+            <option value="alfa-romeo">Alfa Romeo</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="byd">BYD</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="chrysler">Chrysler</option>
+            <option value="dodge">Dodge</option>
+            <option value="fiat">Fiat</option>
+            <option value="ford">Ford</option>
+            <option value="gmc">GMC</option>
+            <option value="honda">Honda</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="jaguar">Jaguar</option>
+            <option value="jeep">Jeep</option>
+            <option value="kia">Kia</option>
+            <option value="land-rover">Land Rover</option>
+            <option value="lexus">Lexus</option>
+            <option value="mazda">Mazda</option>
+            <option value="mercedes-benz">Mercedes-Benz</option>
+            <option value="mini">Mini</option>
+            <option value="nissan">Nissan</option>
+            <option value="porsche">Porsche</option>
+            <option value="subaru">Subaru</option>
+            <option value="tesla">Tesla</option>
+            <option value="toyota">Toyota</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="volvo">Volvo</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="Matricula">Matricula</label>
         <input 
             type="text" 
             class="form-control" 
-            id="marca" 
-            name="marca" 
-            placeholder="Marca del Vehículo"
+            id="matricula" 
+            name="matricula" 
+            placeholder="Ingrese la matricula del vehículo"
         />
     </div>
     <div class="form-group">
