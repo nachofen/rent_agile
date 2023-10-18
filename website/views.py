@@ -428,10 +428,12 @@ def resultados():
     precio_max = request.args.get('precioMaximo')
     fecha_inicio_str = request.args.get('fechaInicio')  # Cadena de texto
     fecha_fin_str = request.args.get('fechaFin')  # Cadena de texto
+    filtro_marca = request.args.get('marca')  # Obtener la marca seleccionada
+
+    # Convertir las cadenas de texto en objetos de fecha
     fecha_inicio = None
     fecha_fin = None
 
-    # Convertir las cadenas de texto en objetos de fecha
     if fecha_inicio_str:
         fecha_inicio = datetime.strptime(fecha_inicio_str, '%Y-%m-%d').date()
     if fecha_fin_str:
@@ -450,12 +452,18 @@ def resultados():
     if precio_max and precio_max != '':
         query = query.filter(Auto.tarifa <= float(precio_max))
 
+    # Aplicar filtro de marca si se seleccionó una marca
+    if filtro_marca:
+        # Utilizamos la condición "or_" para buscar la marca en la lista de marcas
+        query = query.filter(or_(Auto.marca == filtro_marca))
+
     # Filtrar autos disponibles por ID
     autos_ids_disponibles = [auto.id_auto for auto in autos_disponibles]
     query = query.filter(Auto.id_auto.in_(autos_ids_disponibles))
 
     # Obtener los resultados de la consulta
     autos_resultado = query.all()
+
 
     return render_template("resultados.html", autos=autos_resultado, user=current_user)
 

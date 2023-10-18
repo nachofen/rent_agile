@@ -29,8 +29,33 @@
     <div id="linea1">
       <label for="filtroMarca">Marca:</label>
       <select id="filtroMarca">
-        <option value="Toyota">Toyota</option>
-        <option value="Honda">Honda</option>
+        <option value="alfa-romeo">Alfa Romeo</option>
+        <option value="audi">Audi</option>
+        <option value="bmw">BMW</option>
+        <option value="byd">BYD</option>
+        <option value="chevrolet">Chevrolet</option>
+        <option value="chrysler">Chrysler</option>
+        <option value="dodge">Dodge</option>
+        <option value="fiat">Fiat</option>
+        <option value="ford">Ford</option>
+        <option value="gmc">GMC</option>
+        <option value="honda">Honda</option>
+        <option value="hyundai">Hyundai</option>
+        <option value="jaguar">Jaguar</option>
+        <option value="jeep">Jeep</option>
+        <option value="kia">Kia</option>
+        <option value="land-rover">Land Rover</option>
+        <option value="lexus">Lexus</option>
+        <option value="mazda">Mazda</option>
+        <option value="mercedes-benz">Mercedes-Benz</option>
+        <option value="mini">Mini</option>
+        <option value="nissan">Nissan</option>
+        <option value="porsche">Porsche</option>
+        <option value="subaru">Subaru</option>
+        <option value="tesla">Tesla</option>
+        <option value="toyota">Toyota</option>
+        <option value="volkswagen">Volkswagen</option>
+        <option value="volvo">Volvo</option>
         <!-- Agrega más opciones de marca según tus datos -->
       </select>
       <!-- Filtro de Precio Mínimo -->
@@ -82,9 +107,9 @@
       var precioMaximo = document.getElementById('precioMaximo').value;
       var fechaInicio = document.getElementById('fechaInicio').value;
       var fechaFin = document.getElementById('fechaFin').value;
-
+      var filtroMarca = document.getElementById('filtroMarca').value;
       // Construye la URL con los parámetros de filtro
-      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin;
+      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca;
 
       // Cierra el popup de filtros
       closeFiltersPopup();
