@@ -21,7 +21,13 @@ def allowed_file(filename):
 def home():
     """home url"""
     from .models import Auto
-    autos = Auto.query.all()
+    marca = request.args.get('marca')
+    if marca == 'todas':
+        # No apliques ningún filtro por marca
+        autos = Auto.query.filter_by(disponible=1).all()
+    else:
+        # Aplica el filtro por marca seleccionada
+        autos = Auto.query.all()
     return render_template("index.html", user=current_user, autos=autos)
 
 @views.route('/host')

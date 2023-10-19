@@ -9,7 +9,6 @@
 
   <div class="gallery">
     {% for auto in autos %}
-      {% if auto.disponible == 1 %}
         {% if auto.imagenes_auto %}
           <div class="auto">
               <a href="/ver-vehiculo/{{ auto.id_auto}}">
@@ -19,7 +18,6 @@
               <p>Precio: {{ auto.tarifa }}$</p>
           </div>
         {% endif %}
-      {% endif %}
     {% endfor %}
   </div>
 
@@ -29,6 +27,7 @@
     <div id="linea1">
       <label for="filtroMarca">Marca:</label>
       <select id="filtroMarca">
+        <option value="todas">Todas las marcas</option>
         <option value="alfa-romeo">Alfa Romeo</option>
         <option value="audi">Audi</option>
         <option value="bmw">BMW</option>
