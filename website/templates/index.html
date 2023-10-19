@@ -74,6 +74,30 @@
 
       <label for="fechaFin">Fecha de Fin:</label>
       <input type="date" id="fechaFin">
+
+      <label for="filtroDepto">Departamento:</label>
+      <select id="filtroDepto">
+        <option value="artigas">Artigas</option>
+        <option value="canelones">Canelones</option>
+        <option value="cerro-largo">Cerro Largo</option>
+        <option value="colonia">Colonia</option>
+        <option value="duran">Durazno</option>
+        <option value="flores">Flores</option>
+        <option value="florida">Florida</option>
+        <option value="lavalleja">Lavalleja</option>
+        <option value="maldonado">Maldonado</option>
+        <option value="montevideo">Montevideo</option>
+        <option value="paysandu">Paysandú</option>
+        <option value="rio-negro">Río Negro</option>
+        <option value="rivera">Rivera</option>
+        <option value="rocha">Rocha</option>
+        <option value="salto">Salto</option>
+        <option value="san-jose">San José</option>
+        <option value="soriano">Soriano</option>
+        <option value="tacuarembo">Tacuarembó</option>
+        <option value="treinta-y-tres">Treinta y Tres</option>
+        <!-- Agrega más opciones de marca según tus datos -->
+      </select>
       
     </div>
 
@@ -109,8 +133,9 @@
       var fechaInicio = document.getElementById('fechaInicio').value;
       var fechaFin = document.getElementById('fechaFin').value;
       var filtroMarca = document.getElementById('filtroMarca').value;
+      var filtrodepto = document.getElementById('filtroDepto').value;
       // Construye la URL con los parámetros de filtro
-      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca;
+      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca +'&depto=' + filtroDepto;
 
       // Cierra el popup de filtros
       closeFiltersPopup();
