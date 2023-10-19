@@ -29,6 +29,7 @@
     <div id="linea1">
       <label for="filtroMarca">Marca:</label>
       <select id="filtroMarca">
+        <option value="todas">Todas</option>
         <option value="alfa-romeo">Alfa Romeo</option>
         <option value="audi">Audi</option>
         <option value="bmw">BMW</option>
@@ -126,18 +127,21 @@
     var openButton = document.getElementById('openFiltersButton');
     openButton.addEventListener('click', openFiltersPopup);
 
-    var searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function() {
       var precioMinimo = document.getElementById('precioMinimo').value;
       var precioMaximo = document.getElementById('precioMaximo').value;
       var fechaInicio = document.getElementById('fechaInicio').value;
       var fechaFin = document.getElementById('fechaFin').value;
       var filtroMarca = document.getElementById('filtroMarca').value;
-      var filtrodepto = document.getElementById('filtroDepto').value;
+      var filtroDepto = document.getElementById('filtroDepto').value;
 
       // Construye la URL con los parámetros de filtro
       var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca +'&depto=' + filtroDepto;
 
+      // Agrega el parámetro "marca" solo si no es "todas"
+      
+
+      // Agrega el parámetro "depto" siempre (incluso si es "todas")
       // Cierra el popup de filtros
       closeFiltersPopup();
 

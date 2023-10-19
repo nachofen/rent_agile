@@ -132,9 +132,9 @@
       var fechaInicio = document.getElementById('fechaInicio').value;
       var fechaFin = document.getElementById('fechaFin').value;
       var filtroMarca = document.getElementById('filtroMarca').value;
-      var filtrodepto = document.getElementById('filtroDepto').value;
+      var filtroDepto = document.getElementById('filtroDepto').value;
       // Construye la URL con los parámetros de filtro
-      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca +'&depto=' + filtroDepto;
+      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca + '&depto=' + filtroDepto;
 
       // Cierra el popup de filtros
       closeFiltersPopup();

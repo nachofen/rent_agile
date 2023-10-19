@@ -21,13 +21,7 @@ def allowed_file(filename):
 def home():
     """home url"""
     from .models import Auto
-    marca = request.args.get('marca')
-    if marca == 'todas':
-        # No apliques ningún filtro por marca
-        autos = Auto.query.filter_by(disponible=1).all()
-    else:
-        # Aplica el filtro por marca seleccionada
-        autos = Auto.query.all()
+    autos = Auto.query.all()
     return render_template("index.html", user=current_user, autos=autos)
 
 @views.route('/host')
@@ -437,6 +431,7 @@ def resultados():
     fecha_inicio_str = request.args.get('fechaInicio')  # Cadena de texto
     fecha_fin_str = request.args.get('fechaFin')  # Cadena de texto
     filtro_marca = request.args.get('marca')  # Obtener la marca seleccionada
+    filtro_depto = request.args.get('depto')
 
     # Convertir las cadenas de texto en objetos de fecha
     fecha_inicio = None
@@ -460,10 +455,17 @@ def resultados():
     if precio_max and precio_max != '':
         query = query.filter(Auto.tarifa <= float(precio_max))
 
+    if filtro_depto:
+        query = query.filter(Auto.departamento == filtro_depto)
+
     # Aplicar filtro de marca si se seleccionó una marca
-    if filtro_marca:
+    print("{}".format(filtro_marca))
+    if filtro_marca != 'todas':
         # Utilizamos la condición "or_" para buscar la marca en la lista de marcas
         query = query.filter(or_(Auto.marca == filtro_marca))
+    else:
+        print("llegue aca")
+    
 
     # Filtrar autos disponibles por ID
     autos_ids_disponibles = [auto.id_auto for auto in autos_disponibles]
