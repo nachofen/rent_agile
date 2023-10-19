@@ -116,6 +116,7 @@ marcas = [
     "Mercedes-Benz",
     "Mini",
     "Nissan",
+    "Peugeot",
     "Porsche",
     "Subaru",
     "Tesla",
@@ -161,6 +162,7 @@ def update_info():
         email = request.form.get('email')
         nombre = request.form.get('name')
         apellido = request.form.get('apellido')
+        telefono = request.form.get('telefono')
         password = request.form.get('password')
         password2 = request.form.get('password2')
         departamento = request.form.get('departamento')
@@ -196,6 +198,7 @@ def update_info():
             current_user.email = email
             current_user.nombre = nombre
             current_user.apellido = apellido
+            current_user.telefono = telefono
             current_user.password = generate_password_hash(password, method='sha256')
             current_user.departamento = departamento
             current_user.direccion = direccion
@@ -217,7 +220,6 @@ def mis_vehiculos():
     return render_template("mis-vehiculos.html", user=current_user, vehiculos=vehiculos)
 
 @views.route('/ver-vehiculo/<int:id>', methods=['GET', 'POST'])
-@login_required
 def mostrar_vehiculo(id):
     """shows one car by id"""
     from .models import Auto, Imagenes_auto

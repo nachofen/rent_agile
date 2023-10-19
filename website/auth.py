@@ -48,7 +48,7 @@ def es_mayor(fecha_nacimiento):
     today = datetime.today().date()
     age = today.year - fecha_nacimiento.year - ((today.month, today.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
     if fecha_nacimiento > today:
-        flash('todavia no naciste pichon', category='error')
+        return False
     elif age < 18:
         flash('debe ser mayor de edad para registrarse', category='error')
         return False
@@ -72,6 +72,7 @@ def registro():
         apellido = request.form.get('apellido')
         password = request.form.get('password')
         password2 = request.form.get('password2')
+        telefono = request.form.get('telefono')
         departamento = request.form.get('departamento')
         direccion = request.form.get('direccion')
         fecha_nacimiento = request.form.get('fecha_nacimiento')
@@ -97,13 +98,13 @@ def registro():
         elif len(password) < 6:
             flash('La contraseña debe tener al menos 6 caracteres.', category='error')
         elif not es_mayor(fecha_nacimiento):
-            pass
+            flash('La fecha que utilizaste no esta disponible aun', category='error')
         else:
             # Todo está correcto, crear el usuario en la base de datos
-            new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, direccion=direccion, fecha_nacimiento=fecha_nacimiento, password=generate_password_hash(password, method='sha256'))
+            new_user = User(email=email, nombre=nombre, apellido=apellido, departamento=departamento, direccion=direccion, telefono=telefono, fecha_nacimiento=fecha_nacimiento, password=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             flash('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.', category='success')
-            return redirect(url_for('views.login'))
+            return redirect(url_for('auth.login'))
 
     return render_template("registro.html", user=current_user)

@@ -17,6 +17,10 @@
         <input type="text" id="apellido" name="apellido" required value="{{ user.apellido }}">
     </div>
     <div class="form-group">
+        <label for="telefono">Telefono</label>
+        <input type="tel" id="telefono" name="telefono" required value="{{ user.telefono }}">
+    </div>
+    <div class="form-group">
         <label for="departamento">Departamento</label>
         <select class="form-control" id="departamento" name="departamento">
             {% for dept in departamentos %}
