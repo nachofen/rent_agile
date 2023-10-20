@@ -1,117 +1,131 @@
 {% extends "base.html" %}
 {% block title %} Registro {% endblock%}
 
-{% block content %} 
-<form method="POST">
-    <h3 align="center">Registrate</h3>
-    <div class="form-group">
-        <label for="email">Email </label>
-        <input 
-            type="email" 
-            class="form-control" 
-            id="email" 
-            name="email" 
-            placeholder="Ingrese su Email"
-        />
+{% block content %}
+<link rel="stylesheet" href="/static/css/style.css">
+
+<div class="login-page-regis">
+    <div class="centered-container">
+        <form method="POST" class="login-form">
+            <h1 class="login-form-title">Regístrate</h1>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Email"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nombre" 
+                    name="nombre" 
+                    placeholder="Nombre"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for "apellido">Apellido</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="apellido" 
+                    name="apellido" 
+                    placeholder="Apellido"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input 
+                    type="tel" 
+                    class="form-control" 
+                    id="telefono" 
+                    name="telefono" 
+                    placeholder="Teléfono"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="direccion" 
+                    name="direccion" 
+                    placeholder="Dirección" 
+                    required
+                />
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="fecha_nacimiento" 
+                        name="fecha_nacimiento" 
+                        placeholder="Fecha de Nacimiento"
+                    />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="departamento">Departamento</label>
+                <select class="form-control" id="departamento" name="departamento">
+                    <option value="canelones">Canelones</option>
+                    <option value="cerro-largo">Cerro Largo</option>
+                    <option value="colonia">Colonia</option>
+                    <option value="durazno">Durazno</option>
+                    <option value="flores">Flores</option>
+                    <option value="florida">Florida</option>
+                    <option value="lavalleja">Lavalleja</option>
+                    <option value="maldonado">Maldonado</option>
+                    <option value="montevideo">Montevideo</option>
+                    <option value="paysandu">Paysandú</option>
+                    <option value="rio-negro">Río Negro</option>
+                    <option value="rivera">Rivera</option>
+                    <option value="rocha">Rocha</option>
+                    <option value="salto">Salto</option>
+                    <option value="san-jose">San José</option>
+                    <option value="soriano">Soriano</option>
+                    <option value="tacuarembo">Tacuarembó</option>
+                    <option value="treinta-y-tres">Treinta y Tres</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Contraseña"
+                />
+            </div>
+            
+            <div class="form-group">
+                <label for="password2">Repite la Contraseña</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password2" 
+                    name="password2" 
+                    placeholder="Repite la Contraseña"
+                />
+            </div>
+            
+            <button type="submit" class="btn-login">Registrarse</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="PrimerNombre">Nombre</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="nombre" 
-            name="nombre" 
-            placeholder="Ingrese Su Primer Nombre"
-        />
-    </div>
-    <div class="form-group">
-        <label for="PrmerApellido">Apellido</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="apellido" 
-            name="apellido" 
-            placeholder="Ingrese Su Primer Apellido"
-        />
-    </div>
-    <div class="form-group">
-        <label for="telefono">Telefono</label>
-        <input 
-            type="tel" 
-            class="form-control" 
-            id="telefono" 
-            name="telefono" 
-            placeholder="Ingrese su Telefono"
-        />
-    </div>
-    <div class="form-group">
-        <label for="direccion">Dirección</label>
-        <input
-            type="text"
-            class="form-control"
-            id="direccion"
-            name="direccion"
-            placeholder="Ingrese Su Dirección"
-            required
-        />
-    </div>    
-    <div class="form-group">
-        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-        <input 
-            type="date" 
-            class="form-control" 
-            id="fecha_nacimiento" 
-            name="fecha_nacimiento" 
-            placeholder="Seleccione su fecha de nacimiento"
-        />
-    </div>    
-    <div class="form-group">
-        <label for="departamento">Departamento</label>
-        <select class="form-control" id="departamento" name="departamento">
-            <option value="artigas">Artigas</option>
-            <option value="canelones">Canelones</option>
-            <option value="cerro-largo">Cerro Largo</option>
-            <option value="colonia">Colonia</option>
-            <option value="durazno">Durazno</option>
-            <option value="flores">Flores</option>
-            <option value="florida">Florida</option>
-            <option value="lavalleja">Lavalleja</option>
-            <option value="maldonado">Maldonado</option>
-            <option value="montevideo">Montevideo</option>
-            <option value="paysandu">Paysandú</option>
-            <option value="rio-negro">Río Negro</option>
-            <option value="rivera">Rivera</option>
-            <option value="rocha">Rocha</option>
-            <option value="salto">Salto</option>
-            <option value="san-jose">San José</option>
-            <option value="soriano">Soriano</option>
-            <option value="tacuarembo">Tacuarembó</option>
-            <option value="treinta-y-tres">Treinta y Tres</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label for="firstpass">Ingrese Su Contraseña </label>
-        <input 
-            type="password" 
-            class="form-control" 
-            id="password" 
-            name="password" 
-            placeholder="Ingrese Su Contraseña"
-        />
-    </div>
-    <div class="form-group">
-        <label for="secondpass">Repita Su Contraseña </label>
-        <input 
-            type="password" 
-            class="form-control" 
-            id="password2" 
-            name="password2" 
-            placeholder="Repita Su Contraseña"
-        />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Registrarse
-    </button>
-</form>
+</div>
 {% endblock %}

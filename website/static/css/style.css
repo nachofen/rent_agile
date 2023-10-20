@@ -4,58 +4,71 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-/* Estilo de fondo con imagen */
-.background-image {
-    background-image: url('/static/img/uploads/fondo-ruta.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-/* Estilo para el formulario de inicio de sesión */
-.login-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo opaco */
+  }
+  
+  /* Etilo borde caja login e inicar sesion*/
+  .login-form {
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 16px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    margin-top: 0;
-}
-
-/* Estilo del título en el formulario de inicio de sesión */
-.login-form-title {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+  }
+  
+  /* Estilo del contenedor principal (login y contenedor) */
+  .login-form, .contenedor {
+    width: 300px;
+    margin: 0 auto;
+    max-width: 400px; 
+    margin: 0 auto;
+    max-height: 590px;
+  }
+  
+  /* Imagen fondo de seccion registro y login */
+  .login-page-regis {
+    background-image: url('/public/images/fondo-ruta.jpg');
+    background-size: cover;
+  }
+  
+  /* Estilo del título en el formulario de registro */
+  .login-form h1 {
     text-align: center;
     color: red;
     font-size: 26px;
     padding: 70px 0 10px 0;
-}
-
-/* Estilo de las cajas de entrada en el formulario de inicio de sesión */
-.login-form input[type="password"],
-.login-form input[type="text"],
-.login-form input[type="email"] {
+  }
+  
+  /* Estilo de las cajas de entrada en el formulario de registro */
+  .login-form input[type="password"],
+  .login-form input[type="text"],
+  .login-form input[type="email"] {
     width: 100%;
     padding: 15px;
     border: 1px solid #ced4da;
     border-radius: 15px; /* Borde redondeado */
     box-sizing: border-box;
-}
-
-/* Estilo del botón de inicio de sesión */
-.btn-login {
+  }
+  
+  /* Estilo para la caja de fecha en el formulario de registro */
+  .login-form input[type="date"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 15px; /* Borde redondeado */
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para la caja de selección de departamento en el formulario de registro */
+  .login-form select[name="department"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 15px; /* Borde redondeado */
+    box-sizing: border-box;
+  }
+  
+  /* Estilo del botón de registro e inicio de sesión */
+  .btn-login, .btn-register {
     width: 100%;
     padding: 15px;
     background-color: rgb(196, 16, 16);
@@ -67,16 +80,50 @@ body {
     font-size: large;
     color: #ffffff;
     margin-top: 20px;
-    text-decoration: none;
-}
-
-/* Estilos para el botón de inicio de sesión al interactuar con él */
-.btn-login:hover, .btn-login:active {
+  }
+  
+  /* Estilos para los botones de registro e inicio de sesión al interactuar con ellos */
+  .btn-login:hover, .btn-login:active, .btn-register:hover, .btn-register:active {
     color: #ffffff;
     background-color: rgb(196, 16, 12);
     border-color: black;
-}
-
-.btn-login:focus {
+  }
+  
+  .btn-login:focus, .btn-register:focus {
     box-shadow: 0 0 0 3px rgba(122, 7, 7, 0.25);
-}
+  }
+  
+  /* Estilo para el enlace "Rent Agile" en el formulario de inicio de sesión */
+  .login-form h2 a.logo {
+    font-family: 'MuseoModerno', sans-serif;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 26px;
+  }
+  
+  /* Estilo para el mensaje de "Ya tengo cuenta, click - Registrarse" */
+  .singin-yatengocuenta{
+    margin: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .singin-yatengocuenta p{
+    font-size:  13px;
+    font-weight: 470;
+    margin: 0;
+    color: #222;
+  }
+  
+  .singin-yatengocuenta a{
+    font-size:  13px;
+    letter-spacing: .5px;
+    margin-left: 5px;
+    text-decoration: none;
+    line-height: 1;
+    font-weight: 470;
+    color: blue;
+  }
+  
