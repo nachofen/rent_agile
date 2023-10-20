@@ -67,7 +67,7 @@ def contiene_numero(cadena):
 @auth.route('registro', methods=['GET', 'POST'])
 def registro():
     if request.method == 'POST':
-        email = request.form.get('email')
+        email = request.form['email']
         nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')
         password = request.form.get('password')
@@ -79,7 +79,6 @@ def registro():
 
         # Validar que se haya ingresado una fecha de nacimiento
         
-
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Ya existe una cuenta con este correo asociado.', category='error')

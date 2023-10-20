@@ -46,7 +46,7 @@ def agregar_vehiculo():
         departamento = request.form.get('departamento')
         tarifa = request.form.get('tarifa')
         descripcion = request.form.get('descripcion')
-
+        
         nuevo_vehiculo = Auto(
             marca=marca,
             modelo=modelo,
@@ -272,6 +272,12 @@ def editar_vehiculo(id):
         vehiculo.descripcion = descripcion
         vehiculo.disponible = bool(int(request.form['disponibilidad']))  # Convierte a bool
 
+        # Validar el formulario
+        if vehiculo.disponible and len(vehiculo.imagenes_auto) == 0:
+            flash('El vehículo debe tener al menos una foto si está disponible!', category='error')
+            return render_template("agregar-vehiculo.html", user=current_user)
+
+            
         nuevas_imagenes = request.files.getlist('nuevas_imagenes[]')
         for nueva_imagen in nuevas_imagenes:
             if nueva_imagen and allowed_file(nueva_imagen.filename):
@@ -455,16 +461,14 @@ def resultados():
     if precio_max and precio_max != '':
         query = query.filter(Auto.tarifa <= float(precio_max))
 
-    if filtro_depto:
-        query = query.filter(Auto.departamento == filtro_depto)
-
+    if filtro_depto != 'todos':
+        # Utilizamos la condición "or_" para buscar la marca en la lista de marcas
+        query = query.filter(or_(Auto.departamento == filtro_depto))
+    
     # Aplicar filtro de marca si se seleccionó una marca
-    print("{}".format(filtro_marca))
     if filtro_marca != 'todas':
         # Utilizamos la condición "or_" para buscar la marca en la lista de marcas
         query = query.filter(or_(Auto.marca == filtro_marca))
-    else:
-        print("llegue aca")
     
 
     # Filtrar autos disponibles por ID
