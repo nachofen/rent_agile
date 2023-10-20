@@ -1,161 +1,155 @@
+
 {% extends "base.html" %}
 {% block title %} Agregar Vehiculo {% endblock%}
 
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
-    <h3 align="center">Agregar Auto</h3>   
-    <div class="form-group">
-        <label for="marca">Marca de Auto</label>
-        <select class="form-control" id="marca" name="marca">
-            <option value="alfa-romeo">Alfa Romeo</option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="byd">BYD</option>
-            <option value="chevrolet">Chevrolet</option>
-            <option value="chrysler">Chrysler</option>
-            <option value="dodge">Dodge</option>
-            <option value="fiat">Fiat</option>
-            <option value="ford">Ford</option>
-            <option value="gmc">GMC</option>
-            <option value="honda">Honda</option>
-            <option value="hyundai">Hyundai</option>
-            <option value="jaguar">Jaguar</option>
-            <option value="jeep">Jeep</option>
-            <option value="kia">Kia</option>
-            <option value="land-rover">Land Rover</option>
-            <option value="lexus">Lexus</option>
-            <option value="mazda">Mazda</option>
-            <option value="mercedes-benz">Mercedes-Benz</option>
-            <option value="mini">Mini</option>
-            <option value="nissan">Nissan</option>
-            <option value="peugeot">Peugeot</option>
-            <option value="porsche">Porsche</option>
-            <option value="subaru">Subaru</option>
-            <option value="tesla">Tesla</option>
-            <option value="toyota">Toyota</option>
-            <option value="volkswagen">Volkswagen</option>
-            <option value="volvo">Volvo</option>
-        </select>
-    </div>
     
-    <div class="form-group">
-        <label for="Matricula">Matricula</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="matricula" 
-            name="matricula" 
-            placeholder="Ingrese la matricula del vehículo"
-        />
-    </div>
-    <div class="form-group">
-        <label for="Modelo">Modelo</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="modelo" 
-            name="modelo" 
-            placeholder="Ingrese el modelo del vehículo"
-        />
-    </div>
-    <div class="form-group">
-        <label for="Año">Año</label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="año" 
-            name="año" 
-            placeholder="Ingrese el año del vehículo"
-        />
-    </div>
-    <div class="form-group">
-        <label for="Categoria">Categoria</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="categoria" 
-            name="categoria" 
-            placeholder="tipo de vehículo, ej: sedan, hatch, etc"
-        />
-    </div>
-    <div class="form-group">
-        <label for="departamento">Departamento</label>
-        <select class="form-control" id="departamento" name="departamento">
-            <option value="artigas">Artigas</option>
-            <option value="canelones">Canelones</option>
-            <option value="cerro-largo">Cerro Largo</option>
-            <option value="colonia">Colonia</option>
-            <option value="durazno">Durazno</option>
-            <option value="flores">Flores</option>
-            <option value="florida">Florida</option>
-            <option value="lavalleja">Lavalleja</option>
-            <option value="maldonado">Maldonado</option>
-            <option value="montevideo">Montevideo</option>
-            <option value="paysandu">Paysandú</option>
-            <option value="rio-negro">Río Negro</option>
-            <option value="rivera">Rivera</option>
-            <option value="rocha">Rocha</option>
-            <option value="salto">Salto</option>
-            <option value="san-jose">San José</option>
-            <option value="soriano">Soriano</option>
-            <option value="tacuarembo">Tacuarembó</option>
-            <option value="treinta-y-tres">Treinta y Tres</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="Tarifa">Tarifa($)</label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="tarifa" 
-            name="tarifa" 
-            placeholder="ingrese el precio por día"
-        />
-    </div>
-    <div class="form-group">
-        <label for="Descripcion">Descripcion</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            id="descripcion" 
-            name="descripcion" 
-            placeholder="escriba una breve descripción de su vehículo"
-        />
-    </div>
-    
-    <div id="image-upload1">
-        <div class="form-group">
-            <label for="images">Cargar imágenes de auto:</label>
-            <input type="file" name="images[]" class="image-input" multiple>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-page-regis">
+        <div class="centered-container">
+            <form method="POST" enctype="multipart/form-data" class="login-form">
+                <h1 class="login-form-title">Agregar Auto</h1>
+
+                <div class="form-group">
+                    <label for="marca">Marca de Auto</label>
+                    <select class="form-control" id="marca" name="marca">
+                        <option value="alfa-romeo">Alfa Romeo</option>
+                        <option value="audi">Audi</option>
+                        <option value="bmw">BMW</option>
+                        <option value="byd">BYD</option>
+                        <option value="chevrolet">Chevrolet</option>
+                        <option value="chrysler">Chrysler</option>
+                        <option value="dodge">Dodge</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="ford">Ford</option>
+                        <option value="gmc">GMC</option>
+                        <option value="honda">Honda</option>
+                        <option value="hyundai">Hyundai</option>
+                        <option value="jaguar">Jaguar</option>
+                        <option value="jeep">Jeep</option>
+                        <option value="kia">Kia</option>
+                        <option value="land-rover">Land Rover</option>
+                        <option value="lexus">Lexus</option>
+                        <option value="mazda">Mazda</option>
+                        <option value="mercedes-benz">Mercedes-Benz</option>
+                        <option value="mini">Mini</option>
+                        <option value="nissan">Nissan</option>
+                        <option value="peugeot">Peugeot</option>
+                        <option value="porsche">Porsche</option>
+                        <option value="subaru">Subaru</option>
+                        <option value="tesla">Tesla</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="volvo">Volvo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="matricula">Matricula</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="matricula" 
+                        name="matricula" 
+                        placeholder="Ingrese la matricula del vehículo"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="modelo">Modelo</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="modelo" 
+                        name="modelo" 
+                        placeholder="Ingrese el modelo del vehículo"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="año">Año</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="año" 
+                        name="año" 
+                        placeholder="Ingrese el año del vehículo"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="categoria" 
+                        name="categoria" 
+                        placeholder="Tipo de vehículo, ej: sedan, hatch, etc"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="departamento">Departamento</label>
+                    <select class="form-control" id="departamento" name="departamento">
+                        <option value="artigas">Artigas</option>
+                        <option value="canelones">Canelones</option>
+                        <option value="cerro-largo">Cerro Largo</option>
+                        <option value="colonia">Colonia</option>
+                        <option value="durazno">Durazno</option>
+                        <option value="flores">Flores</option>
+                        <option value="florida">Florida</option>
+                        <option value="lavalleja">Lavalleja</option>
+                        <option value="maldonado">Maldonado</option>
+                        <option value="montevideo">Montevideo</option>
+                        <option value="paysandu">Paysandú</option>
+                        <option value="rio-negro">Río Negro</option>
+                        <option value="rivera">Rivera</option>
+                        <option value="rocha">Rocha</option>
+                        <option value="salto">Salto</option>
+                        <option value="san-jose">San José</option>
+                        <option value="soriano">Soriano</option>
+                        <option value="tacuarembo">Tacuarembó</option>
+                        <option value="treinta-y-tres">Treinta y Tres</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tarifa">Tarifa($)</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="tarifa" 
+                        name="tarifa" 
+                        placeholder="Ingrese el precio por día"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="descripcion" 
+                        name="descripcion" 
+                        placeholder="Escriba una breve descripción de su vehículo"
+                    />
+                </div>
+
+                <div class="image-upload">
+                    <div class="form-group">
+                        <label for="images">Cargar imágenes de auto:</label>
+                        <input type="file" name="images[]" class="image-input" multiple>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Guardar</button>
+                <br>
+            </form>
         </div>
     </div>
-    <div id="image-upload2">
-        <div class="form-group">
-            <label for="images">Cargar imágenes de auto:</label>
-            <input type="file" name="images[]" class="image-input" multiple>
-        </div>
-    </div>
-    <div id="image-upload3">
-        <div class="form-group">
-            <label for="images">Cargar imágenes de auto:</label>
-            <input type="file" name="images[]" class="image-input" multiple>
-        </div>
-    </div>
-    <div id="image-upload">
-        <div class="form-group">
-            <label for="images">Cargar imágenes de auto:</label>
-            <input type="file" name="images[]" class="image-input" multiple>
-        </div>
-    </div>
-
-    <button type="submit">Guardar</button>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-</form>
-
-
-
 </body>
 </html>
 {% endblock %}

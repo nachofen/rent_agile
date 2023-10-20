@@ -14,7 +14,8 @@ body {
     padding: 16px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
   }
-  
+
+
   /* Estilo del contenedor principal (login y contenedor) */
   .login-form, .contenedor {
     width: 300px;
