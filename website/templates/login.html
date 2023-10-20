@@ -1,31 +1,58 @@
 {% extends "base.html" %}
-{% block title %} Inicio de Sesion {% endblock%}
+{% block title %} Inicio de Sesión {% endblock %}
 
 {% block content %} 
-<form method="POST">
-    <h3 align="center">Iniciar Sesión</h3>
-    <div class="form-group">
-        <label for="email">Email </label>
-        <input 
-            type="email" 
-            class="form-control" 
-            id="email" 
-            name="email" 
-            placeholder="Ingrese su Email"
-        />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    <div class="background-image">
+        <div class="container login-container">
+            <form method="POST" class="login-form">
+                <h3 align="center" class="login-form-title">
+                    <a href="/" class="button-link"><strong> Rent Agile</strong></a>
+                </h3>
+                <div class="form-group">
+                    <label for="email"><strong> Iniciar Sesion</strong></label>
+                    <input 
+                        type="email" 
+                        class="form-control" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Ingrese su Email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Ingrese Su Contraseña"
+                    />
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary btn-login">Iniciar</button>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="firstpass">Ingrese Su Contraseña </label>
-        <input 
-            type="password" 
-            class="form-control" 
-            id="password" 
-            name="password" 
-            placeholder="Ingrese Su Contraseña"
-        />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Iniciar
-    </button>
-</form>
+</body>
+</html>
 {% endblock %}
