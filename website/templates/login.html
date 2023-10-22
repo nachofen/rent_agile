@@ -3,8 +3,10 @@
 
 {% block content %} 
 
+
 <head>
-     <link
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -17,40 +19,41 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/static/css/style.css">
-    <title>Iniciar Sesion</title>
+    <title>Iniciar Sesión</title>
 </head>
-<body class="login-page-regis"></body>
+<body class="login-page-regis">
     <div class="background-image login-page-regis"></div>
-        <div class="container login-container">
-            <form method="POST" class="login-form">
-                <h1 class="login-form-title"><a href="/" class="logo"><strong>Rent Agile</strong></a></h1>
-
-                </h3>
-                <div class="form-group">
-                    <label for="email"><strong> Iniciar Sesion</strong></label>
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Ingrese su Email"
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="password"></label>
-                    <input 
-                        type="password" 
-                        class="form-control" 
-                        id="password" 
-                        name="password" 
-                        placeholder="Ingrese Su Contraseña"
-                    />
-                </div>
-                <br />
-                <button type="submit" class="btn btn-primary btn-login">Iniciar</button>
-            </form>
-        </div>
+    <div class="container login-container">
+        <form method="POST" class="login-form">
+            <h1 class="login-form-title"><a href="/" class="logo" style="color: red;"><strong>Rent Agile</strong></a></h1>
+            <h4 style="text-align: center;">Hola, Nuevamente</h4>
+            <small style="text-align: center; display: block;">Estamos felices de que estés aquí</small>
+<br>
+            <div class="form-group" style="text-align: center;">
+                <label for="email"><strong> Iniciar Sesión</strong></label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Ingrese su Email"
+                />
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Ingrese Su Contraseña"
+                />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn-login">Iniciar</button>
+        </form>
     </div>
 </body>
 </html>
+
 {% endblock %}
