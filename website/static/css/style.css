@@ -159,5 +159,5 @@ body {
 
 /* Cambia el color de los enlaces al pasar el mouse por encima */
 .navbar.custom-navbar .nav-item.nav-link:hover {
-  color: lightgray; 
+  color: black; 
 }
