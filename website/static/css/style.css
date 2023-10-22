@@ -141,3 +141,23 @@ body {
   font-weight: 470;
   color: blue;
 }
+
+/* Estilo personalizado para la barra de navegación base.html */
+.custom-navbar {
+  background-color: rgb(219, 12, 12) !important;
+  font-size: 18px; 
+}
+
+.navbar.custom-navbar {
+  background-color: rgb(219, 12, 12) ;
+}
+
+/*  enlaces sean blancos */
+.navbar.custom-navbar .nav-item.nav-link {
+  color: white;
+}
+
+/* Cambia el color de los enlaces al pasar el mouse por encima */
+.navbar.custom-navbar .nav-item.nav-link:hover {
+  color: lightgray; 
+}

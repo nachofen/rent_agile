@@ -20,7 +20,7 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
       <button
         class="navbar-toggler"
         type="button"
@@ -33,7 +33,7 @@
         <div class="navbar-nav">
           {% set my_tuple = ('/host', '/agregar-vehiculo', '/mis-vehiculos') %}
             {% if user.is_authenticated %}
-                <a class="nav-item nav-link" id="home" href="/">Inicio</a>
+            <h4><a class="nav-item nav-link" id="home" href="/"><strong>Rent Agile</strong></a></h4>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
                 {% if request.path in my_tuple or '/ver-vehiculo' in request.path %}
                     <a class="nav-item nav-link" id="special" href="/">Menu Cliente</a>
@@ -42,7 +42,7 @@
                 {% endif %}
                 <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             {% else %}
-                <a class="nav-item nav-link" id="home" href="/">Inicio</a>
+            <h4><a class="nav-item nav-link" id="home" href="/"><strong>Rent Agile</strong></a></h4>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
                 <a class="nav-item nav-link" id="login" href="/login">Iniciar Sesión</a>
                 <a class="nav-item nav-link" id="signUp" href="/registro">Registro</a>
