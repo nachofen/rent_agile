@@ -12,14 +12,14 @@ body {
     margin-left: 0;
   }
 }
-/* Etilo borde caja login e inicar sesion*/
 
+/* Etilo borde caja login e inicar sesion */
 .login-form {
-border-radius: 20px;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-background-color: rgba(255, 255, 255, 0.8); /* Fondo opaco */
-padding: 16px;
-background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%); /* Degradado lineal */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo opaco */
+  padding: 16px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%); /* Degradado lineal */
 }
 
 /* Estilo del contenedor principal (login y contenedor) */
@@ -29,21 +29,19 @@ background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 2
   max-width: 400px; 
   margin: 0 auto;
   max-height: 905px;
-  
 }
 
-/* Imagen fondo de seccion registro y login */
+/* Imagen fondo de sección registro y login */
 .login-page-regis {
   background-image: url('/static/img/uploads/fondo-ruta.jpg');
   background-size: cover;
-   background-attachment: fixed;
+  background-attachment: fixed;
 }
- 
 
 /* Estilo del título en el formulario de registro */
 .login-form h1 {
   text-align: center;
-  color: red;
+  color: red; /* Cambiamos el color del título a rojo */
   font-size: 26px;
   padding: 70px 0 10px 0;
 }
@@ -97,7 +95,17 @@ background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 2
   text-decoration: none;
 }
 
+.logo {
+  color: red; /* Cambia el color a rojo */
+  text-decoration: none; /* Quita la subrayado de los enlaces */
+}
+
+.logo:hover {
+  color: black; /* Cambia el color a negro al pasar el mouse por encima */
+  text-decoration: none; /* Quita la línea subrayada al pasar el mouse por encima */
+}
 /* Estilos para el botón de registro e inicio de sesión al interactuar con ellos */
+
 .btn-login:hover, .btn-login:active, .btn-register:hover, .btn-register:active {
   color: #ffffff;
   background-color: rgb(196, 16, 12);
@@ -107,9 +115,9 @@ background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 2
 .btn-login:focus, .btn-register:focus {
   box-shadow: 0 0 0 3px rgba(122, 7, 7, 0.25);
 }
-/* ya tengo cuenta click - registrarse form*/
 
-.singin-yatengocuenta{
+/* Ya tengo cuenta, clickea para registrarse form */
+.singin-yatengocuenta {
   margin: 23px;
   display: flex;
   justify-content: center;
@@ -117,15 +125,15 @@ background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 2
   margin-bottom: 10px;
 }
 
-.singin-yatengocuenta p{
-  font-size:  13px;
+.singin-yatengocuenta p {
+  font-size: 13px;
   font-weight: 470;
   margin: 0;
   color: #222;
 }
 
-.singin-yatengocuenta a{
-  font-size:  13px;
+.singin-yatengocuenta a {
+  font-size: 13px;
   letter-spacing: .5px;
   margin-left: 5px;
   text-decoration: none;
