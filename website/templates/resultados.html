@@ -2,26 +2,12 @@
 {% block title %} Resultados busqueda {% endblock %}
 
 {% block content %}
-  <h1>Página de inicio</h1>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+  <h1>Tus Busquedas</h1>
 
   <!-- Botón para abrir el popup de filtros -->
   <button id="openFiltersButton">Abrir Filtros</button>
-
-  <div class="gallery">
-    {% for auto in autos %}
-      {% if auto.disponible == 1 %}
-        {% if auto.imagenes_auto %}
-          <div class="auto">
-              <a href="/ver-vehiculo/{{ auto.id_auto}}">
-                  <img src="/{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
-              </a>
-              <p>{{ auto.marca }} {{ auto.modelo }}</p>
-              <p>Precio: {{ auto.tarifa }}$</p>
-          </div>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  </div>
 
   <!-- Popup de filtros (inicialmente oculto) -->
   <div id="filtersPopup" class="popup">
@@ -110,6 +96,26 @@
   <!-- Fondo oscuro detrás del popup -->
   <div id="overlay" class="overlay"></div>
 
+
+
+  <div class="gallery">
+    {% for auto in autos %}
+      {% if auto.disponible == 1 %}
+        {% if auto.imagenes_auto %}
+          <div class="auto">
+              <a href="/ver-vehiculo/{{ auto.id_auto}}">
+                  <img src="/{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+              </a>
+              <p>{{ auto.marca }} {{ auto.modelo }}</p>
+              <p>Precio: {{ auto.tarifa }}$</p>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+
+
   <script>
     function openFiltersPopup() {
       var popup = document.getElementById('filtersPopup');
@@ -154,49 +160,6 @@
     overlay.addEventListener('click', closeFiltersPopup);
   </script>
 
-  <style>
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .auto {
-      width: 350px;
-      margin: 10px;
-      text-align: center;
-    }
-
-    .auto img {
-      max-width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 10%;
-    }
-
-    /* Estilo para el popup de filtros (inicialmente oculto) */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-
-    /* Estilo para el fondo oscuro detrás del popup */
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con transparencia */
-      z-index: 999; /* Asegura que esté detrás del popup */
-    }
-  </style>
+  
 {% endblock %}
 </html>

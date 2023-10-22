@@ -2,7 +2,10 @@
 {% block title %} Resultados busqueda {% endblock %}
 
 {% block content %}
-  <h1>Página de inicio</h1>
+  
+<link rel="stylesheet" href="/static/css/style.css">
+
+  <h3>Home</h3>
 
   <!-- Botón para abrir el popup de filtros -->
   <button id="openFiltersButton">Abrir Filtros</button>
@@ -22,91 +25,88 @@
   </div>
 
   <!-- Popup de filtros (inicialmente oculto) -->
-  <div id="filtersPopup" class="popup">
-    <h2>Filtros</h2>
-    <div id="linea1">
-      <label for="filtroMarca">Marca:</label>
-      <select id="filtroMarca">
-        <option value="todas">Todas las marcas</option>
-        <option value="alfa-romeo">Alfa Romeo</option>
-        <option value="audi">Audi</option>
-        <option value="bmw">BMW</option>
-        <option value="byd">BYD</option>
-        <option value="chevrolet">Chevrolet</option>
-        <option value="chrysler">Chrysler</option>
-        <option value="dodge">Dodge</option>
-        <option value="fiat">Fiat</option>
-        <option value="ford">Ford</option>
-        <option value="gmc">GMC</option>
-        <option value="honda">Honda</option>
-        <option value="hyundai">Hyundai</option>
-        <option value="jaguar">Jaguar</option>
-        <option value="jeep">Jeep</option>
-        <option value="kia">Kia</option>
-        <option value="land-rover">Land Rover</option>
-        <option value="lexus">Lexus</option>
-        <option value="mazda">Mazda</option>
-        <option value="mercedes-benz">Mercedes-Benz</option>
-        <option value="mini">Mini</option>
-        <option value="nissan">Nissan</option>
-        <option value="peugeot">Peugeot</option>
-        <option value="porsche">Porsche</option>
-        <option value="subaru">Subaru</option>
-        <option value="tesla">Tesla</option>
-        <option value="toyota">Toyota</option>
-        <option value="volkswagen">Volkswagen</option>
-        <option value="volvo">Volvo</option>
-        <!-- Agrega más opciones de marca según tus datos -->
-      </select>
-      <!-- Filtro de Precio Mínimo -->
-      <label for="precioMinimo">Precio Mínimo:</label>
-      <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
+  <div id="filtersPopup" class="popup custom-alert">
+    <div class="custom-alert-content">
+        <h2>Filtros</h2>
+        <div id="linea1">
+            <label for="filtroMarca">Marca:</label>
+            <select id="filtroMarca">
+                <option value="todas">Todas las marcas</option>
+                <option value="alfa-romeo">Alfa Romeo</option>
+                <option value="audi">Audi</option>
+                <option value="bmw">BMW</option>
+                <option value="byd">BYD</option>
+                <option value="chevrolet">Chevrolet</option>
+                <option value="chrysler">Chrysler</option>
+                <option value="dodge">Dodge</option>
+                <option value="fiat">Fiat</option>
+                <option value="ford">Ford</option>
+                <option value="gmc">GMC</option>
+                <option value="honda">Honda</option>
+                <option value="hyundai">Hyundai</option>
+                <option value="jaguar">Jaguar</option>
+                <option value="jeep">Jeep</option>
+                <option value="kia">Kia</option>
+                <option value="land-rover">Land Rover</option>
+                <option value="lexus">Lexus</option>
+                <option value="mazda">Mazda</option>
+                <option value="mercedes-benz">Mercedes-Benz</option>
+                <option value="mini">Mini</option>
+                <option value="nissan">Nissan</option>
+                <option value="peugeot">Peugeot</option>
+                <option value="porsche">Porsche</option>
+                <option value="subaru">Subaru</option>
+                <option value="tesla">Tesla</option>
+                <option value="toyota">Toyota</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="volvo">Volvo</option>
+                <!-- Agrega más opciones de marca según tus datos -->
+            </select>
+            <!-- Filtro de Precio Mínimo -->
+            <label for="precioMinimo">Precio Mínimo:</label>
+            <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
+            <!-- Filtro de Precio Máximo -->
+            <label for="precioMaximo">Precio Máximo:</label>
+            <input type="number" id="precioMaximo" placeholder="Precio Máximo">
+        </div>
+        <div id="linea2">
+            <!-- Filtro de búsqueda por fechas -->
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio">
 
-      <!-- Filtro de Precio Máximo -->
-      <label for="precioMaximo">Precio Máximo:</label>
-      <input type="number" id="precioMaximo" placeholder="Precio Máximo">
-    </div>
-    <div id="linea2">
-      <!-- Filtro de busqueda por fechas -->
-      <label for="fechaInicio">Fecha de Inicio:</label>
-      <input type="date" id="fechaInicio">
+            <label for="fechaFin">Fecha de Fin:</label>
+            <input type="date" id="fechaFin">
 
-      <label for="fechaFin">Fecha de Fin:</label>
-      <input type="date" id="fechaFin">
-
-      <label for="filtroDepto">Departamento:</label>
-      <select id="filtroDepto">
-        <option value="todos">Todos los departamentos</option>
-        <option value="artigas">Artigas</option>
-        <option value="canelones">Canelones</option>
-        <option value="cerro-largo">Cerro Largo</option>
-        <option value="colonia">Colonia</option>
-        <option value="duran">Durazno</option>
-        <option value="flores">Flores</option>
-        <option value="florida">Florida</option>
-        <option value="lavalleja">Lavalleja</option>
-        <option value="maldonado">Maldonado</option>
-        <option value="montevideo">Montevideo</option>
-        <option value="paysandu">Paysandú</option>
-        <option value="rio-negro">Río Negro</option>
-        <option value="rivera">Rivera</option>
-        <option value="rocha">Rocha</option>
-        <option value="salto">Salto</option>
-        <option value="san-jose">San José</option>
-        <option value="soriano">Soriano</option>
-        <option value="tacuarembo">Tacuarembó</option>
-        <option value="treinta-y-tres">Treinta y Tres</option>
-        <!-- Agrega más opciones de marca según tus datos -->
-      </select>
-      
-    </div>
-
-
-    <button id="searchButton">Realizar Búsqueda</button>
+            <label for="filtroDepto">Departamento:</label>
+            <select id="filtroDepto">
+                <option value="todos">Todos los departamentos</option>
+                <option value="artigas">Artigas</option>
+                <option value="canelones">Canelones</option>
+                <option value="cerro-largo">Cerro Largo</option>
+                <option value="colonia">Colonia</option>
+                <option value="duran">Durazno</option>
+                <option value="flores">Flores</option>
+                <option value="florida">Florida</option>
+                <option value="lavalleja">Lavalleja</option>
+                <option value="maldonado">Maldonado</option>
+                <option value="montevideo">Montevideo</option>
+                <option value="paysandu">Paysandú</option>
+                <option value="rio-negro">Río Negro</option>
+                <option value="rivera">Rivera</option>
+                <option value="rocha">Rocha</option>
+                <option value="salto">Salto</option>
+                <option value="san-jose">San José</option>
+                <option value="soriano">Soriano</option>
+                <option value="tacuarembo">Tacuarembó</option>
+                <option value="treinta-y-tres">Treinta y Tres</option>
+            </select>
+        </div>
+        <button id="searchButton">Realizar Búsqueda</button>
   </div>
 
   <!-- Fondo oscuro detrás del popup -->
   <div id="overlay" class="overlay"></div>
+   
 
   <script>
     function openFiltersPopup() {
@@ -167,30 +167,7 @@
       border-radius: 10%;
     }
 
-    /* Estilo para el popup de filtros (inicialmente oculto) */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-
-    /* Estilo para el fondo oscuro detrás del popup */
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con transparencia */
-      z-index: 999; /* Asegura que esté detrás del popup */
-    }
+   
   </style>
 {% endblock %}
 </html>
