@@ -108,7 +108,9 @@ body {
   justify-content: center;
   align-items: center; 
 }
-
+.container{
+  max-width: 100%;
+}
 /* Estilo del botón de registro e inicio de sesión */
 .btn-login, .btn-register {
   width: 100%;
