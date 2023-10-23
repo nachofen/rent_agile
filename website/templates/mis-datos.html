@@ -2,6 +2,10 @@
 {% block title %} Registro {% endblock%}
 
 {% block content %} 
+<link rel="stylesheet" href="/static/css/styles.css">
+
+<div class="container">
+
 <form method="POST" enctype="multipart/form-data">
     <h3 align="center">Actualizar Información Personal</h3>
     <div class="form-group">
@@ -62,6 +66,7 @@
     <!-- Update Button -->
     <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
+</div>
 
 <!-- JavaScript to trigger the delete confirmation -->
 <script>

@@ -1,0 +1,63 @@
+/* mis datos.html - perfil > cuenta */
+
+
+body {
+  background-image: url('/static/img/uploads/fondomisdatos.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+form {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 0 auto;
+  display: flex; /* Mostrar los elementos en línea */
+  flex-wrap: wrap; /* Permitir el ajuste a la línea siguiente */
+  justify-content: space-between; /* Distribuir los elementos horizontalmente */
+}
+
+/* Estilo para las cajas de datos */
+.form-group {
+  flex-basis: calc(50% - 20px); /* Ancho del 50% con espacio entre elementos */
+  margin: 10px 0;
+}
+
+/* Estilo para los campos de entrada */
+.form-group input[type="email"],
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilo para el botón de carga de archivo */
+.form-group input[type="file"] {
+  display: none;
+}
+.custom-file-label {
+  display: inline-block;
+  background-color: #9b0a0a;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilo para los botones */
+.btn-danger {
+  background-color: #b60719;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #000000;
+  color: #fff;
+}

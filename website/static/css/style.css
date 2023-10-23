@@ -237,3 +237,25 @@ body {
   object-fit: cover;
   border-radius: 10%;
 }
+
+
+/* Estilos para la galería de imágenes  en ver-auto.html luego de resulatod de busqueda -> ver auto*/
+ul.image-gallery {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul.image-gallery li {
+  width: 200; /* Ancho para cada imagen */
+  margin: 10px;
+  text-align: center;
+}
+
+ul.image-gallery img {
+  max-width: 100%;
+  height: auto; 
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
