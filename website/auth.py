@@ -66,6 +66,14 @@ def contiene_numero(cadena):
 
 @auth.route('registro', methods=['GET', 'POST'])
 def registro():
+    email = ""
+    nombre = ""
+    apellido = ""
+    telefono = ""
+    direccion = ""
+    fecha_nacimiento = ""
+    departamento = ""
+
     if request.method == 'POST':
         email = request.form['email']
         nombre = request.form.get('nombre')
@@ -80,7 +88,11 @@ def registro():
         # Validar que se haya ingresado una fecha de nacimiento
         
         user = User.query.filter_by(email=email).first()
-        if user:
+        if password != password2:
+            flash('Las contraseñas no coinciden.', category='error')
+        elif len(password) < 6:
+            flash('La contraseña debe tener al menos 6 caracteres.', category='error')
+        elif user:
             flash('Ya existe una cuenta con este correo asociado.', category='error')
         elif len(email) < 4:
             flash('El correo electrónico debe tener al menos 4 caracteres.', category='error')
@@ -94,8 +106,6 @@ def registro():
             flash('El apellido debe tener al menos 3 caracteres.', category='error')
         elif password != password2:
             flash('Las contraseñas no coinciden.', category='error')
-        elif len(password) < 6:
-            flash('La contraseña debe tener al menos 6 caracteres.', category='error')
         elif not es_mayor(fecha_nacimiento):
             flash('La fecha que utilizaste no esta disponible aun', category='error')
         else:
@@ -106,4 +116,4 @@ def registro():
             flash('¡Cuenta creada con éxito! Ahora puedes iniciar sesión.', category='success')
             return redirect(url_for('auth.login'))
 
-    return render_template("registro.html", user=current_user)
+    return render_template('registro.html', user=current_user, email=email, nombre=nombre, apellido=apellido, telefono=telefono, direccion=direccion, fecha_nacimiento=fecha_nacimiento, departamento=departamento)
