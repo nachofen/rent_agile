@@ -142,6 +142,21 @@ body {
   color: blue;
 }
 
+
+
+/* Estilos para el fondo de la página de agregar auto */
+.fondo-agregar-auto {
+  background: linear-gradient(0deg, #000000, rgb(219, 12, 12));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* borde redndo agregar auto caja con fondo  */
+body.fondo-agregar-auto .login-page-regis {
+  border-radius: 20px;
+}
+
 /* Estilo personalizado para la barra de navegación base.html */
 .custom-navbar {
   background-color: rgb(219, 12, 12) !important;
