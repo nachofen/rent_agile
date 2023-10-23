@@ -13,6 +13,13 @@ body {
   }
 }
 
+/* aujsta div que el index hereda de base.html */
+.index-container {
+  margin: 0;
+  padding: 0;
+ 
+}
+
 /* Etilo borde caja login e inicar sesion */
 .login-form {
   border-radius: 20px;
@@ -226,6 +233,7 @@ body.fondo-agregar-auto .login-page-regis {
 .slider-container img {
   flex: 0 0 100%;
   width: 100%;
+  margin: 0 !important;
   object-fit: cover;
   scroll-snap-align: center;
 }

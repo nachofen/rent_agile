@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% block title %} Resultados busqueda {% endblock %}
+{% block title %} Resultados búsqueda {% endblock %}
 
 {% block content %}
+<div class="container" style="margin: 0;">
+    
   
+
+
 <link rel="stylesheet" href="/static/css/style.css">
 
 <header class="headernavred">
@@ -127,7 +131,7 @@
   <!-- Fondo oscuro detrás del popup -->
   <div id="overlay" class="overlay"></div>
    
-
+</div>
   <script>
     function openFiltersPopup() {
       var popup = document.getElementById('filtersPopup');
@@ -168,26 +172,25 @@
     overlay.addEventListener('click', closeFiltersPopup);
   </script>
 
-  <style>
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-    }
+<style>
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-    .auto {
-      width: 350px;
-      margin: 10px;
-      text-align: center;
-    }
+  .auto {
+    width: calc(33.33% - 20px); 
+    margin: 10px;
+    text-align: center;
+  }
 
-    .auto img {
-      max-width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 10%;
-    }
+  .auto img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10%;
+  }
+</style>
 
-   
-  </style>
 {% endblock %}
 </html>
