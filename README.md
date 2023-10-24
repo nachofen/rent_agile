@@ -1,4 +1,6 @@
-# Rent Agile
+
+![rent agile](https://github.com/nachofen/rent_agile/assets/124454895/990a7ef0-55c4-41db-a54e-223be57d2ab7)
+
 ## Car Rental Application Engineering Overview
 
 The **Car Rental Application** is a sophisticated web-based platform developed with a focus on delivering a seamless user experience. Leveraging the Flask web framework in Python, this application facilitates vehicle rentals, streamlines user authentication, fosters communication, and manages data efficiently.
