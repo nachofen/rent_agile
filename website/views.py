@@ -24,6 +24,13 @@ def home():
     autos = Auto.query.all()
     return render_template("index.html", user=current_user, autos=autos)
 
+@views.route('/')
+@login_required
+def saludo_index():
+    """Página de inicio con saludo si está logueado """
+    
+    return render_template("index.html", user=current_user.nombre)
+
 @views.route('/host')
 @login_required
 def admin_home():

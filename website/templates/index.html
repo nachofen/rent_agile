@@ -12,6 +12,11 @@
 <header class="headernavred">
 
   <div class="centered-text2">
+    <p class="lead">
+        {% if user.is_authenticated %}
+            <strong><small>Bienvenido, {{ user.nombre }}</small></strong>
+        {% endif %}
+    </p>
     <p class="lead">Tu Auto, Tu Aventura</p>
 </div>
   <button id="openFiltersButton" class="openFiltersButton">
