@@ -15,8 +15,7 @@
     <p class="lead">
         {% if user.is_authenticated %}
             <strong><small>Bienvenido, {{ user.nombre }}</small></strong>
-        {% endif %}
-    </p>
+        {% endif %} </p>
     <p class="lead">Tu Auto, Tu Aventura</p>
 </div>
   <button id="openFiltersButton" class="openFiltersButton">
@@ -53,6 +52,8 @@
     {% endfor %}
   </div>
 
+  <br><br> <br>
+  
   <!-- Popup de filtros (inicialmente oculto) -->
   <div id="filtersPopup" class="popup custom-alert">
     <div class="custom-alert-content">
@@ -196,6 +197,15 @@
     border-radius: 10%;
   }
 </style>
+
+            <!-- Footer -->
+    <footer class="footer">
+      <p>Conduciendo hacia tus sueños desde 2023 </p>
+      <br>
+          <small>Tu auto, tu aventura.</small>
+          <p>&copy; 2023 Rent Agile</p>
+      </footer>
+  
 
 {% endblock %}
 </html>

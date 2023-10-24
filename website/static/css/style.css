@@ -375,3 +375,25 @@ ul.image-gallery img {
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+/* Estilo para el footer */
+footer {
+  background: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  font-family: 'MuseoModerno', sans-serif;
+  font-size: 14px;
+  background: linear-gradient(to bottom, #888 50%, #000000 50%);
+  margin-left: -50vw; 
+  margin-right: -50vw; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px; 
+  border-radius: 70% 1% 0 0 / 100% 100% 0 0;
+}
+
+footer p, footer small {
+  margin: 0;
+  padding: 5px;
+}
+

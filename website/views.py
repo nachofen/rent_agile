@@ -28,7 +28,6 @@ def home():
 @login_required
 def saludo_index():
     """Página de inicio con saludo si está logueado """
-    
     return render_template("index.html", user=current_user.nombre)
 
 @views.route('/host')
