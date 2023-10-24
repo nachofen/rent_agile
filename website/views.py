@@ -225,6 +225,29 @@ def mis_vehiculos():
 
     return render_template("mis-vehiculos.html", user=current_user, vehiculos=vehiculos)
 
+@views.route('/mis-reservas')
+@login_required
+def mis_reservas():
+    from .models import Reserva, Imagenes_auto, Auto
+    """ lista las reservas que tiene el usuario activo"""
+    reservas = Reserva.query.filter_by(id_usuario=current_user.id).all()
+    imagenes_primer_auto = []
+    autos = []
+
+    for reserva in reservas:
+        auto_id = reserva.id_auto  # Obtenemos el identificador del auto
+        auto = Auto.query.get(auto_id)  # Obtenemos el objeto Auto
+        if auto:
+            autos.append(auto)
+            primera_imagen = Imagenes_auto.query.filter_by(auto_id=auto.id_auto).first()
+            if primera_imagen:
+                imagenes_primer_auto.append(primera_imagen)
+
+    # Combina las listas reservas ,imagenes_primer_auto y los autos que pertencen a las reservas
+    reservas_con_imagenes = zip(reservas, imagenes_primer_auto, autos)
+
+    return render_template("mis-reservas.html", user=current_user, reservas_con_imagenes=reservas_con_imagenes)
+
 @views.route('/ver-vehiculo/<int:id>', methods=['GET', 'POST'])
 def mostrar_vehiculo(id):
     """shows one car by id"""
@@ -383,7 +406,7 @@ def alquilar_vehiculo(id):
     ).all()
     print("Fechasbloqueadas:", fechas_bloqueadas)
     if fechas_bloqueadas:
-        flash('El vehículo no está disponible para las fechas seleccionadas debido a fechas bloqueadas.', 'error')
+        flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
     else:
         # El vehículo está disponible para las fechas seleccionadas
         reserva = Reserva(

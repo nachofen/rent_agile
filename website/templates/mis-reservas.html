@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Mis Reservas {% endblock %}
+
+{% block content %}
+  <h3 align="center">Mis Reservas</h3>
+  <div class="container-reserva">
+    {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
+    <div class="row mb-3">
+      <div class="col-2">
+        <img src="{{ imagen_auto.url }}" alt="" width="300" height="200">
+      </div>
+      <div class="col-10">
+        <h3>Reserva ID: {{ reserva.id_reserva }}</h3>
+        <p>Auto: {{auto.marca}} {{auto.modelo}}</p>
+        <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+        <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
+        <!-- Resto de la información de la reserva -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
