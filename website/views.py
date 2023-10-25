@@ -258,6 +258,25 @@ def mostrar_vehiculo(id):
 
     return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url)
 
+@views.route('/ver-reserva/<int:id>', methods=['GET', 'POST'])
+def mostrar_reserva(id):
+    """shows one reservation by id"""
+    from .models import Auto, Imagenes_auto, Reserva
+    reserva = Reserva.query.get_or_404(id)
+    #verificamos que quien mire la url sea el dueño de la reserva
+    if current_user.id != reserva.id_usuario:
+        flash('Esta reserva no le pertenece', category='error')
+        return redirect(url_for('views.mis_reservas'))
+    id_auto = reserva.id_auto
+    auto = Auto.query.get_or_404(id_auto)
+    primera_imagen = Imagenes_auto.query.filter_by(auto_id=id_auto).first()
+    propietario_id = auto.usuario_id
+    propietario = User.query.get(propietario_id)
+
+    
+
+    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen)
+
 @views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
 @login_required
 def editar_vehiculo(id):

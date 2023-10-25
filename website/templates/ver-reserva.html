@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Detalles de la reserva {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <h3 align="center">Detalles de la reserva</h3>
+  <ul>
+    <li>
+      <h3> Detalles de la reserva </h3>
+      <p>Reserva nro: {{ reserva.id_reserva }}</p>
+      <p>Fecha inicio: {{ reserva.fecha_inicio }}</p>
+      <p>fecha fin: {{ reserva.fecha_fin }}</p>
+
+      <h3> Detalles del vehiculo </h3>
+      <p>{{ auto.marca }} {{ auto.modelo }}</p>
+      <p>Año: {{ auto.año }}</p>
+      <p>Departamento: {{ auto.departamento }}</p>
+      <p>Tarifa: {{ auto.tarifa }}</p>
+      <p>Descripción: {{ auto.descripcion }}</p>
+      <div style="display: flex;">
+        <img src="/{{ primera_imagen.url }}" alt="" width="300" height="200">
+      </div>
+      <h3> Informacion de contacto </h3>
+      <p>Nombre: {{ propietario.nombre }}</p>
+      <p>Apellido: {{ propietario.apellido }}</p>
+      <p>Telefono: {{ propietario.telefono }}</p>
+
+    </li>
+  </ul>
+  
+{% endblock %}
