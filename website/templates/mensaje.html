@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Conversación {% endblock %}
+
+{% block content %} 
+<h1>Conversación con {{ destinatario.nombre }} {{ destinatario.apellido }}</h1>
+<ul>
+    {% for mensaje in mensajes %}
+    <li>
+        {% if mensaje.id_usuario == current_user.id %}
+        <strong>Tú:</strong>
+        {% else %}
+        <strong>De: {{ destinatario.nombre }} {{ destinatario.apellido }}</strong>
+        {% endif %}
+        {% if mensaje.destinatario_id == current_user.id %}
+        <strong>Para ti:</strong>
+        {% else %}
+        <strong>Para: {{ destinatario.nombre }} {{ destinatario.apellido }}</strong>
+        {% endif %}
+        <p>{{ mensaje.contenido_mensaje }}</p>
+        <p>Fecha: {{ mensaje.fecha }}</p>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <div class="form-group">
+        <label for="nuevo-mensaje">Nuevo mensaje:</label>
+        <textarea class="form-control" name="nuevo-mensaje" id="nuevo-mensaje" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+</form>
+{% endblock %}
