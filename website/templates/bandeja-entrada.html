@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Bandeja de entrada {% endblock%}
+
+{% block content %} 
+<h1>Bandeja de Entrada</h1>
+    <ul>
+        {% for mensaje, destinatario_name in mensajes %}
+        <li>
+            <strong>Conversando con: {{ destinatario_name }} {{ mensaje[0].fecha }}</strong>
+            <p>Mensaje:{{ mensaje[0].contenido_mensaje }}</p>
+            <a href="{{ url_for('views.conversar', id=mensaje[0].conversacion_id) }}" class="btn btn-primary">Conversar</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

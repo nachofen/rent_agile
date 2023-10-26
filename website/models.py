@@ -1,3 +1,4 @@
+
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
@@ -49,6 +50,16 @@ class Mensaje(db.Model):
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
     id_usuario = db.Column(db.Integer, db.ForeignKey('user.id'))
     auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
+    destinatario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    conversacion_id = db.Column(db.Integer, db.ForeignKey('conversacion.id_conversacion'))
+    conversacion = db.relationship('Conversacion', back_populates='mensajes')
+
+class Conversacion(db.Model):
+    id_conversacion = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    destinatario_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    auto_id = db.Column(db.Integer, db.ForeignKey('auto.id_auto'))
+    mensajes = db.relationship('Mensaje', back_populates='conversacion')
 
 class Reserva(db.Model):
     id_reserva = db.Column(db.Integer, primary_key=True)

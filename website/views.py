@@ -537,20 +537,42 @@ def resultados():
 @views.route('/enviar-mensaje/<int:id>', methods=['GET', 'POST'])
 @login_required
 def enviar_mensaje(id):
-    from .models import Auto, User, Mensaje
+    from .models import Auto, User, Mensaje, Conversacion
     """ list the cars of loged user"""
     car_to_msg = Auto.query.get_or_404(id)
+    destinatario = User.query.get(car_to_msg.usuario_id)
+
     imagen_perfil = car_to_msg.owner.image_path
     imagenes = car_to_msg.imagenes_auto
     if request.method == 'POST':
         contenido_mensaje = request.form.get('mensaje')
         fecha = datetime.utcnow()
+        conversacion_existente = Conversacion.query.filter_by(
+            usuario_id=current_user.id,
+            destinatario_id=car_to_msg.usuario_id,
+            auto_id=car_to_msg.id_auto
+        ).first()
+
+        if conversacion_existente:
+            conversacion = conversacion_existente  # Cambio 'conversacion_id' a 'conversacion'
+        else:
+            # Si no existe una conversación, crea una nueva
+            nueva_conversacion = Conversacion(
+                usuario_id=current_user.id,
+                destinatario_id=car_to_msg.usuario_id,
+                auto_id=car_to_msg.id_auto
+            )
+            db.session.add(nueva_conversacion)
+            db.session.commit()
+            conversacion = nueva_conversacion  # Cambio 'conversacion_id' a 'conversacion'
 
         nuevo_mensaje = Mensaje(
             contenido_mensaje=contenido_mensaje,
             fecha=fecha,
             id_usuario=current_user.id,
-            auto_id=car_to_msg.id_auto
+            auto_id=car_to_msg.id_auto,
+            destinatario_id=destinatario.id,
+            conversacion=conversacion  # Cambio 'id_conversacion' a 'conversacion'
         )
         db.session.add(nuevo_mensaje)
         db.session.commit()
@@ -558,3 +580,76 @@ def enviar_mensaje(id):
         return redirect(url_for('views.home'))
 
     return render_template("enviar-mensaje.html", user=current_user, auto=car_to_msg, imagen_perfil=imagen_perfil, imagenes=imagenes)
+
+@views.route('/bandeja-entrada', methods=['GET'])
+@login_required
+def bandeja_entrada():
+    from .models import Mensaje
+    # Subconsulta para obtener el último mensaje por conversación
+    subquery = db.session.query(
+        func.max(Mensaje.fecha).label('max_fecha'),
+        Mensaje.conversacion_id
+    ).group_by(Mensaje.conversacion_id).subquery()
+
+    # Consulta principal para obtener los últimos mensajes de las conversaciones del usuario actual
+    mensajes = db.session.query(Mensaje, subquery.c.max_fecha.label('last_message_date')).join(
+        subquery,
+        and_(Mensaje.conversacion_id == subquery.c.conversacion_id, Mensaje.fecha == subquery.c.max_fecha)
+    ).filter(or_(Mensaje.conversacion.has(usuario_id=current_user.id), Mensaje.conversacion.has(destinatario_id=current_user.id)))
+
+    destinatario_names = []
+
+    # Obtener el nombre de cada destinatario y almacenarlo en la lista
+    for mensaje in mensajes:
+        destinatario_id = mensaje[0].conversacion.destinatario_id
+        destinatario_name = User.query.filter_by(id=destinatario_id).first()
+        nombre_completo = destinatario_name.nombre + " " + destinatario_name.apellido
+        destinatario_names.append(nombre_completo)  # Asumiendo que el nombre del usuario se almacena en el campo 'nombre'
+
+    # Combinar mensajes y destinatario_names usando zip
+    mensajes_con_nombres = zip(mensajes, destinatario_names)
+
+    return render_template("bandeja-entrada.html", mensajes=mensajes_con_nombres, user=current_user)
+
+@views.route('/bandeja-entrada/<int:id>', methods=['GET', 'POST'])
+@login_required
+def conversar(id):
+    """Todos los mensajes de una misma conversación"""
+    from .models import Mensaje, Conversacion, Auto
+    if request.method == 'POST':
+        # Obtener el contenido del mensaje enviado por el usuario
+        contenido_mensaje = request.form.get('nuevo-mensaje')
+        
+        # Obtener la conversación actual
+        conversacion = Conversacion.query.get(id)
+        if conversacion is not None:
+            # Obtener el auto relacionado con la conversación
+            car_to_msg = Auto.query.get(conversacion.auto_id)
+            destinatario_id = (
+            conversacion.destinatario_id
+            if conversacion.usuario_id == current_user.id
+            else conversacion.usuario_id
+            )
+            
+            # Crear un nuevo mensaje y guardarlo en la base de datos
+            nuevo_mensaje = Mensaje(
+                contenido_mensaje=contenido_mensaje,
+                fecha=datetime.utcnow(),
+                id_usuario=current_user.id,
+                auto_id=car_to_msg.id_auto,
+                destinatario_id=destinatario_id,
+                conversacion_id=id
+            )
+            db.session.add(nuevo_mensaje)
+            db.session.commit()
+
+            # Redirigir nuevamente a la página de conversación para mostrar el mensaje enviado
+            return redirect(url_for('views.conversar', id=id))
+
+    # Obtener todos los mensajes de la conversación con el ID especificado
+    mensajes = Mensaje.query.filter_by(conversacion_id=id).all()
+
+    # Consulta para obtener el nombre del destinatario
+    destinatario = User.query.get(mensajes[0].destinatario_id)  # Supongamos que el destinatario_id se encuentra en el primer mensaje
+
+    return render_template("mensaje.html", mensajes=mensajes, destinatario=destinatario, user=current_user)
