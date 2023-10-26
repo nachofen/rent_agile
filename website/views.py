@@ -400,7 +400,7 @@ def borrar_usuario(id):
 def alquilar_vehiculo(id):
     """para alquilar un vehiculo"""
     from .models import Auto, Reserva, FechasBloqueadas
-
+    
     auto = Auto.query.get_or_404(id)
     if auto is None:
         flash('El vehículo seleccionado no existe.', 'error')
@@ -415,6 +415,10 @@ def alquilar_vehiculo(id):
         print("Fecha de inicio:", fecha_inicio)
         print("Fecha de fin:", fecha_fin)
 
+
+    today = datetime.today().date()
+    fecha_inicio = datetime.strptime(request.form['fecha_inicio'], '%Y-%m-%d').date()
+    
     # Consulta las fechas bloqueadas para el auto seleccionado
     fechas_bloqueadas = FechasBloqueadas.query.filter(
         and_(
@@ -424,7 +428,7 @@ def alquilar_vehiculo(id):
         )
     ).all()
     print("Fechasbloqueadas:", fechas_bloqueadas)
-    if fechas_bloqueadas:
+    if fechas_bloqueadas or fecha_inicio < today:
         flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
     else:
         # El vehículo está disponible para las fechas seleccionadas
