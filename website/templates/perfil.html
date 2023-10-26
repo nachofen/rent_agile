@@ -5,10 +5,4 @@
     <h3>{{ user.nombre }}</h3>
 
 
-
-<form method="POST" action="/send_message/{{ user.id }}">
-    <textarea name="content" placeholder="Escribe tu mensaje"></textarea>
-    <button type="submit">Enviar</button>
-</form>
-
 {% endblock %}

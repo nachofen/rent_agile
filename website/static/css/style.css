@@ -20,6 +20,39 @@ body {
  
 }
 
+/* Home div oculto, show in scroll - Estilo inicial para el div oculto */
+
+#divOculto {
+  text-align: center;
+  position: sticky;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 1s ease;
+  max-height: 50vh; /* Limita la altura máxima y agrega desplazamiento vertical si es necesario */
+  overflow-y: auto; /* Activa el desplazamiento vertical si el contenido excede la altura máxima */
+}
+
+#divOculto.aparecido {
+  opacity: 1;
+}
+
+
+#divOculto .message-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
 /* Etilo borde caja login e inicar sesion */
 .login-form {
   border-radius: 20px;
