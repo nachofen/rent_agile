@@ -215,7 +215,6 @@ body.fondo-agregar-auto .login-page-regis {
 
 /* Estil slider carrusel autos */
 
-* Estilo para el contenedor del slider carrusel */
 /* Estilo para las diapositivas */
 .slide {
   flex: 0 0 100%; /* Ancho igual al ancho de la pantalla */
@@ -307,7 +306,7 @@ body.fondo-agregar-auto .login-page-regis {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   margin-top: 100px;
-  max-width: 600px;
+  max-width: 680px;
   width: 80%;
   left: 0;
   right: 0;
@@ -377,6 +376,7 @@ ul.image-gallery img {
 }
 
 /* Estilo para el footer */
+
 footer {
   background: #333;
   color: #fff;
@@ -396,4 +396,3 @@ footer p, footer small {
   margin: 0;
   padding: 5px;
 }
-

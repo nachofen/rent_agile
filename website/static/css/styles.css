@@ -39,8 +39,13 @@ form {
 
 /* Estilo para el botón de carga de archivo */
 .form-group input[type="file"] {
-  display: none;
-}
+ 
+  border: 2px solid #ccc;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  }
 .custom-file-label {
   display: inline-block;
   background-color: #9b0a0a;
