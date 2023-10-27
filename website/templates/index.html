@@ -56,30 +56,28 @@
               <script src="/static/js/divscroll.js"></script>
               <br> <br>
               
-        <!-- cards autos publicados disponibles -->
-<div class="cardsgallery">
-  {% for auto in autos %}
-    {% if auto.imagenes_auto %}
-      <div class="auto">
-        <a href="/ver-vehiculo/{{ auto.id_auto }}">
-          <div class="auto-inner">
-            <div class="auto-front">
-              <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+        <!-- cards autos publicados disponibles --> 
+  <div class="cardsgallery" id="autoContainer">
+    {% for auto in autos %}
+      {% if auto.imagenes_auto %}
+        <div class="auto">
+          <a href="/ver-vehiculo/{{ auto.id_auto }}">
+            <div class="auto-inner">
+              <div class="auto-front">
+                <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+              </div>
+              <div class="auto-back">
+                <h2>Rent Agile</h2> 
+                <p>{{ auto.marca }} {{ auto.modelo }}</p> 
+                <p>Precio: {{ auto.tarifa }}$</p>
+              </div>
             </div>
-            <div class="auto-back">
-              <h2>Rent Agile</h2> 
-              <p>{{ auto.marca }} {{ auto.modelo }}</p> 
-              <p>Precio: {{ auto.tarifa }}$</p>
-            </div>
-          </div>
-        </a>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
-
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
-
+   
   <br><br> <br>
   
   <!-- Popup de filtros (inicialmente oculto) -->
@@ -206,8 +204,9 @@
     var overlay = document.getElementById('overlay');
     overlay.addEventListener('click', closeFiltersPopup);
   </script>
-
-            <!-- Footer -->
+  
+    
+      <!-- Footer -->
     <footer class="footer">
       <p>Conduciendo hacia tus sueños desde 2023 </p>
       <br>

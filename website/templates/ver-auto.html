@@ -2,51 +2,66 @@
 {% block title %} Detalles del Vehículo {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
-  <h3 align="center">Detalles del Vehículo</h3>
-  <ul>
-    <li>
-      <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
-      <p>Año: {{ vehiculo.año }}</p>
-      <p>Categoría: {{ vehiculo.categoria }}</p>
-      <p>Departamento: {{ vehiculo.departamento }}</p>
-      <p>Tarifa: {{ vehiculo.tarifa }}</p>
-      <p>Descripción: {{ vehiculo.descripcion }}</p>
-    </li>
-  </ul>
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <div class="car-details-container">
+    <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
 
-  <h3>Imágenes del Vehículo</h3>
-  <ul class="image-gallery">
-      {% for imagen in imagenes_url %}
-        <li>
-          <img src="/{{ imagen }}" alt="Imagen del Auto">
-        </li>
-      {% endfor %}
-      <div>
-        {% if current_user.id == vehiculo.usuario_id %}
-          <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')" style="display: inline-block;">
-            <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
+    <div class="buttons-container">
+      {% if current_user.id == vehiculo.usuario_id %}
+        <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
+          <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
+        </form>
+        <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET">
+          <button type="submit" class="btn btn-primary-ver">Editar Vehículo</button>
+        </form>
+      {% else %}
+        <div class="message-rent-container">
+          <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
+            <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button>
           </form>
-          <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET" style="display: inline-block;">
-            <button type="submit" class="btn btn-primary">Editar Vehículo</button>
-          </form>
-          
-        {% else %}
-          <form action="/enviar-mensaje/{{ vehiculo.id_auto}}" method="get" style="display: inline-block;">
-            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-          </form>          
           <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
-            <div class="form-group">
+            <div class="date-container">
+              <div class="form-group">
                 <label for="fecha_inicio">Fecha de Inicio</label>
                 <input type="date" id="fecha_inicio" name="fecha_inicio" required>
-            </div>
-            <div class="form-group">
-                <label for "fecha_fin">Fecha de Finalización</label>
+              </div>
+              <div class="form-group">
+                <label for="fecha_fin">Fecha de Finalización</label>
                 <input type="date" id="fecha_fin" name="fecha_fin" required>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Alquilar</button>
+            <button type="submit" class="btn btn-primary-ver">Alquilar</button>
           </form>
-        {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="car-details">
+      <div class="car-info">
+        <ul>
+          <li>
+            <strong>Año:</strong> {{ vehiculo.año }}
+          </li>
+          <li>
+            <strong>Categoría:</strong> {{ vehiculo.categoria }}
+          </li>
+          <li>
+            <strong>Departamento:</strong> {{ vehiculo.departamento }}
+          </li>
+          <li>
+            <strong>Tarifa:</strong> {{ vehiculo.tarifa }}$
+          </li>
+        </ul>
       </div>
-  </ul>
+      <div class="car-image-gallery">
+        <ul class="image-gallery">
+          {% for imagen in imagenes_url %}
+            <li>
+              <img src="/{{ imagen }}" alt="Imagen del Auto">
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}

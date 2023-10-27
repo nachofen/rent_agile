@@ -30,7 +30,7 @@ body {
   padding: 20px;
   z-index: 1000;
   opacity: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity 1.2s ease;
   max-height: 50vh;
   overflow-y: auto;
 }
@@ -143,6 +143,7 @@ body {
 .auto:hover .auto-back {
   opacity: 1; 
 }
+
 
 /* Estilo  frase red en div scroll */
 
@@ -523,8 +524,223 @@ ul.image-gallery img {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para el footer */
 
+
+/* Estilo para ver-auto.html*/
+
+/* Estilos para el contenedor principal */
+.car-details-container {
+  text-align: center;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el título del automóvil */
+.car-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el contenedor de botones */
+.buttons-container {
+  margin-bottom: 20px;
+}
+
+/* Estilos para los detalles del automóvil */
+.car-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.car-info {
+  flex: 1;
+}
+
+/* Estilos para los detalles del automóvil */
+.car-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.car-info li {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.car-image {
+  flex: 1;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilos para la galería de imágenes */
+
+/* Estilos para el contenedor de imágenes del vehículo */
+.car-image-gallery {
+  margin-top: 20px;
+}
+
+/* Estilos para la galería de imágenes */
+.image-gallery {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-gallery li {
+  margin: 5px;
+}
+
+.image-gallery img {
+  max-width: 100%;
+  max-height: 250px;
+  height: auto;
+}
+
+
+/* Estilos para los botones */
+.btn {
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn-danger {
+  background-color: #ff3333;
+}
+
+.btn-primary-ver {
+  background-color: #33cc33;
+}
+
+/* Estilos para los campos de formulario */
+form input[type="date"] {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+}
+
+/* Estilos para la sección de mensajes y alquiler */
+.message-rent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Estilos para el contenedor de fechas */
+.date-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-container .form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.date-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos para las cajas de fecha */
+/* Estilos para el contenedor de fechas */
+.date-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-container .form-group {
+  flex: 1;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column; /* Alinea el contenido verticalmente */
+}
+
+.date-container label {
+  margin-bottom: 5px;
+}
+
+/* Estilos para las cajas de fecha */
+/* Estilos para el contenedor de fechas */
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.date-container .form-group {
+  flex: 1;
+}
+
+.date-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos para las cajas de fecha */
+/* Estilos para el contenedor de fechas */
+.date-container {
+  margin-bottom: 20px; /* Agrega espacio entre las cajas de fecha */
+}
+
+.date-container .form-group {
+  margin-bottom: 10px; /* Espacio entre las cajas de fecha y las etiquetas */
+}
+
+.date-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+/* Estilos para el contenedor de fechas */
+.date-container {
+  margin-bottom: 20px;
+}
+
+.date-container .form-group {
+  margin-bottom: 10px;
+}
+
+/* Estilos para las etiquetas más pequeñas */
+.small-label {
+  font-size: 9px; 
+}
+
+/* Estilos para las cajas de fecha */
+form input[type="date"] {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: border 0.2s;
+}
+
+/* Estilos cuando se enfoca en la caja de fecha */
+form input[type="date"]:focus {
+  border: 1px solid #33cc33;
+  outline: none;
+}
+
+/* Estilo para el footer */
 footer {
   background: #333;
   color: #fff;
