@@ -36,6 +36,7 @@ main {
   text-align: center;
   padding: 50px 0;
   position: relative;
+  border-radius: 0 0 20px 20px;
 }
 
 /* Estilos para el contenido de "Quiénes Somos" dentro del contenedor principal */
@@ -154,14 +155,21 @@ p {
   line-height: 1.5;
 }
 
+
+/* estilo tarjetas testimonoios */
 .testimonio {
   margin: 20px 0;
   padding: 10px;
   background-color: #f2f2f2;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d; 
+  transition: transform 0.8s; 
 }
 
+.testimonio:hover {
+  transform: scale(1.03);
+}
 .testimonio p {
   font-size: 16px;
   color: #333;
