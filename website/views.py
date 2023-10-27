@@ -584,7 +584,8 @@ def enviar_mensaje(id):
 @views.route('/bandeja-entrada', methods=['GET'])
 @login_required
 def bandeja_entrada():
-    from .models import Mensaje
+    from .models import Mensaje, Conversacion
+
     # Subconsulta para obtener el último mensaje por conversación
     subquery = db.session.query(
         func.max(Mensaje.fecha).label('max_fecha'),
@@ -601,15 +602,31 @@ def bandeja_entrada():
 
     # Obtener el nombre de cada destinatario y almacenarlo en la lista
     for mensaje in mensajes:
-        destinatario_id = mensaje[0].conversacion.destinatario_id
-        destinatario_name = User.query.filter_by(id=destinatario_id).first()
-        nombre_completo = destinatario_name.nombre + " " + destinatario_name.apellido
-        destinatario_names.append(nombre_completo)  # Asumiendo que el nombre del usuario se almacena en el campo 'nombre'
+        # Obtener el ID de la conversación
+        conversacion_id = mensaje[0].conversacion_id
+
+        # Obtener el ID del usuario con el que está chateando
+        ultimo_mensaje = Mensaje.query.filter_by(conversacion_id=conversacion_id).order_by(Mensaje.fecha.desc()).first()
+        id_usuario_ultimo_mensaje = ultimo_mensaje.id_usuario
+
+        # Obtener el nombre del usuario con el que está chateando
+        destinatario_name = User.query.filter_by(id=id_usuario_ultimo_mensaje).first()
+        
+        if id_usuario_ultimo_mensaje != current_user.id:
+            id_usuario = ultimo_mensaje.id_usuario
+            usuario = User.query.get(id_usuario)
+            destinatario_name = usuario.nombre + " " + usuario.apellido
+        else:
+            id_usuario = ultimo_mensaje.destinatario_id
+            usuario = User.query.get(id_usuario)
+            destinatario_name = usuario.nombre + " " + usuario.apellido
+        destinatario_names.append(destinatario_name)
 
     # Combinar mensajes y destinatario_names usando zip
     mensajes_con_nombres = zip(mensajes, destinatario_names)
 
     return render_template("bandeja-entrada.html", mensajes=mensajes_con_nombres, user=current_user)
+
 
 @views.route('/bandeja-entrada/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -645,11 +662,30 @@ def conversar(id):
 
             # Redirigir nuevamente a la página de conversación para mostrar el mensaje enviado
             return redirect(url_for('views.conversar', id=id))
-
     # Obtener todos los mensajes de la conversación con el ID especificado
     mensajes = Mensaje.query.filter_by(conversacion_id=id).all()
-
+    destinatarios = []
+    emisores = []
     # Consulta para obtener el nombre del destinatario
-    destinatario = User.query.get(mensajes[0].destinatario_id)  # Supongamos que el destinatario_id se encuentra en el primer mensaje
+    for mensaje in mensajes:
+        destinatario = User.query.get(mensaje.destinatario_id)  # Supongamos que el destinatario_id se encuentra en el primer mensaje
+        destinatarios.append(destinatario)
+        emisor = User.query.get(mensaje.id_usuario)
+        emisores.append(emisor)
 
-    return render_template("mensaje.html", mensajes=mensajes, destinatario=destinatario, user=current_user)
+    
+    subq = db.session.query(
+    func.min(Mensaje.fecha).label('min_fecha'),
+    Mensaje.destinatario_id,
+    Mensaje.conversacion_id
+    ).group_by(Mensaje.conversacion_id, Mensaje.destinatario_id).subquery()
+
+    primer_mensaje = Mensaje.query.filter_by(conversacion_id=id).order_by(Mensaje.fecha).first()
+    primer_destinatario = None
+    if primer_mensaje:
+        primer_destinatario = User.query.get(primer_mensaje.destinatario_id)
+
+
+    mensajes_con_destinatarios = zip(mensajes, destinatarios, emisores)
+
+    return render_template("mensaje.html", mensajes_con_destinatarios=mensajes_con_destinatarios, user=current_user, primer_destinatario=primer_destinatario)
