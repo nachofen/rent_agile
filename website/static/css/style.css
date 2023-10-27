@@ -3,7 +3,7 @@ body {
   font-family: 'MuseoModerno', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: white;
 }
 
 @media (max-width: 768px) {
@@ -48,9 +48,115 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Estilo para las tarjetas de autos en el home  flip card-info*/
+.cardsgallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.auto {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  perspective: 1000px;
+  border-radius: 10px; /* Aplica el redondeo al div */
+  background: transparent; 
+}
+
+.auto * {
+  border-radius: 10px; 
+}
+.auto img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 45px;
+  background: none; 
+}
+.auto-inner {
+  width: 100%;
+  height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.auto:hover .auto-inner {
+  transform: rotateY(180deg);
+}
+
+.auto-front,
+.auto-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.auto-front {
+  width: 100%;
+  height: 100%;
+  background-color: #fff; /* Color de fondo para la parte frontal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.3s; /* Transición de color de fondo al pasar el mouse */
+}
+
+.auto-front img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.auto:hover .auto-front {
+  background-color: #f2f2f2; /* Cambia el color de fondo al pasar el mouse */
+}
 
 
+.auto-back {
+  transform: rotateY(180deg); /* Inicialmente oculta la parte trasera */
+  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: black;
+  font-weight: bold; 
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(252, 20, 20, 0.8) 100%);
+}
 
+.auto-back h2 {
+  margin: 10px 0; 
+  font-size: 20px; 
+}
+
+.auto:hover .auto-back {
+  opacity: 1; 
+}
+
+/* Estilo  frase red en div scroll */
+  .impulos.no-image {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    background-color: #ff0000; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    overflow: hidden;
+  }
+  
 /* Etilo borde caja login e inicar sesion */
 .login-form {
   border-radius: 20px;
