@@ -133,7 +133,7 @@ body {
   color: black;
   font-weight: bold; 
   text-align: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(252, 20, 20, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(187, 4, 4, 0.8) 100%);
 }
 
 .auto-back h2 {
@@ -146,16 +146,28 @@ body {
 }
 
 /* Estilo  frase red en div scroll */
-  .impulos.no-image {
-    text-align: center;
-    font-size: 24px;
-    color: white;
-    background-color: #ff0000; 
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    overflow: hidden;
+
+.impulso-paragraph {
+  color: red;
+  font-weight: bold;
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    color: red;
+    text-shadow: none;
   }
+  50% {
+    color: #ffffff;
+    text-shadow: 0 0 10px #000000;
+  }
+  100% {
+    color: red;
+    text-shadow: none;
+  }
+}
+
   
 /* Etilo borde caja login e inicar sesion */
 .login-form {
