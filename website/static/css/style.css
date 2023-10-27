@@ -21,7 +21,6 @@ body {
 }
 
 /* Home div oculto, show in scroll - Estilo inicial para el div oculto */
-
 #divOculto {
   text-align: center;
   position: sticky;
@@ -29,13 +28,11 @@ body {
   right: 22px;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   opacity: 0;
   transition: opacity 1.5s ease;
-  max-height: 50vh; /* Limita la altura máxima y agrega desplazamiento vertical si es necesario */
-  overflow-y: auto; /* Activa el desplazamiento vertical si el contenido excede la altura máxima */
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 #divOculto.aparecido {
@@ -44,9 +41,8 @@ body {
 #divOculto .message-box {
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Estilo para las tarjetas de autos en el home  flip card-info*/
 .cardsgallery {
