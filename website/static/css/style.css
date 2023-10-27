@@ -133,7 +133,7 @@ body {
   color: black;
   font-weight: bold; 
   text-align: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(187, 4, 4, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(10, 9, 9, 0.8) 100%);
 }
 
 .auto-back h2 {
