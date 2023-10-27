@@ -175,7 +175,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   background-color: rgba(255, 255, 255, 0.8); /* Fondo opaco */
   padding: 16px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%); /* Degradado lineal */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%); 
 }
 
 /* Estilo del contenedor principal (login y contenedor) */
@@ -197,9 +197,32 @@ body {
 /* Estilo del título en el formulario de registro */
 .login-form h1 {
   text-align: center;
-  color: red; /* Cambiamos el color del título a rojo */
+  color: red; 
   font-size: 26px;
   padding: 70px 0 10px 0;
+}
+
+.login-form {
+  text-align: center; 
+}
+
+/* Cambia el color del botón "Iniciar Sesión" a negro */
+.btn-login-custom {
+  background-color: black;
+  color: white;
+}
+
+
+/* Cambia el color del botón "Iniciar Sesión" al pasar el mouse por encima a rojo */
+.btn-login-custom:hover {
+  background-color: red;
+  color: white; 
+}
+
+/* Cambia el color del botón "Registrarse" al pasar el mouse por encima a rojo */
+.btn-register-custom:hover {
+  background-color: red;
+  color: white; 
 }
 
 /* Estilo de las cajas de entrada en el formulario de registro */
@@ -676,7 +699,6 @@ form input[type="date"] {
   margin-bottom: 5px;
 }
 
-/* Estilos para las cajas de fecha */
 /* Estilos para el contenedor de fechas */
 .date-container {
   display: flex;

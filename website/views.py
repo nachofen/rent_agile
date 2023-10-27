@@ -30,6 +30,13 @@ def saludo_index():
     """Página de inicio con saludo si está logueado """
     return render_template("index.html", user=current_user.nombre)
 
+@views.route('/info')
+def info_footer():
+    """ Mostrar la vista del footer """
+    user = current_user  
+    return render_template("info.html", user=user)  
+
+
 @views.route('/host')
 @login_required
 def admin_home():
