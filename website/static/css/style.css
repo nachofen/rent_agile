@@ -116,7 +116,9 @@ body {
 
 .auto-back {
   transform: rotateY(180deg); /* Inicialmente oculta la parte trasera */
-  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  background-image: url('/static/img/uploads/backcard.jpg');
+  background-color: rgba(255, 255, 255, 0.6); 
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,10 +132,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  color: black;
+  color: white;
   font-weight: bold; 
   text-align: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(10, 9, 9, 0.8) 100%);
+  text-shadow: 2px 2px 10px rgb(255, 0, 0);
+ 
 }
 
 .auto-back h2 {
