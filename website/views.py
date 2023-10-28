@@ -36,6 +36,12 @@ def info_footer():
     user = current_user  
     return render_template("info.html", user=user)  
 
+@views.route('/como-funciona')
+def como_funciona_page():
+    """ Mostrar la de como funciona """
+    user = current_user  
+    return render_template("como-funciona.html", user=user)  
+
 
 @views.route('/host')
 @login_required
