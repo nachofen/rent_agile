@@ -18,7 +18,46 @@
          Además, desde la sección correspondiente, puedes editar tus publicaciones y agregar más fotos.
     </p>
 </div>
-<br> <br> 
+                    <!-- Slider frases clientes -->
+                    <h3 class="testimonial-title">Lo que dicen nuestros clientes:</h3>
+                        <div class="testimonial-slider">
+                            <div class="testimonial-slide">
+                                <p>¡Excelente servicio!</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>Me encantó la experiencia.</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>El alquiler de autos nunca fue tan fácil.</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>Pude cancelar la reserva, sin ningun problema.</p>
+                            </div>
+                             <div class="testimonial-slide">
+                                <p>Me encantó la experiencia.</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>Los autos disponibles son de alta calidad.</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>El equipo de Rent Agile es muy profesional.</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p> Servicio de primera, ¡siempre vuelvo!</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p> La elección obvia para mis viajes.</p>
+                            </div>
+                        </div>
+                     <!-- Slider  -->
+                    <div class="star-slider">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    
 <div class="como-funciona-card">
     <h2>Buscar un Auto para Alquilar</h2>
     <p>
@@ -31,6 +70,28 @@
     </p>
 </div>
 <br> <br> <br> <br> 
+
+                <script>
+                // Obtén todas las diapositivas de testimonios
+                const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+
+                let currentSlide = 0;
+
+                function nextSlide() {
+                    testimonialSlides[currentSlide].style.display = 'none';
+                    currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                    testimonialSlides[currentSlide].style.display = 'block';
+                }
+
+                // Muestra la primera diapositiva
+                testimonialSlides[currentSlide].style.display = 'block';
+
+                // intervalo de cambio de frase
+                setInterval(nextSlide, 4000);
+
+                </script>
+
+
  <!-- Footer -->
  <footer class="footer-comofunciona">
     <p>Conduciendo hacia tus sueños desde 2023 </p>
