@@ -239,7 +239,7 @@ p {
 
 
 /* Estilos para las secciones como-funciona */
-.como-funciona-section {
+.como-funciona-card {
   background-color: #f8f8f8;
   padding: 20px;
   margin: 20px 0;
@@ -247,17 +247,40 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.como-funciona-section h2 {
+.como-funciona-card h2 {
   color: #333;
   font-size: 24px;
 }
 
-.como-funciona-section p {
+.como-funciona-card p {
   color: #666;
   font-size: 18px;
   line-height: 1.5;
 }
 
+/* Define la animación */
+@keyframes entradaDesdeAbajo {
+  from {
+    transform: translateY(100%); /* Empieza fuera de la vista, debajo */
+  }
+  to {
+    transform: translateY(0); /* Termina en su posición normal */
+  }
+}
+
+/* Aplica la animación a las tarjetas */
+.como-funciona-card {
+  animation: entradaDesdeAbajo 1s ease forwards;
+}
+
+/* Establece un retraso para que las tarjetas entren una por una */
+.como-funciona-card:nth-child(1) {
+  animation-delay: 1.5s; 
+}
+
+.como-funciona-card:nth-child(1) {
+  animation-delay: 1.7s; 
+}
 
 
 /* Estilo para el footer */
