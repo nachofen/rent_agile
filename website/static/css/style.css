@@ -561,6 +561,14 @@ ul.image-gallery img {
   border-radius: 5px;
   box-shadow: 0 1 10px rgba(0, 0, 0, 0.2);
 }
+/* body para el fondo personalizado */
+.custom-background-ver {
+  background-color: #333333;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23DD0000'/%3E%3Cstop offset='1' stop-color='%23333333'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 
 /* Estilo para el título del automóvil */
 .car-title {
@@ -603,7 +611,6 @@ ul.image-gallery img {
   margin-top: 20px;
 }
 
-/* Estilos para la galería de imágenes */
 
 /* Estilos para el contenedor de imágenes del vehículo */
 .car-image-gallery {
@@ -680,7 +687,7 @@ form input[type="date"] {
   margin-bottom: 5px;
 }
 
-/* Estilos para las cajas de fecha */
+
 /* Estilos para el contenedor de fechas */
 .date-container {
   display: flex;
@@ -715,7 +722,7 @@ form input[type="date"] {
   margin-bottom: 5px;
 }
 
-/* Estilos para las cajas de fecha */
+
 /* Estilos para el contenedor de fechas */
 .date-container {
   margin-bottom: 20px; /* Agrega espacio entre las cajas de fecha */
