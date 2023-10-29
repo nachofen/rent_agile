@@ -75,24 +75,73 @@
 /* icono auto - contacto */
 
 .menu {
-    text-align: center; 
+  text-align: center;
+}
+
+.menu a {
+  display: inline-block;
+  text-decoration: none;
+  margin: 10px;
+  position: relative;
+  text-align: center;
 }
 
 .menu a i {
-    color: #ffffff;
-    font-size: 28px;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #ffffff;
+  font-size: 32px;
+  transition: color 0.5s;
 }
 
-
 .menu a i:hover {
-    color: #2b0202; 
+  color: #000000;
 }
 
 .menu a i:focus {
-    outline: none; 
+  outline: none;
 }
+
+.menu a span {
+  display: block;
+  font-size: 13px;
+  color: #000000;
+}
+
+
+/* iconos en perfil anfitrion */
+
+.menu2 {
+  text-align: center;
+}
+
+.menu2 a {
+  display: inline-block;
+  text-decoration: none;
+  margin: 10px;
+  position: relative;
+  text-align: center; /* Añadido para centrar el contenido */
+}
+/* icnos  en menu anfitrion, redireccion color, texto en block under */
+.menu2 a i {
+  color: #ffffff;
+  font-size: 100px;
+  transition: color 0.5s;
+}
+
+.menu2 a i:hover {
+  color: #000000;
+}
+
+.menu2 a i:focus {
+  outline: none;
+}
+
+.menu2 a span {
+  display: block; /* Cambiado de 'inline' a 'block' para que aparezca en una nueva línea */
+  font-size: 16px;
+  color: #000000; /* Color del texto descriptivo */
+}
+
+
 
 /* Estilos para la lista de tareas */
 #todo-list {

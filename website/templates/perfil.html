@@ -22,18 +22,19 @@
   </head>
   <body class="custom-background-perfil">
     <div class="menu">
-      <a href="/">
-        <i class="fa fa-home"></i>
-      </a>
-      <a href="/agregar-vehiculo">
-        <i class="fas fa-upload fas fa-car"></i>
-      </a>
-      <a href="/info#contacto">
-        <i class="fas fa-comment-dots"></i>
-      </a>
-    </div>
-</body>
-<br>
+        <a href="/">
+          <i class="fa fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="/agregar-vehiculo">
+          <i class="fas fa-car"></i>
+          <span>Publicar Auto</span>
+        </a>
+        <a href="/info#contacto">
+          <i class="fas fa-comment-dots"></i>
+          <span>Contactanos</span>
+        </a>
+      </div>
 
 <div id="todo-list">
     <h3>Tareas Pendientes</h3>
@@ -62,7 +63,8 @@
     <input type="text" id="new-task" placeholder="Nueva tarea ( falta el back a la base de datos  y recuepracion de datos de la bs)">
     <button id="add-task">Agregar Tarea</button>
 </div>
-    <br>
+    <br> <br>
+
         <script>
     // Función para agregar una nueva tarea
     function addTask() {
