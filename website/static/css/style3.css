@@ -8,6 +8,8 @@ body {
   background-color: white;
   overflow-x: hidden; 
 }
+
+
 .custom-body {
   background-color: #f0f0f0; 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF9777' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF9777' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
@@ -37,10 +39,10 @@ main {
 
 /* Estilos para el contenedor principal de "Quiénes Somos" y "Nuestro Equipo" con el mismo fondo */
 .main-container {
-  background-image: url('/static/img/uploads/fondoteam.jpg');
+  background-image: url('/static/img/uploads/fondo-ruta.jpg');
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: #740000;
   text-align: center;
   padding: 50px 0;
   position: relative;
@@ -121,13 +123,20 @@ main {
   text-align: center;
   color: #5e1301;
 }
+.miembrox p {
+  color: #ff0000;
+}
+p {
+  margin-top: 10px;
+  color: #a79f9f; 
+}
 
 .circulo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #da0000;
+  border: 3px solid #ffffff;
   box-shadow: 3px 3px 10px rgb(255, 255, 255);
   margin: 0 auto;
 }
@@ -154,14 +163,25 @@ p {
 
 h2 {
   font-size: 24px;
-  color: #fff; 
+  color: #330303; 
 }
 
 p {
   font-size: 18px;
-  color: #fff; 
+  color: #050101; 
   line-height: 1.5;
 }
+
+/* tarjetas de clientes review estatica */
+.testimonio-card {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .testimonio p {
   font-size: 16px;
   color: #333;
@@ -241,6 +261,10 @@ p {
   color: #fff;
 }
 
+h2 {
+  color: rgb(255, 0, 0); 
+}
+
 .como-funciona-card::before {
   content: "";
   position: absolute;
@@ -271,34 +295,34 @@ p {
 
 /* destello en cards */@keyframes destello {
     0% {
-      text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+      text-shadow: 0 0 15px rgba(250, 194, 73, 0.8);
       color: #fff;
   }
   25% {
       text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-      color: #e2d089;
+      color: #d6b637;
   }
   50% {
       text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); 
       color: #fff; 
   }
   75% {
-      text-shadow: 0 0 15px rgba(250, 41, 41, 0.8);
+      text-shadow: 0 0 15px rgba(165, 159, 159, 0.8);
       color: #e7d489; 
   }
   100% {
-      text-shadow: 0 0 15px rgba(224, 67, 67, 0.8);
-      color: #fff; 
+      text-shadow: 0 0 15px rgba(252, 121, 121, 0.8);
+      color: #f59d9d; 
   }
 }
 
 .como-funciona-card span {
-  animation: destello 2s infinite; 
+  animation: destello 2 infinite; 
 }
 
 
 .como-funciona-card span {
-  animation: destello 1s infinite; /* Aplica la animación de destello */
+  animation: destello 3s infinite; /* Aplica la animación de destello */
 }
 
 
@@ -340,7 +364,13 @@ p {
   margin: 0 20px;
 }
 
-/* slider frases en como-funciona */.testimonial-title {
+/* slider frases en como-funciona */
+
+.testimonial-title, .testimonial-slide p {
+  color: #fff; 
+}
+
+.testimonial-title {
   text-align: center;
   font-size: 16px; /* Ajusta el tamaño del texto a tu preferencia */
   color: white;
@@ -519,9 +549,10 @@ p {
 }
 
 
+
 /* Estilo para el footer de info  */
 footer {
-  background: #333;
+  background: rgba(51, 51, 51, 0.7); 
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -537,17 +568,16 @@ footer {
 
 footer p, footer small {
   margin: 0;
-  padding: 5px;
+  padding: 12px;
 }
 
 /* Estilo para el footer en Como Funciona */
 .footer-comofunciona {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 50%, #000000 50%);
   color: #fff;
-  padding: 10px 0;
+  padding: 9px 0;
   text-align: center;
   font-family: 'MuseoModerno', sans-serif;
-  font-size: 14px;
   margin-left: -50vw;
   margin-right: -50vw;
   border-top-left-radius: 10px;
@@ -556,7 +586,8 @@ footer p, footer small {
 }
 .footer-comofunciona p, .footer-comofunciona small {
   margin: 0;
-  padding: 5px;
+  padding: px;
+  font-size: 20px;
 }
 
 .footer-comofunciona  a {
