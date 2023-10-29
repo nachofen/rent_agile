@@ -1,8 +1,98 @@
 {% extends "base.html" %}
 {% block title %} Anfitrión {% endblock %}
 {% block content %}
-    <h1>Perfil de usuario</h1>
-    <h3>{{ user.nombre }}</h3>
 
+<link rel="stylesheet" href="/static/css/style4.css">
+    
+<div class="user-profile-title-bg">
+    <h1 class="user-profile-title">Perfil de usuario</h1>
+</div>
+<div class="user-greeting-bg">
+    <h3 class="user-greeting">Hola {{ user.nombre }}</h3>
+</div>
 
+  
+    <title>Mi Perfil</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+   
+  </head>
+  <body class="custom-background-perfil">
+    <div class="menu">
+      <a href="/">
+        <i class="fa fa-home"></i>
+      </a>
+      <a href="/agregar-vehiculo">
+        <i class="fas fa-upload fas fa-car"></i>
+      </a>
+      <a href="/info#contacto">
+        <i class="fas fa-comment-dots"></i>
+      </a>
+    </div>
+</body>
+<br>
+
+<div id="todo-list">
+    <h3>Tareas Pendientes</h3>
+    <ul>
+        <li>
+            <input type="checkbox">
+            <label>Tarea 1</label>
+            <button class="delete">Eliminar</button>
+        </li>
+        <li>
+            <input type="checkbox">
+            <label>Tarea 2</label>
+            <button class="delete">Eliminar</button>
+        </li>
+        <li>
+            <input type="checkbox">
+            <label>Tarea 3</label>
+            <button class="delete">Eliminar</button>
+        </li>
+        <li>
+            <input type="checkbox">
+            <label>Tarea 4</label>
+            <button class="delete">Eliminar</button>
+        </li>
+    </ul>
+    <input type="text" id="new-task" placeholder="Nueva tarea ( falta el back a la base de datos  y recuepracion de datos de la bs)">
+    <button id="add-task">Agregar Tarea</button>
+</div>
+    <br>
+        <script>
+    // Función para agregar una nueva tarea
+    function addTask() {
+        const taskText = prompt("Nueva tarea:");
+            if (taskText) {
+            const ul = document.querySelector("#todo-list ul");
+            const li = document.createElement("li");
+            li.innerHTML = `
+            <input type="checkbox">
+             <label>${taskText}</label>
+                <button class="delete">Eliminar</button>
+                `;
+                ul.appendChild(li);
+                    li.querySelector(".delete").addEventListener("click", () => {
+                        ul.removeChild(li);
+                });
+            }
+        }
+                             document.querySelector("#add-task").addEventListener("click", addTask);
+</script>
+
+ <!-- Footer -->
+ <footer class="footer">
+    <p>Conduciendo hacia tus sueños desde 2023 </p>
+    <br>
+
+    
+    <a href="/info#quienes-somos">Quiénes Somos</a> | <a href="/info#testimonios">Testimonios</a> | <a href="/info#contacto">Contacto</a>
+    <small>Tu auto, tu aventura.</small>
+    <p>&copy; 2023 Rent Agile</p>
+  </footer>
+</body>
 {% endblock %}

@@ -1,0 +1,200 @@
+/* perfil.html estilos */
+.custom-background-perfil {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF9777' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF9777' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+
+/* Estilo Bienvendio texto */
+.user-profile-title-bg {
+    background: url('/static/img/uploads/fondo-ruta.jpg') center/cover no-repeat; 
+    text-align: center;
+    color: white; 
+    padding: 16px; 
+    
+}
+
+.user-profile-title {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.user-greeting-bg {
+    color: white; 
+    padding: 14px;
+    text-align: center;
+    color: white; 
+    padding: 20px; 
+    
+}
+
+.user-greeting {
+    font-size: 26px;
+    opacity: 0;
+    animation: title-fade-in 3s forwards, title-slide-in 5s forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1; 
+    }
+}
+
+.user-profile-title {
+    font-size: 22px;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(-30px); /* Desplaza el elemento hacia arriba */
+    animation: title-fade-in 3s forwards, title-slide-in 4s forwards;
+}
+
+@keyframes title-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* user porfile entrance animacion  */
+@keyframes title-slide-in {
+    from {
+        transform: translateY(-30px);
+    }
+    to {
+        transform: translateY(0); 
+    }
+}
+
+/* icono auto - contacto */
+
+.menu {
+    text-align: center; 
+}
+
+.menu a i {
+    color: #ffffff;
+    font-size: 28px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+
+.menu a i:hover {
+    color: #2b0202; 
+}
+
+.menu a i:focus {
+    outline: none; 
+}
+
+/* Estilos para la lista de tareas */
+#todo-list {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    padding: 16px;
+    max-width: 700px; /* Aumenta el ancho del contenedor */
+    margin-top: -20px; 
+    margin: 0 auto;
+  }
+  
+  #todo-list h2 {
+    text-align: center;
+    color: red;
+    font-size: 26px;
+    padding: 70px 0 10px 0;
+  }
+  
+  #todo-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #todo-list ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  #todo-list input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  #todo-list button.delete {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 3px 6px; 
+    cursor: pointer;
+  }
+  
+  #todo-list button.delete:hover {
+    background-color: red;
+  }
+  
+  #todo-list input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 15px;
+    box-sizing: border-box;
+  }
+  #todo-list {
+    margin-top: 3px; 
+    
+}
+  
+  #add-task {
+    width: 100%;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  #add-task:hover {
+    background-color: red;
+  }
+  
+/* Estilo para el footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'MuseoModerno', sans-serif;
+    font-size: 14px;
+    background: linear-gradient(to bottom, #888 50%, #000000 50%);
+    margin-left: -50vw; 
+    margin-right: -50vw; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    border-radius: 70% 1% 0 0 / 100% 100% 0 0;
+  }
+  
+  footer p, footer small {
+    margin: 0;
+    padding: 5px;
+
+  }/* Estilo para los enlaces en el footer */
+  footer a {
+    color: red; 
+    text-decoration: none; 
+  }
+  
+  footer a:hover {
+    color: rgb(255, 255, 255); 
+    text-decoration: none; 
+  }

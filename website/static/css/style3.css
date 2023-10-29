@@ -458,6 +458,66 @@ p {
   margin: 0 5px; 
 }
 
+/* boton auto en como funciona */
+.hidden {
+  display: none;
+}
+
+.menu {
+  position: absolute;
+  top: 283px; /*  conjunto de botones hacia abajo */
+  left: 935px; /*  posición horizontal del conjunto */
+}
+
+#toggle-btn,
+.menu a {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  top: 0; 
+  left: 0; 
+  transition: 0.5s;
+  animation: aparecer 2s 2s;
+}
+
+.menu a {
+  background-color: #333030;
+  height: 40px;
+  width: 40px;
+  font-size: 22px;
+  text-decoration: none;
+  top: 0; 
+  left: 0; 
+  transition: 0.5s;
+}
+
+.menu a i {
+  color: #eeff00;
+}
+
+#toggle-btn {
+  background-color: #fffafa;
+  color: #ff0000;
+  height: 55px;
+  width: 55px;
+  border: none;
+  font-size: 35px;
+  top: 0; 
+  left: 0; 
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.active {
+  transform: rotate(45deg);
+}
+
+.menu:not(.active) a[href*="#contacto"] {
+  top: 0; 
+  left: 0; 
+}
+
 
 /* Estilo para el footer de info  */
 footer {

@@ -4,6 +4,11 @@
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/style3.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
 
 <body class="custom-body">
 
@@ -70,6 +75,21 @@
     </p>
 </div>
 <br> <br> 
+<div class="menu">
+    <a href="/login">
+      <i class="fas fa-user-plus""></i>
+    </a>
+    <a href="/agregar-vehiculo">
+      <i class="fas fa-upload"></i>
+    </a>
+    <a href="/info#contacto">
+      <i class="fas fa-comment-dots"></i>
+    </a>
+    
+    <button id="toggle-btn">
+      <i class="fas fa-car"></i>
+    </button>
+  </div>
 
                 <script>
                 // Obtén todas las diapositivas de testimonios
@@ -91,7 +111,27 @@
 
                 </script>
 
-
+<script>
+    let toggleBtn = document.getElementById("toggle-btn");
+let menuItems = document.querySelectorAll(".menu a");
+let menuActive = false;
+toggleBtn.addEventListener("click", () => {
+if (!menuActive) {
+    menuItems[0].style.transform = "translate(150px,0)";
+    menuItems[1].style.transform = "translate(150px,90px)";
+    menuItems[2].style.transform = "translate(90px,150px)";
+    
+    menuActive = true;
+    toggleBtn.classList.add("active");
+} else {
+    menuItems.forEach((menuItem) => {
+    menuItem.style.transform = "translate(0,0)";
+    });
+    menuActive = false;
+    toggleBtn.classList.remove("active");
+}
+});
+</script>
  <!-- Footer -->
  <footer class="footer-comofunciona">
     <p>Conduciendo hacia tus sueños desde 2023 </p>
