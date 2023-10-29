@@ -51,11 +51,19 @@ main {
 
 /* Estilos para el contenido de "Quiénes Somos" dentro del contenedor principal */
 .quienes-somos-content {
-  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el contenido */
+  background: rgba(0, 0, 0, 0.);
   padding: 20px;
   border-radius: 10px;
   color: #ff0000; }
-
+  .quienes-somos-section {
+    background-color: rgba(255, 255, 255, 0.4); 
+    max-width: 800px; 
+  margin: 0 auto; 
+    padding: 20px;
+    border-radius: 16px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+  
 
 
 #quienes-somos p {
@@ -180,7 +188,12 @@ p {
   margin: 10px;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  transition: transform 0.2s; 
+  }
+  
+  .testimonio-card:hover {
+    transform: scale(1.05); 
+  }
 
 .testimonio p {
   font-size: 16px;
@@ -198,7 +211,12 @@ p {
   padding: 20px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255, 197, 197, 0.4);
+  transition: background-color 0.4s; 
+}
+
+#form:hover {
+  background-color: #beabab; 
 }
 
 #form label {
