@@ -1,5 +1,52 @@
 {% extends "base.html" %}
-{% block title %} Anfitrión {% endblock%}
+{% block title %} Anfitrión {% endblock %}
+{% block content %}
 
-{% block content %} <h1>Pagina de inicio de anfitrion</h1>
+<link rel="stylesheet" href="/static/css/style4.css">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+   
+    <body class="custom-background-perfil-anf"> 
+
+        <div class="banner-text2">
+            <h1 class="user-profile-title">Perfil de usuario anfitrión</h1>
+          </div>
+</div>
+<div class="user-greeting-bg">
+    <h3 class="user-greeting">Hola  arrendatario {{ user.nombre }}</h3>
+</div>
+
+  
+    <title>Mi Perfil</title>
+   
+  </head>
+  
+    <div class="menu">
+      <a href="/">
+        <i class="fa fa-home"></i>
+      </a>
+      <a href="/agregar-vehiculo">
+        <i class="fas fa-upload fas fa-car"></i>
+      </a>
+      <a href="/info#contacto">
+        <i class="fas fa-comment-dots"></i>
+      </a>
+    </div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+
+ <!-- Footer -->
+ <footer class="footer">
+    <p>Conduciendo hacia tus sueños desde 2023 </p>
+    <br>
+
+    
+    <a href="/info#quienes-somos">Quiénes Somos</a> | <a href="/info#testimonios">Testimonios</a> | <a href="/info#contacto">Contacto</a>
+    <small>Tu auto, tu aventura.</small>
+    <p>&copy; 2023 Rent Agile</p>
+  </footer>
+</body>
 {% endblock %}
