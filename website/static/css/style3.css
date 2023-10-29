@@ -423,3 +423,12 @@ footer p, footer small {
   margin: 0;
   padding: 5px;
 }
+
+.footer-comofunciona  a {
+  color: red; 
+  text-decoration: none; 
+}
+
+.footer-comofunciona  a:hover {
+  text-decoration: underline; 
+}

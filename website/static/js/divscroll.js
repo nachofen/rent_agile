@@ -15,7 +15,7 @@ function mostrarDivOculto() {
             targets: divOculto,
             translateY: [100, 30], // Cambia la posición vertical del div para que aparezca desde abajo
             opacity: [0, 4], // Cambia la opacidad para que aparezca gradualmente
-            duration: 700, // Duración de la animación en milisegundos
+            duration: 500, // Duración de la animación en milisegundos
             easing: 'easeOutQuad' // Tipo de transición 
         });
         shown = true;

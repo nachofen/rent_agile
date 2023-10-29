@@ -30,7 +30,7 @@ body {
   padding: 20px;
   z-index: 1000;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1.1s ease;
   max-height: 50vh;
   overflow-y: auto;
 }
@@ -149,8 +149,9 @@ body {
 
 .impulso-paragraph {
   color: red;
-  font-weight: bold;
-  animation: shine 3s infinite;
+  font-weight: 400;
+  font-size: 20px;
+  animation: shine 2s infinite;
 }
 
 @keyframes shine {
@@ -158,12 +159,9 @@ body {
     color: red;
     text-shadow: none;
   }
-  50% {
-    color: #ffffff;
-    text-shadow: 0 0 10px #000000;
-  }
+  
   100% {
-    color: red;
+    color: rgb(0, 0, 0);
     text-shadow: none;
   }
 }
@@ -250,7 +248,7 @@ body {
   width: 100%;
   padding: 15px;
   border: 1px solid #ced4da;
-  border-radius: 15px; /* Borde redondeado */
+  border-radius: 15px; 
   box-sizing: border-box;
 }
 
@@ -261,6 +259,7 @@ body {
   margin: 0;
   width: 100%;
   max-width: 100%;
+  height: 73px;
 }
 /* Estilo para centrar el texto de la headernavred */
 
@@ -781,4 +780,13 @@ footer {
 footer p, footer small {
   margin: 0;
   padding: 5px;
+}/* Estilo para los enlaces en el footer */
+footer a {
+  color: red; 
+  text-decoration: none; 
+}
+
+footer a:hover {
+  color: rgb(255, 255, 255); 
+  text-decoration: none; 
 }

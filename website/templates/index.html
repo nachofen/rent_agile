@@ -13,8 +13,7 @@
   <div class="centered-text2">
       <p class="lead">  <!-- saludo  -->
         {% if user.is_authenticated %}
-            <strong><small>Bienvenido, {{ user.nombre }}</small></strong>
-        {% endif %} </p>
+            <small>Bienvenido, {{ user.nombre }}</small> {% endif %} </p>
     <p class="lead">Tu Auto, Tu Aventura</p>
 </div>
     <!-- Boton buscar auto svg lupa symbol -->
@@ -50,7 +49,7 @@
                           ya sea un emocionante viaje por carretera, una escapada de fin de semana o tu uso diario. 
                           ¡No dejes pasar la oportunidad de viajar y explorar! 
                            <p class="impulso-paragraph">
-                            <strong>¡Reserva ahora y comienza tu próxima aventura con Rent Agile!</strong>
+                            ¡Reserva ahora y comienza tu próxima aventura con Rent Agile!
                           </p>
                       </div>
                        </div>
