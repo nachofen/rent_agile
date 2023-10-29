@@ -2,12 +2,19 @@
 {% block title %} Mis Vehículos {% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/static/css/style3.css">
+<body class="custom-background-ver">
+
+  <br>
   <h3 align="center">Mis Vehículos</h3>
-  <ul>
+  <br>
+  <h5 align="center">Explora Tu Flota de Vehículos: Publica, Edita y Borra </h5>
+  <br>
+  <div class="vehiculos-container">
     {% for vehiculo in vehiculos %}
-      <li>
-        <h3> {{ loop.index }}-&nbsp;{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3> <br>
-        <!-- Obtén la primera imagen asociada al vehículo -->
+      <div class="vehiculo-card">
+        <h3>{{ loop.index }} - {{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
         {% with primera_imagen = vehiculo.imagenes_auto[0] %}
           {% if primera_imagen %}
             <img src="{{ primera_imagen.url }}" alt="Imagen del Auto">
@@ -26,8 +33,19 @@
             <button type="submit" class="btn btn-primary">Editar Vehículo</button>
           </form>
         </div>
-        
-      </li>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
+  
+    <br><br><br><br><br>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Conduciendo hacia tus sueños desde 2023 </p>
+    <br>
+    <a href="/info#quienes-somos">Quiénes Somos</a> | <a href="/info#testimonios">Testimonios</a> | <a href="/info#contacto">Contacto</a>
+    <small>Tu auto, tu aventura.</small>
+    <p>&copy; 2023 Rent Agile</p>
+  </footer>
+</body>
 {% endblock %}
