@@ -171,6 +171,136 @@
   animation: slideFromTop 1s ease-in-out; 
 }
 
+/* Estilo para pagina bandeja-entrada */
+
+/* Estilos para la bandeja de entrada */
+/* Estilos para la bandeja de entrada */
+.inbox {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.inbox-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la lista de mensajes */
+.message-list {
+  list-style: none;
+  padding: 0;
+}
+
+.message-item {
+  background-color: #fff;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para encabezado de mensaje */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.message-sender {
+  font-weight: bold;
+  color: #333;
+}
+
+.message-date {
+  color: #131111;
+}
+
+/* Estilos para el contenido del mensaje */
+.message-content {
+  color: #444;
+}
+
+/* Estilos para el botón "Conversar" */
+.btn-primary {
+  background-color: #da0d06;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #000000;
+}
+
+/* message.css */
+
+/* Estilo para la caja del mensaje */
+.message-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el contenido del mensaje */
+.message-content {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para el botón "Responder" */
+.btn-primary {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #d10808;
+}
+
+
+
+
+/* conversation.css */
+
+/* Estilos para el fondo de la página de conversación */
+.conversation-page {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Estilos para el contenido de la conversación */
+.conversation-content {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el texto del mensaje */
+.message-text {
+  font-size: 16px;
+  color: #333;
+}
 
 /* Estilos para la lista de tareas */
 #todo-list {

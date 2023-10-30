@@ -1,15 +1,27 @@
 {% extends "base.html" %}
-{% block title %} Bandeja de entrada {% endblock%}
+{% block title %} Bandeja de entrada {% endblock %}
 
-{% block content %} 
-<h1>Bandeja de Entrada</h1>
-    <ul>
+{% block content %}
+<body class="custom-background-perfil">
+<link rel="stylesheet" href="/static/css/style4.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style4.css') }}">
+
+
+<br><br>
+<div class="inbox">
+    <h1 class="inbox-title">Bandeja de Entrada</h1>
+    <ul class="message-list">
         {% for mensaje, destinatario_name in mensajes %}
-        <li>
-            <strong>Conversando con: {{ destinatario_name }} {{ mensaje[0].fecha }}</strong>
-            <p>Mensaje:{{ mensaje[0].contenido_mensaje }}</p>
-            <a href="{{ url_for('views.conversar', id=mensaje[0].conversacion_id) }}" class="btn btn-primary">Conversar</a>
+        <li class="message-item">
+            <div class="message-header">
+                <span class="message-sender">De: {{ destinatario_name }}</span>
+                <span class="message-date">{{ mensaje[0].fecha }}</span>
+            </div>
+            <p class="message-content">{{ mensaje[0].contenido_mensaje }}</p>
+            <a href="{{ url_for('views.conversar', id=mensaje[0].conversacion_id) }}" class="btn btn-primary">Responder</a>
         </li>
         {% endfor %}
     </ul>
+</div>
 {% endblock %}
+</body>
