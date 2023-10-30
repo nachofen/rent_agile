@@ -389,20 +389,15 @@ def borrar_usuario(id):
 
     # Busca y elimina el usuario por ID
     user_to_delete = User.query.get_or_404(id)
+    autos_del_usuario = Auto.query.filter_by(id_usuario=id).all()
+    for auto in autos_del_usuario:
+        auto.disponible = False
+        db.session.add(auto)
 
-    try:
-        # Elimina todos los autos del usuario y sus imágenes asociadas
-        for auto in user_to_delete.autos:
-            for imagen in auto.imagenes_auto:
-                db.session.delete(imagen)
-            db.session.delete(auto)
-
-        # Finalmente, elimina al usuario
-        db.session.delete(user_to_delete)
-        db.session.commit()
-        flash("Su usuario y todas las imágenes asociadas se han eliminado correctamente")
-    except:
-        flash("Ha ocurrido un error, vuelve a intentarlo")
+    # Finalmente, elimina al usuario
+    db.session.delete(user_to_delete)
+    db.session.commit()
+    flash("Su usuario y todas las imágenes asociadas se han eliminado correctamente")
 
     logout_user()
     return redirect(url_for('auth.login'))

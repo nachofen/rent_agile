@@ -52,9 +52,9 @@
             <h4><a class="nav-item nav-link" id="home" href="/"><strong>Rent Agile</strong></a></h4>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
                 {% if request.path in my_tuple or '/ver-vehiculo' in request.path %}
-                    <a class="nav-item nav-link" id="special" href="/">[ Menu&nbsp;&nbsp;&nbsp;&nbsp;Anfitrion] <br> <small>cambiar menu cliente</small></a>
+                    <a class="nav-item nav-link" id="special" href="/">[ Modo&nbsp;&nbsp;&nbsp;&nbsp;Anfitrion] <br> <small>cambiar a menu cliente</small></a>
                 {% else %}
-                    <a class="nav-item nav-link" id="Host" href="/host">[ Menu&nbsp;&nbsp;&nbsp;quiero rentar ]<br><small> cambiar menu anfitrion</small></a>
+                    <a class="nav-item nav-link" id="Host" href="/host">[ Quiero rentar mi vehiculo ]<br><small> cambiar a modo anfitrion</small></a>
                 {% endif %}
                 <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             {% else %}
@@ -75,7 +75,6 @@
                         <a class="dropdown-item" href="/mis-datos">Cuenta</a>
                         <a class="dropdown-item" href="/agregar-vehiculo">Agregar Vehiculo</a>
                         <a class="dropdown-item" href="mis-vehiculos">Gestionar Vehiculos</a>
-                        <a class="dropdown-item" href="/logout">Cerrar Sesion</a>
                 </div>
                     {% else %}
                         <a class="dropdown-item" href="/mis-reservas">Mis Reservas</a>
