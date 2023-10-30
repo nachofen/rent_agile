@@ -128,7 +128,7 @@
 }
 
 .menu2 a i:hover {
-  color: #000000;
+  color: #e21111;
 }
 
 .menu2 a i:focus {
@@ -141,6 +141,35 @@
   color: #000000; /* Color del texto descriptivo */
 }
 
+.menu2 a {
+  display: inline-block;
+  text-align: center;
+  margin: 0 20px;
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.7s;
+}
+
+.menu2 a.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Aplica la animación a elementos con la clase "slide-in" */
+.slide-in {
+  animation: slideFromTop 1s ease-in-out; 
+}
 
 
 /* Estilos para la lista de tareas */
