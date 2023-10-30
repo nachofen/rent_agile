@@ -279,6 +279,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; 
+  
 }
 .container{
   max-width: 100%;
@@ -427,6 +428,7 @@ body.fondo-agregar-auto .login-page-regis {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 }
+
 
 .slider-container img {
   flex: 0 0 100%;

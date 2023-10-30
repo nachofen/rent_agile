@@ -68,6 +68,7 @@ class Reserva(db.Model):
     fecha_inicio = db.Column(db.Date, nullable=False)
     fecha_fin = db.Column(db.Date, nullable=False)
     reseña = db.relationship('Reseña', backref='reserva', uselist=False)
+    estado = db.Column(db.String(10), default="activa")
 
 class Reseña(db.Model):
     id_resena = db.Column(db.Integer, primary_key=True)
