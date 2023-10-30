@@ -24,6 +24,16 @@
     </script>
     
     <title>{% block title %}{% endblock %}</title>
+    <style>
+      /* Estilo personalizado para fondo rojo */
+      .fondo-rojo {
+          background-color: #db0c0c; /* Cambia esto al color rojo que desees */
+          /* Otras propiedades de estilo si es necesario */
+      }
+      .fondo-rojo:hover {
+            background-color: #db0c0c; /* Mismo color rojo que en el estado normal */
+        }
+  </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
@@ -55,9 +65,10 @@
             {% endif %}
             {% if user.is_authenticated %}
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-toggle="dropdown">
-                    <img src="/{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
-                </button>
+              <button class="btn btn-secondary dropdown-toggle fondo-rojo" type="button" id="profileDropdown" data-toggle="dropdown">
+                <img src="/{{ user.image_path }}" alt="Profile Picture" class="rounded-circle" width="30" height="30">
+            </button>
+            
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' or request.path == '/ver-vehiculo' %}
                         <a class="dropdown-item" href="#">Perfil</a>
@@ -100,6 +111,17 @@
     {% endif %}
     {% endwith %}
       <div class="container">{% block content %}{% endblock %}</div>
+      <script>
+        // JavaScript para mostrar una imagen de respaldo si la imagen principal no se carga
+        document.addEventListener("DOMContentLoaded", function () {
+          var profilePicture = document.querySelector(".rounded-circle");
+          profilePicture.onerror = function () {
+            this.onerror = null; // Evita bucles infinitos
+            this.src = "/static/img/uploads/avatar.png";
+            this.alt = "Imagen de respaldo";
+          };
+        });
+      </script>
       <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkpGFF93hXpG5KkN"
