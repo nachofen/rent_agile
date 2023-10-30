@@ -52,9 +52,9 @@
             <h4><a class="nav-item nav-link" id="home" href="/"><strong>Rent Agile</strong></a></h4>
                 <a class="nav-item nav-link" id="howitworks" href="/como-funciona">Como funciona</a>
                 {% if request.path in my_tuple or '/ver-vehiculo' in request.path %}
-                    <a class="nav-item nav-link" id="special" href="/">Menu Cliente</a>
+                    <a class="nav-item nav-link" id="special" href="/">[ Menu&nbsp;&nbsp;&nbsp;&nbsp;Anfitrion] <br> <small>cambiar menu cliente</small></a>
                 {% else %}
-                    <a class="nav-item nav-link" id="Host" href="/host">Menu Anfitrión</a>
+                    <a class="nav-item nav-link" id="Host" href="/host">[ Menu&nbsp;&nbsp;&nbsp;quiero rentar ]<br><small> cambiar menu anfitrion</small></a>
                 {% endif %}
                 <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             {% else %}
