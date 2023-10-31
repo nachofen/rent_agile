@@ -46,7 +46,6 @@
     opacity: 0;
     animation: title-fade-in 3s forwards, title-slide-in 5s forwards;
 }
-
 @keyframes fade-in {
     from {
         opacity: 0; 
