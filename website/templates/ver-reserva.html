@@ -21,11 +21,17 @@
       <div style="display: flex;">
         <img src="/{{ primera_imagen.url }}" alt="" width="300" height="200">
       </div>
+      {% if user.id == propietario.id %}
+        <h3> Informacion de contacto </h3>
+        <p>Nombre: {{ arrendatario.nombre }}</p>
+        <p>Apellido: {{ arrendatario.apellido }}</p>
+        <p>Telefono: {{ arrendatario.telefono }}</p>
+      {% else %}
       <h3> Informacion de contacto </h3>
       <p>Nombre: {{ propietario.nombre }}</p>
       <p>Apellido: {{ propietario.apellido }}</p>
       <p>Telefono: {{ propietario.telefono }}</p>
-
+      {% endif %}
     </li>
   </ul>
   

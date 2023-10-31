@@ -318,6 +318,8 @@ def mostrar_reserva(id):
     """shows one reservation by id"""
     from .models import Auto, Imagenes_auto, Reserva
     reserva = Reserva.query.get_or_404(id)
+    arrendatario_id = reserva.id_usuario
+    arrendatario = User.query.get(arrendatario_id)
 
 
     # Obtén la ID del dueño del auto relacionado con la reserva
@@ -333,9 +335,7 @@ def mostrar_reserva(id):
     propietario_id = auto.usuario_id
     propietario = User.query.get(propietario_id)
 
-    
-
-    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen)
+    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario)
 
 @views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
 @login_required
