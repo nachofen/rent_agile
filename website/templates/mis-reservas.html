@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block title %} Mis Reservas {% endblock %}
 
+<link rel="stylesheet" href="/static/css/style5.css">
+
+
 {% block content %}
+
+<body class="custom-background-reservas">
+
   <h3 align="center">Mis Reservas</h3>
   <div class="container-reserva">
     <div class="row mb-3">
@@ -19,23 +25,26 @@
         </div>
       </div>
     </div>
-    {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
-    <div class="row mb-3" data-estado="{{ reserva.estado }}">
-  <div class="col-2">
-    <img src="{{ imagen_auto.url }}" alt="" width="300" height="200">
-  </div>
-  <div class="col-8">
-    <h3>Reserva ID: {{ reserva.id_reserva }}</h3>
-    <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
-    <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
-    <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
-    <p>Estado: {{reserva.estado}}</p>
-    <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
-      <button type="submit" class="btn btn-primary">Ver reserva</button>
-    </form>
-  </div>
-</div>
-    {% endfor %}
+
+    <div class="row mb-3">
+      {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
+        <div class="col-md-3">
+          <div class="card mb-3">
+            <img src="{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
+            <div class="card-body">
+              <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
+              <p class="card-text">Auto: {{ auto.marca }} {{ auto.modelo }}</p>
+              <p class="card-text">Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+              <p class="card-text">Fecha de fin: {{ reserva.fecha_fin }}</p>
+              <p class="card-text">Estado: {{ reserva.estado }}</p>
+              <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET">
+                <button type="submit" class="btn btn-primary">Ver reserva</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
   <script>
@@ -59,3 +68,4 @@
   </script>
 </body>
 {% endblock %}
+

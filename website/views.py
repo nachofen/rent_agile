@@ -509,7 +509,8 @@ def alquilar_vehiculo(id):
     if fechas_bloqueadas or fecha_inicio < today or fecha_fin < fecha_inicio:
         flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
         #aca agregar la ruta con #
-        return redirect(url_for('views.home/#seccionalquilar'))
+        
+        return redirect(url_for('views.home') + '#seccionalquilar')
 
     else:
         # El vehículo está disponible para las fechas seleccionadas
