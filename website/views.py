@@ -473,6 +473,7 @@ def alquilar_vehiculo(id):
 
     today = datetime.today().date()
     fecha_inicio = datetime.strptime(request.form['fecha_inicio'], '%Y-%m-%d').date()
+    fecha_fin = datetime.strptime(request.form['fecha_fin'], '%Y-%m-%d').date()
     
     # Consulta las fechas bloqueadas para el auto seleccionado
     fechas_bloqueadas = FechasBloqueadas.query.filter(
@@ -483,7 +484,7 @@ def alquilar_vehiculo(id):
         )
     ).all()
     print("Fechasbloqueadas:", fechas_bloqueadas)
-    if fechas_bloqueadas or fecha_inicio < today:
+    if fechas_bloqueadas or fecha_inicio < today or fecha_fin < fecha_inicio:
         flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
     else:
         # El vehículo está disponible para las fechas seleccionadas
