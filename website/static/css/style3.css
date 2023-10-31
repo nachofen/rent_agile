@@ -462,10 +462,10 @@ h2 {
 
 /* Estilos para cada tarjeta de vehículo */
 .vehiculo-card {
-  background: #fff;
-  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.3); 
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   padding: 20px;
   text-align: center;
 }
