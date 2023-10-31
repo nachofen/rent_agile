@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} Mis Reservas {% endblock %}
+
+{% block content %}
+  <h3 align="center">Mis Reservas</h3>
+  <div class="container-reserva">
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Estado: <span id="selected-state">Todos</span>
+          </button>
+          <div class="dropdown-menu" id="estado-options">
+            <a class="dropdown-item" href="#" data-value="todos">Todos</a>
+            <a class="dropdown-item" href="#" data-value="activa">Activa</a>
+            <a class="dropdown-item" href="#" data-value="completada">Completada</a>
+            <a class="dropdown-item" href="#" data-value="cancelada">Cancelada</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
+    <div class="row mb-3" data-estado="{{ reserva.estado }}">
+  <div class="col-2">
+    <img src="/{{ imagen_auto.url }}" alt="" width="300" height="200">
+  </div>
+  <div class="col-8">
+    <h3>Reserva ID: {{ reserva.id_reserva }}</h3>
+    <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
+    <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+    <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
+    <p>Reservado por: {{arrendatario.nombre}} {{arrendatario.apellido}}</p>
+    <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
+      <button type="submit" class="btn btn-primary">Ver reserva</button>
+    </form>
+  </div>
+</div>
+    {% endfor %}
+  </div>
+
+  <script>
+    // JavaScript para filtrar reservas basadas en el estado seleccionado
+    const estadoOptions = document.getElementById("estado-options");
+    estadoOptions.addEventListener("click", (event) => {
+      const selectedState = event.target.getAttribute("data-value");
+      const selectedText = event.target.textContent;
+      document.getElementById("selected-state").textContent = selectedText;
+
+      const reservas = document.querySelectorAll(".row[data-estado]");
+      reservas.forEach((reserva) => {
+        const estado = reserva.getAttribute("data-estado");
+        if (estado === selectedState || selectedState === "todos") {
+          reserva.style.display = "block";
+        } else {
+          reserva.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+{% endblock %}
