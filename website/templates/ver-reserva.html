@@ -26,6 +26,15 @@
         <p>Nombre: {{ arrendatario.nombre }}</p>
         <p>Apellido: {{ arrendatario.apellido }}</p>
         <p>Telefono: {{ arrendatario.telefono }}</p>
+        {% if fecha_ahora <= reserva.fecha_fin %}
+          <form action="/cancelar_reserva/{{ reserva.id }}" method="post">
+            <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+          </form>
+        {% else %}
+          <form action="/recibir_auto/{{ reserva.id }}" method="post">
+            <button type="submit" class="btn btn-primary">Recibí mi Auto</button>
+          </form>
+        {% endif %}
       {% else %}
       <h3> Informacion de contacto </h3>
       <p>Nombre: {{ propietario.nombre }}</p>

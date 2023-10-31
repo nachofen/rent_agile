@@ -320,7 +320,7 @@ def mostrar_reserva(id):
     reserva = Reserva.query.get_or_404(id)
     arrendatario_id = reserva.id_usuario
     arrendatario = User.query.get(arrendatario_id)
-
+    fecha_ahora = datetime.now().date()
 
     # Obtén la ID del dueño del auto relacionado con la reserva
     dueño_del_auto_id = db.session.query(Auto.usuario_id).filter_by(id_auto=reserva.id_auto).scalar()
@@ -335,7 +335,7 @@ def mostrar_reserva(id):
     propietario_id = auto.usuario_id
     propietario = User.query.get(propietario_id)
 
-    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario)
+    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario, fecha_ahora=fecha_ahora)
 
 @views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
 @login_required
