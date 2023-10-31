@@ -414,6 +414,27 @@ def editar_vehiculo(id):
     return render_template("editar-vehiculo.html", user=current_user, vehiculo=vehiculo, departamentos=departamentos, imagenes_url=imagenes_url, fechas_bloqueadas=fechas_bloqueadas, marcas=marcas)
 
 
+@views.route('/cancelar-reserva/<int:id>', methods=['GET', 'POST'])
+@login_required
+def cancelar_reserva(id):
+    """cancela reserva por id"""
+    from .models import Auto, Reserva
+    reserva = Reserva.query.get_or_404(id)
+
+    car_to_cancel_id = Auto.query.get_or_404(reserva.id_auto)
+    if current_user.id == car_to_cancel_id.usuario_id:
+        reserva.estado = "cancelada"
+        fechas_bloqueadas = reserva.fechas_bloqueadas
+    if fechas_bloqueadas:
+        db.session.delete(fechas_bloqueadas)
+        db.session.commit()
+        db.session.commit()
+        flash('La reserva ha sido cancelada con éxito', 'success')
+
+    else:
+        print("no puedes cancelar esta reserva")
+    return redirect(url_for('views.mis_vehiculos'))
+
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
 @login_required
 def borrar_vehiculo(id):
@@ -428,6 +449,7 @@ def borrar_vehiculo(id):
         flash("Ha ocurrido un error, vuelve a intentarlo")
     
     return redirect(url_for('views.mis_vehiculos'))
+
 
 @views.route('/delete-usuario/<int:id>', methods=['POST'])
 @login_required
@@ -483,9 +505,12 @@ def alquilar_vehiculo(id):
             FechasBloqueadas.fecha_fin >= fecha_inicio
         )
     ).all()
-    print("Fechasbloqueadas:", fechas_bloqueadas)
+    
     if fechas_bloqueadas or fecha_inicio < today or fecha_fin < fecha_inicio:
         flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
+        #aca agregar la ruta con #
+        return redirect(url_for('views.home/#seccionalquilar'))
+
     else:
         # El vehículo está disponible para las fechas seleccionadas
         reserva = Reserva(
@@ -493,6 +518,7 @@ def alquilar_vehiculo(id):
             id_auto=auto.id_auto,
             fecha_inicio=fecha_inicio,
             fecha_fin=fecha_fin
+            
         )
         db.session.add(reserva)
 
@@ -507,7 +533,7 @@ def alquilar_vehiculo(id):
         db.session.commit()
         flash('Reserva realizada con éxito.', 'success')
 
-    return redirect(url_for('views.home'))
+    return redirect(url_for('views.mis_reservas'))
 
 def filtrar_autos_disponibles(fecha_inicio, fecha_fin):
     from .models import Auto, FechasBloqueadas
