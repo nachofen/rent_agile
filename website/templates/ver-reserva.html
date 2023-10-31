@@ -27,9 +27,9 @@
         <p>Apellido: {{ arrendatario.apellido }}</p>
         <p>Telefono: {{ arrendatario.telefono }}</p>
         {% if fecha_ahora <= reserva.fecha_fin %}
-          <form action="/cancelar_reserva/{{ reserva.id }}" method="post">
-            <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
-          </form>
+        <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="post">
+          <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+        </form>
         {% else %}
           <form action="/recibir_auto/{{ reserva.id }}" method="post">
             <button type="submit" class="btn btn-primary">Recibí mi Auto</button>

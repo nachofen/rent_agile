@@ -30,6 +30,7 @@
     <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
     <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
     <p>Reservado por: {{arrendatario.nombre}} {{arrendatario.apellido}}</p>
+    <p>Estado: {{reserva.estado}}</p>
     <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
       <button type="submit" class="btn btn-primary">Ver reserva</button>
     </form>
