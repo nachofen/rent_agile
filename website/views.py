@@ -271,6 +271,17 @@ def mostrar_vehiculo(id):
 
     return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url)
 
+@views.route('/ver-auto', methods=['GET'])
+def ver_auto():
+    # Definir los datos que deseas pasar a la plantilla
+    datos = {
+        'nombre': 'Nombre del vehículo',
+        'descripcion': 'Descripción del vehículo',
+        'imagenes_url': ['url1.jpg', 'url2.jpg']
+    }
+    # Renderiza la plantilla ver-auto.html y pasa los datos como argumentos
+    return render_template("ver-auto.html", datos=datos)
+
 @views.route('/ver-reserva/<int:id>', methods=['GET', 'POST'])
 def mostrar_reserva(id):
     """shows one reservation by id"""

@@ -1,6 +1,12 @@
 /* mis datos.html - perfil > cuenta */
 
-
+/* Estilos para la barra de navegación en pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Estilos para pantallas pequeñas */
+  .navbar-nav.ml-auto .nav-item.ml-auto {
+    margin-left: 0; /* Elimina el margen izquierdo en los elementos de navegación */
+  }
+}
 body {
   background-image: url('/static/img/uploads/fondomisdatos.jpg');
   background-size: cover;

@@ -604,11 +604,13 @@ ul.image-gallery img {
   text-align: center;
   padding: 20px;
   margin: 0 auto;
-  max-width: 800px;
-  background-color: #fff;
+  max-width: 75%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.4); 
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 1 10px rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;  /* mantiene todo al margane del div, include footer */
 }
 /* body para el fondo personalizado */
 .custom-background-ver {
@@ -633,6 +635,38 @@ ul.image-gallery img {
 }
 
 /* Estilos para los detalles del automóvil */
+
+/* Estilos para los detalles del automóvil en una tarjeta */
+ .car-card {
+  background-color: rgba(255, 255, 255, 0.295);
+  border: none;
+  display: inline-block;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  transform: scale(1);
+  border-radius: 14px;
+  transition: transform 0.3s;
+}
+
+.car-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.car-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.car-card li {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Efecto de acercamiento al pasar el cursor sobre la tarjeta */
+.car-card:hover {
+  transform: scale(1.05);
+}
 .car-details {
   display: flex;
   justify-content: space-between;
@@ -818,6 +852,10 @@ form input[type="date"]:focus {
   outline: none;
 }
 
+
+h6{
+  color:#ffffff;
+}
 /* Estilo para el footer */
 footer {
   background-color: rgba(248, 239, 239, 0.1); 
@@ -832,6 +870,8 @@ footer {
   border-top-left-radius: 10px; 
   border-top-right-radius: 10px; 
   border-radius: 70% 1% 0 0 / 100% 100% 0 0;
+  
+  
 }
 
 footer p, footer small {
