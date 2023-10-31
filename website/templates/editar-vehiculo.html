@@ -2,6 +2,16 @@
 {% block title %} Editar Vehiculo {% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/static/css/style5.css">
+
+
+
+<br><br>
+<body class="body-editar-auto">
+
+
+<div class="container-editar">
 <form method="POST" enctype="multipart/form-data">
     <h3 align="center">Editar vehiculo</h3>
     <div class="form-group">
@@ -45,7 +55,7 @@
     
     <ul>
         {% for imagen in imagenes_url %}
-        <li>
+        <li> 
             <div class="image-container">
                 <img src="/{{ imagen }}" alt="Imagen del Auto" width="150" height="100">
                 <label class="btn btn-primary">
@@ -95,8 +105,25 @@
         </select>
     </div>
 
-    <button type="submit">Guardar</button>
+    <button type="submit" style="display: block; margin: 0 auto;">Guardar</button>
+    <br>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </form>
+</div>
 <script src="/static/js/events.js"></script>
+
+<br><br>
+
+
+   <!-- Footer -->
+   <footer class="footer">
+    <p>Conduciendo hacia tus sueños desde 2023 </p>
+    <br>
+
+    
+    <a href="/info#quienes-somos">Quiénes Somos</a> | <a href="/info#testimonios">Testimonios</a> | <a href="/info#contacto">Contacto</a>
+    <small>Tu auto, tu aventura.</small>
+    <p>&copy; 2023 Rent Agile</p>
+  </footer>
+</body>
 {% endblock %}

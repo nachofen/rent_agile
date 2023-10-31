@@ -1,0 +1,159 @@
+/* Establece el fondo para ocupar toda la pantalla */
+.body-editar-auto{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23DD0000'/%3E%3Cstop offset='1' stop-color='%23333333'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+/* Estilos para la sección Divedición de vehículos */
+.container-editar {
+    background-color: rgba(0, 0, 0, 0.2); 
+    width: 50%;
+    height: 30%;
+     margin: 0 auto;
+    border: 2px solid #ff0000;
+    color: white;
+    border-radius: 19px; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Ajusta el ancho de los campos de entrada */
+.container-editar input[type="text"],
+.container-editar input[type="number"],
+.container-editar select {
+    width: 75%;
+}
+
+/* Estilo para las imágenes y botones */
+.container-editar img {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container-editar .btn-primary {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón "Guardar" */
+.container-editar button[type="submit"] {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.container-editar h3 {
+    text-align: center;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.col-md-6 {
+    margin-bottom: 20px;
+}
+
+/* Estilos para etiquetas y campos de entrada */
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para la lista de imágenes */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container-editar li {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.container-editar img {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container-editar .btn-primary {
+    padding: 5px 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilos para las fechas bloqueadas */
+#fechas_bloqueadas {
+    padding: 0;
+}
+
+#fechas_bloqueadas li {
+    margin: 5px 0;
+}
+
+
+/* Estilo para el footer */
+/* Ajustar estilos específicos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container-editar {
+        padding: 10px; /* Reducir el espacio en pantallas pequeñas */
+    }
+}
+
+/* Estilos para el footer */
+
+    footer {
+        background-color: rgba(248, 239, 239, 0.1);
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        font-family: 'MuseoModerno', sans-serif;
+        font-size: 14px;
+        background: linear-gradient(to bottom, #888 50%, #000000 50%);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-radius: 0; /* Elimina el border-radius previo */
+    }
+footer p, footer small {
+    margin: 0;
+    padding: 5px;
+}
+
+/* Estilo para los enlaces en el footer */
+footer a {
+    color: red;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
