@@ -45,11 +45,14 @@
             <input type="date" id="fecha_fin" name="fecha_fin" required>
           </div>
         </div>
+        
+        <button type="submit" class="btn btn-primary-ver">Alquilar</button>
+
         <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
           <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button> 
         </form>
         <br>
-        <button type="submit" class="btn btn-primary-ver">Alquilar</button>
+        
       </form>
     </div>
     {% endif %}
