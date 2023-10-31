@@ -260,6 +260,37 @@ def mis_reservas():
     reservas_con_imagenes = zip(reservas, imagenes_primer_auto, autos)
 
     return render_template("mis-reservas.html", user=current_user, reservas_con_imagenes=reservas_con_imagenes)
+@views.route('/host/mis-reservas')
+@login_required
+def mis_reservas_host():
+    """ lista las reservas que han hecho otros clientes a los autos del usuario activo"""
+    from .models import Reserva, Imagenes_auto, Auto
+    
+    # Obtener los autos del usuario actual
+    autos_del_usuario = Auto.query.filter_by(usuario_id=current_user.id).all()
+    
+
+    # Obtener las reservas en los autos del usuario actual
+    reservas = Reserva.query.filter(Reserva.id_auto.in_([auto.id_auto for auto in autos_del_usuario])).all()
+    
+    arrendatario_id = reservas[0].id_usuario
+    arrendatario = User.query.get(arrendatario_id)
+
+    imagenes_primer_auto = []
+    autos = []
+
+    for reserva in reservas:
+        auto_id = reserva.id_auto
+        auto = Auto.query.get(auto_id)
+        if auto:
+            autos.append(auto)
+            primera_imagen = Imagenes_auto.query.filter_by(auto_id=auto.id_auto).first()
+            if primera_imagen:
+                imagenes_primer_auto.append(primera_imagen)
+
+    reservas_con_imagenes = zip(reservas, imagenes_primer_auto, autos)
+
+    return render_template("mis-reservashost.html", user=current_user, reservas_con_imagenes=reservas_con_imagenes, arrendatario=arrendatario)
 
 @views.route('/ver-vehiculo/<int:id>', methods=['GET', 'POST'])
 def mostrar_vehiculo(id):
@@ -287,8 +318,13 @@ def mostrar_reserva(id):
     """shows one reservation by id"""
     from .models import Auto, Imagenes_auto, Reserva
     reserva = Reserva.query.get_or_404(id)
-    #verificamos que quien mire la url sea el dueño de la reserva
-    if current_user.id != reserva.id_usuario:
+
+
+    # Obtén la ID del dueño del auto relacionado con la reserva
+    dueño_del_auto_id = db.session.query(Auto.usuario_id).filter_by(id_auto=reserva.id_auto).scalar()
+
+    # Verifica que quien mire la URL sea el dueño de la reserva o el dueño del auto de la reserva
+    if current_user.id != reserva.id_usuario and current_user.id != dueño_del_auto_id:
         flash('Esta reserva no le pertenece', category='error')
         return redirect(url_for('views.mis_reservas'))
     id_auto = reserva.id_auto
