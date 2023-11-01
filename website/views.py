@@ -424,10 +424,6 @@ def cancelar_reserva(id):
     car_to_cancel_id = Auto.query.get_or_404(reserva.id_auto)
     if current_user.id == car_to_cancel_id.usuario_id:
         reserva.estado = "cancelada"
-        fechas_bloqueadas = reserva.fechas_bloqueadas
-    if fechas_bloqueadas:
-        db.session.delete(fechas_bloqueadas)
-        db.session.commit()
         db.session.commit()
         flash('La reserva ha sido cancelada con éxito', 'success')
 
