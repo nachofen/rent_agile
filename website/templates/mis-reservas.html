@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% block title %} Mis Reservas {% endblock %}
-
-<link rel="stylesheet" href="/static/css/style5.css">
-
+{% block title %} Mis Reservas como cliente{% endblock %}
 
 {% block content %}
 
+<link rel="stylesheet" href="/static/css/style5.css">
 <body class="custom-background-reservas">
+<br>
+  <h3 style="text-align: center; color: white;">Tus Reservas Realizadas</h3>
+  <h4 style="text-align: center; color: white;">Descubre tus reservas y sigue disfrutando de tu viaje.</h4>
 
-  <h3 align="center">Mis Reservas</h3>
+  <<h3 class="custom-title">Mis Reservas</h3>
   <div class="container-reserva">
     <div class="row mb-3">
       <div class="col-12">
@@ -29,7 +30,7 @@
     <div class="row mb-3">
       {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
         <div class="col-md-3">
-          <div class="card mb-3">
+          <div class="card-mb-3 h-100">
             <img src="{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
             <div class="card-body">
               <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
@@ -38,7 +39,7 @@
               <p class="card-text">Fecha de fin: {{ reserva.fecha_fin }}</p>
               <p class="card-text">Estado: {{ reserva.estado }}</p>
               <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET">
-                <button type="submit" class="btn btn-primary">Ver reserva</button>
+                <button type="submit" class="btn btn-custom">Ver reserva</button>
               </form>
             </div>
           </div>

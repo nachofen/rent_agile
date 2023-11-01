@@ -1,7 +1,15 @@
 {% extends "base.html" %}
-{% block title %} Mis Reservas {% endblock %}
+{% block title %} Mis Reservas como anfitrion {% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/static/css/style5.css">
+<body class="custom-background-reservas">
+  <br>
+  <h3 style="text-align: center; color: white;">Detalles de Tus Alquileres</h3>
+<h5 style="text-align: center; color: white;">Optimiza tus tarifas y el calendario de disponibilidad para aumentar tus reservas</h5>
+
+  
   <h3 align="center">Mis Reservas</h3>
   <div class="container-reserva">
     <div class="row mb-3">
@@ -19,25 +27,28 @@
         </div>
       </div>
     </div>
-    {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
-    <div class="row mb-3" data-estado="{{ reserva.estado }}">
-  <div class="col-2">
-    <img src="/{{ imagen_auto.url }}" alt="" width="300" height="200">
+    <div class="row">
+      {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
+        <div class="col-md-4">
+          <div class="card-mb-3 h-100">
+            <img src="/{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
+            <div class="card-body">
+              <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
+              <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
+              <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+              <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
+              <p>Reservado por: {{arrendatario.nombre}} {{arrendatario.apellido}}</p>
+              <p>Estado: {{reserva.estado}}</p>
+              <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
+                <button type="submit" class="btn btn-custom"">Ver reserva</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
-  <div class="col-8">
-    <h3>Reserva ID: {{ reserva.id_reserva }}</h3>
-    <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
-    <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
-    <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
-    <p>Reservado por: {{arrendatario.nombre}} {{arrendatario.apellido}}</p>
-    <p>Estado: {{reserva.estado}}</p>
-    <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
-      <button type="submit" class="btn btn-primary">Ver reserva</button>
-    </form>
-  </div>
-</div>
-    {% endfor %}
-  </div>
+
 
   <script>
     // JavaScript para filtrar reservas basadas en el estado seleccionado

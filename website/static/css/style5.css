@@ -136,14 +136,60 @@ ul {
     background-attachment: fixed;
     overflow-x: hidden;
 }
-
-.custom-background-grid {
-    background-color: rgba(0, 0, 0, 0.1); 
+.custom-title {
+    text-align: center; 
+    color: rgb(3, 3, 3);
+    font-size: 30px; 
 }
-.col-md-3 img {
-    max-width: 100%;
-    height: auto;
+.custom-background-grid {
+    background-color: rgba(255, 3, 3, 0.4); 
   }
+  
+  .card-mb-3 {
+    border: 2px solid #ebd9d9;
+    border-radius: 16px;
+    margin-top: 10px;
+    min-height: 300px;
+    background-color: rgba(240, 240, 240, 0.3); 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    transition: transform 0.3s ease;
+}
+.card-mb-3:hover {
+    transform: scale(0.95);
+}
+
+.card-mb-3 img {
+    border-radius: 16px; 
+    width: 100%;
+    height: 50%; 
+    object-fit: cover;
+}
+
+.card-body {
+    flex-grow: 1; 
+}
+
+
+
+.btn-custom {
+    background-color: #ff0000; 
+    color: #fff; 
+    border-color: #ffffff; 
+  }
+  
+  
+  .btn-custom:hover {
+    background-color: #000000; 
+    color: #0be955; 
+    border-color: #eeeeee; 
+  }
+
+
+
+
+
 
 /* Estilos para el footer */
 
