@@ -429,7 +429,24 @@ def cancelar_reserva(id):
 
     else:
         print("no puedes cancelar esta reserva")
-    return redirect(url_for('views.mis_vehiculos'))
+    return redirect(url_for('views.mis_reservas_host'))
+
+@views.route('/devolver-vehiculo/<int:id>', methods=['GET', 'POST'])
+@login_required
+def devolver_vehiculo(id):
+    """cambia el estado de una reserva de activa a completada"""
+    from .models import Auto, Reserva
+    reserva = Reserva.query.get_or_404(id)
+
+    car_to_return_id = Auto.query.get_or_404(reserva.id_auto)
+    if current_user.id == car_to_return_id.usuario_id:
+        reserva.estado = "completada"
+        db.session.commit()
+        flash('Se ha confirmado la devolución de su vehículo con exito', 'success')
+
+    else:
+        print("no puedes cancelar esta reserva")
+    return redirect(url_for('views.mis_reservas_host'))
 
 @views.route('/delete-vehiculo/<int:id>', methods=['POST'])
 @login_required

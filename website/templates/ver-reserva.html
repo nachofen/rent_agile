@@ -30,9 +30,9 @@
         <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?\nCancelar reservas podria afectar tu reputacion')">
           <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
         </form>
-        {% else %}
-          <form action="/recibir_auto/{{ reserva.id }}" method="post">
-            <button type="submit" class="btn btn-danger">Recibí mi Auto</button>
+        {% elif reserva.estado != 'completada' %}
+          <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la resepción de su vehículo?')">
+            <button type="submit" class="btn btn-danger">Recibi mi vehiculo</button>
           </form>
         {% endif %}
       {% else %}
