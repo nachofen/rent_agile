@@ -1,4 +1,4 @@
-def test_home(client):
+def test_info(client):
     response = client.get("/info")
     assert b"<p>o quieras poner el tuyo en alquiler.</p>" in response.data
 
