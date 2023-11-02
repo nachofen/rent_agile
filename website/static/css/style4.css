@@ -1,5 +1,11 @@
 /* perfil.html estilos */
 
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 
 /* Estilos para la barra de navegación en pantallas pequeñas */
 @media (max-width: 768px) {
@@ -15,6 +21,7 @@
     background-repeat: no-repeat; 
     background-attachment: fixed;
     overflow-x: hidden;
+    
 }
 
 
@@ -389,43 +396,40 @@
 
 
 
-
-
-
 /* Estilo para el footer */
 footer {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    font-family: 'MuseoModerno', sans-serif;
-    font-size: 14px;
-    background: linear-gradient(to bottom, #888 50%, #000000 50%);
-    margin-left: -50vw; 
-    margin-right: -50vw; 
-    border-top-left-radius: 10px; 
-    border-top-right-radius: 10px; 
-    border-radius: 70% 1% 0 0 / 100% 100% 0 0;
-    
-   
-    footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
+  background: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  font-family: 'MuseoModerno', sans-serif;
+  font-size: 14px;
+  background: linear-gradient(to bottom, #888 50%, #000000 50%);
+  margin-left: -50vw; 
+  margin-right: -50vw; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px; 
+  border-radius: 70% 1% 0 0 / 100% 100% 0 0;
   
-  footer p, footer small {
-    margin: 0;
-    padding: 5px;
+ 
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 
-  }/* Estilo para los enlaces en el footer */
-  footer a {
-    color: red; 
-    text-decoration: none; 
-  }
-  
-  footer a:hover {
-    color: rgb(255, 255, 255); 
-    text-decoration: none; 
-  }
+footer p, footer small {
+  margin: 0;
+  padding: 5px;
+
+}/* Estilo para los enlaces en el footer */
+footer a {
+  color: red; 
+  text-decoration: none; 
+}
+
+footer a:hover {
+  color: rgb(255, 255, 255); 
+  text-decoration: none; 
+}
 }
