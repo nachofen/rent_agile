@@ -5,11 +5,10 @@
 
 <link rel="stylesheet" href="/static/css/style5.css">
 <body class="custom-background-reservas">
-<br>
   <h3 style="text-align: center; color: white;">Tus Reservas Realizadas</h3>
   <h4 style="text-align: center; color: white;">Descubre tus reservas y sigue disfrutando de tu viaje.</h4>
 
-  <<h3 class="custom-title">Mis Reservas</h3>
+  <h3 class="custom-title">Mis Reservas</h3>
   <div class="container-reserva">
     <div class="row mb-3">
       <div class="col-12">
@@ -21,7 +20,7 @@
             <a class="dropdown-item" href="#" data-value="todos">Todos</a>
             <a class="dropdown-item" href="#" data-value="activa">Activa</a>
             <a class="dropdown-item" href="#" data-value="completada">Completada</a>
-            <a class="dropdown-item" href="#" data-value="cancelada">Cancelada</a>
+            <a class "dropdown-item" href="#" data-value="cancelada">Cancelada</a>
           </div>
         </div>
       </div>
@@ -29,7 +28,7 @@
 
     <div class="row mb-3">
       {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3"> <!-- Agrega un margen inferior aquí -->
           <div class="card-mb-3 h-100">
             <img src="{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
             <div class="card-body">
@@ -69,4 +68,3 @@
   </script>
 </body>
 {% endblock %}
-
