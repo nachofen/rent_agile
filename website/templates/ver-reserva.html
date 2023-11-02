@@ -6,9 +6,9 @@
 <body class="body-ver-reserva">
 <div class="custom-background-reservas">
   <br><br><br>
-  <div class="reservation-details-container"> <!-- un nuevo <div> aquí -->
+  <div class="reservation-details-container">
     <div class="reservation-section">
-      <h3> Detalles de la reserva </h3>
+      <h3>Detalles de la reserva</h3>
       <p class="reservation-info">Reserva nro: {{ reserva.id_reserva }}</p>
       <p class="reservation-info">Fecha inicio: {{ reserva.fecha_inicio }}</p>
       <p class="reservation-info">Fecha fin: {{ reserva.fecha_fin }}</p>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="vehicle-section">
-      <h3> Detalles del vehículo </h3>
+      <h3>Detalles del vehículo</h3>
       <p class="vehicle-info">{{ auto.marca }} {{ auto.modelo }}</p>
       <p class="vehicle-info">Año: {{ auto.año }}</p>
       <p class="vehicle-info">Departamento: {{ auto.departamento }}</p>
@@ -28,16 +28,18 @@
     </div>
 
     <div class="contact-section">
-      <h3> Información de contacto </h3>
+      <h3>Información de contacto</h3>
       {% if user.id == propietario.id %}
         <p class="contact-info">Nombre: {{ arrendatario.nombre }}</p>
         <p class="contact-info">Apellido: {{ arrendatario.apellido }}</p>
         <p class="contact-info">Teléfono: {{ arrendatario.telefono }}</p>
-        {% if fecha_ahora <= reserva.fecha_fin and reserva.estado == 'activa' %}
+        {% if reserva.estado == 'activa' %}
           <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?\nCancelar reservas podría afectar tu reputación')">
             <button type="submit" class="btn btn-custom">Cancelar Reserva</button>
           </form>
-        {% elif reserva.estado == 'activa' %}
+          <br>
+        {% endif %}
+        {% if reserva.estado != 'completada' %}
           <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la recepción de tu vehículo?')">
             <button type="submit" class="btn btn-custom">Recibí mi vehículo</button>
           </form>
@@ -45,9 +47,9 @@
       {% else %}
         <p class="contact-info">Nombre: {{ propietario.nombre }}</p>
         <p class="contact-info">Apellido: {{ propietario.apellido }}</p>
-        <p class="contact-info">Teléfono: {{ propietario.telefono }}</p>
+        <p class "contact-info">Teléfono: {{ propietario.telefono }}</p>
       {% endif %}
     </div>
-  </div> <!-- Cierra el nuevo <div> -->
+  </div>
 </div>
 {% endblock %}

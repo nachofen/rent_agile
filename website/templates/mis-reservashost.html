@@ -30,24 +30,23 @@
     <div class="row">
       {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
       <div class="col-md-3 mb-3">
-          <div class="card-mb-3 h-100">
-            <img src="/{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
-            <div class="card-body">
-              <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
-              <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
-              <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
-              <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
-              <p>Reservado por: {{arrendatario.nombre}} {{arrendatario.apellido}}</p>
-              <p>Estado: {{reserva.estado}}</p>
-              <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
-                <button type="submit" class="btn btn-custom"">Ver reserva</button>
-              </form>
-            </div>
+        <div class="card mb-3 h-100 custom-transparent-card">
+          <img src="/{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
+          <div class="card-body">
+            <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
+            <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
+            <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+            <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
+            <p>Reservado por: {{ arrendatario.nombre }} {{ arrendatario.apellido }}</p>
+            <p>Estado: {{ reserva.estado }}</p>
+            <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
+              <button type="submit" class="btn btn-custom">Ver reserva</button>
+            </form>
           </div>
         </div>
+      </div>
       {% endfor %}
     </div>
-  </div>
 
 
   <script>

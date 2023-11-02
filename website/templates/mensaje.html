@@ -1,28 +1,36 @@
 {% extends "base.html" %}
 {% block title %} Conversación {% endblock %}
 
-{% block content %} 
-<h1>Conversación con {{ primer_destinatario.nombre }} {{ primer_destinatario.apellido }}</h1>
-<ul>
-    {% for mensaje, destinatario, emisor in mensajes_con_destinatarios %}
-    <li>
-        {% if mensaje.id_usuario == current_user.id %}
-            <strong>Tú: </strong>
-        {% elif mensaje.destinatario_id == current_user.id %}
-            <strong>De: {{emisor.nombre}} {{emisor.apellido}} Para ti:</strong>
-        
-        {% endif %}
-        <p>{{ mensaje.contenido_mensaje }}</p>
-        <p>Fecha: {{ mensaje.fecha }}</p>
-    </li>
-    {% endfor %}
-</ul>
 
-<form method="POST">
-    <div class="form-group">
+{% block content %}
+<link rel="stylesheet" href="/static/css/style5.css">
+
+
+<body class="fondo-mensaje">
+
+
+  <div class="container">
+    <h1 class="conversation-title">Conversación con {{ primer_destinatario.nombre }} {{ primer_destinatario.apellido }}</h1>
+    <ul class="message-list">
+      {% for mensaje, destinatario, emisor in mensajes_con_destinatarios %}
+        <li class="message">
+          {% if mensaje.id_usuario == current_user.id %}
+            <p class="own-message">Tú:</p>
+          {% elif mensaje.destinatario_id == current_user.id %}
+            <p class="other-message">De {{ emisor.nombre }} {{ emisor.apellido }}:</p>
+          {% endif %}
+          <p class="message-content">{{ mensaje.contenido_mensaje }}</p>
+          <p class="message-date">Fecha: {{ mensaje.fecha }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    <form method="POST" class="message-form">
+      <div class="form-group">
         <label for="nuevo-mensaje">Nuevo mensaje:</label>
         <textarea class="form-control" name="nuevo-mensaje" id="nuevo-mensaje" rows="3"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-</form>
+      </div>
+      <button type="submit" class="btn btn-primary send-button">Enviar mensaje</button>
+    </form>
+  </div>
+</body>
 {% endblock %}
