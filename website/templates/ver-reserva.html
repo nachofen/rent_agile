@@ -2,46 +2,52 @@
 {% block title %} Detalles de la reserva {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
-  <h3 align="center">Detalles de la reserva</h3>
-  <ul>
-    <li>
+<link rel="stylesheet" type="text/css" href="/static/css/style4.css">
+<body class="body-ver-reserva">
+<div class="custom-background-reservas">
+  <br><br><br>
+  <div class="reservation-details-container"> <!-- un nuevo <div> aquí -->
+    <div class="reservation-section">
       <h3> Detalles de la reserva </h3>
-      <p>Reserva nro: {{ reserva.id_reserva }}</p>
-      <p>Fecha inicio: {{ reserva.fecha_inicio }}</p>
-      <p>fecha fin: {{ reserva.fecha_fin }}</p>
-      <p>Estado de la reserva: {{reserva.estado}}</p>
+      <p class="reservation-info">Reserva nro: {{ reserva.id_reserva }}</p>
+      <p class="reservation-info">Fecha inicio: {{ reserva.fecha_inicio }}</p>
+      <p class="reservation-info">Fecha fin: {{ reserva.fecha_fin }}</p>
+      <p class="reservation-info">Estado de la reserva: {{ reserva.estado }}</p>
+    </div>
 
-      <h3> Detalles del vehiculo </h3>
-      <p>{{ auto.marca }} {{ auto.modelo }}</p>
-      <p>Año: {{ auto.año }}</p>
-      <p>Departamento: {{ auto.departamento }}</p>
-      <p>Tarifa: {{ auto.tarifa }}</p>
-      <p>Descripción: {{ auto.descripcion }}</p>
-      <div style="display: flex;">
-        <img src="/{{ primera_imagen.url }}" alt="" width="300" height="200">
+    <div class="vehicle-section">
+      <h3> Detalles del vehículo </h3>
+      <p class="vehicle-info">{{ auto.marca }} {{ auto.modelo }}</p>
+      <p class="vehicle-info">Año: {{ auto.año }}</p>
+      <p class="vehicle-info">Departamento: {{ auto.departamento }}</p>
+      <p class="vehicle-info">Tarifa: {{ auto.tarifa }}</p>
+      <p class="vehicle-info">Descripción: {{ auto.descripcion }}</p>
+      <div class="vehicle-image">
+        <img src="/{{ primera_imagen.url }}" alt="" width="350" height="250">
       </div>
+    </div>
+
+    <div class="contact-section">
+      <h3> Información de contacto </h3>
       {% if user.id == propietario.id %}
-        <h3> Informacion de contacto </h3>
-        <p>Nombre: {{ arrendatario.nombre }}</p>
-        <p>Apellido: {{ arrendatario.apellido }}</p>
-        <p>Telefono: {{ arrendatario.telefono }}</p>
+        <p class="contact-info">Nombre: {{ arrendatario.nombre }}</p>
+        <p class="contact-info">Apellido: {{ arrendatario.apellido }}</p>
+        <p class="contact-info">Teléfono: {{ arrendatario.telefono }}</p>
         {% if fecha_ahora <= reserva.fecha_fin and reserva.estado == 'activa' %}
-        <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?\nCancelar reservas podria afectar tu reputacion')">
-          <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
-        </form>
+          <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?\nCancelar reservas podría afectar tu reputación')">
+            <button type="submit" class="btn btn-custom">Cancelar Reserva</button>
+          </form>
         {% elif reserva.estado == 'activa' %}
-          <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la resepción de su vehículo?')">
-            <button type="submit" class="btn btn-danger">Recibi mi vehiculo</button>
+          <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la recepción de tu vehículo?')">
+            <button type="submit" class="btn btn-custom">Recibí mi vehículo</button>
           </form>
         {% endif %}
       {% else %}
-      <h3> Informacion de contacto </h3>
-      <p>Nombre: {{ propietario.nombre }}</p>
-      <p>Apellido: {{ propietario.apellido }}</p>
-      <p>Telefono: {{ propietario.telefono }}</p>
+        <p class="contact-info">Nombre: {{ propietario.nombre }}</p>
+        <p class="contact-info">Apellido: {{ propietario.apellido }}</p>
+        <p class="contact-info">Teléfono: {{ propietario.telefono }}</p>
       {% endif %}
-    </li>
-  </ul>
-  
+    </div>
+  </div> <!-- Cierra el nuevo <div> -->
+</div>
 {% endblock %}
