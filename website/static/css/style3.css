@@ -1,5 +1,11 @@
 
 /* Estilos para el página de información (info.html) */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 body {
   font-family: 'MuseoModerno', sans-serif;
   margin: 0;
@@ -193,19 +199,22 @@ p {
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   padding: 20px;
-  margin: 150px;
+  margin: 20px 0; /* Reduce el margen vertical para dispositivos móviles */
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s; 
-  }
-  
-  .testimonio-card:hover {
-    transform: scale(1.05); 
-  }
+  transition: transform 0.2s;
+}
+
+/* Agrega estilos para el estado inactivo (no hover) */
+.testimonio-card:not(:hover) {
+  transform: scale(1); /* Restablece el tamaño en estado inactivo */
+}
 
 .testimonio p {
   font-size: 16px;
   color: #333;
+  text-align: center; /* Centra el texto en dispositivos móviles */
+  margin-bottom: 10px; /* Agrega espacio entre párrafos */
 }
 
 .testimonio p:last-child {
@@ -213,6 +222,11 @@ p {
   color: #666;
 }
 
+/* Alinea el texto de la firma al centro y agrega espacio inferior */
+.testimonio p:last-child {
+  text-align: center;
+  margin-bottom: 20px;
+}
 #form {
   max-width: 400px;
   margin: 0 auto;
@@ -595,6 +609,8 @@ footer {
   border-radius: 70% 1% 0 0 / 100% 100% 0 0;
   position: relative;
 }
+
+
 
 footer p, footer small {
   margin: 0;
