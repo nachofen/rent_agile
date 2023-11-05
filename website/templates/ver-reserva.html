@@ -43,12 +43,19 @@
           <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la recepción de tu vehículo?')">
             <button type="submit" class="btn btn-custom">Recibí mi vehículo</button>
           </form>
+        
+        {% else %}
+          {% if reserva.estado == 'completada' and not reserva.calificado and  dif_dias < 31 %}
+          <form action="{{ url_for('views.calificar_host', id=reserva.id_reserva) }}">
+            <button type="submit" class="btn btn-custom">calificar</button>
+          </form>
+          {% endif %}
         {% endif %}
       {% else %}
         <p class="contact-info">Nombre: {{ propietario.nombre }}</p>
         <p class="contact-info">Apellido: {{ propietario.apellido }}</p>
         <p class "contact-info">Teléfono: {{ propietario.telefono }}</p>
-        {% if reserva.estado == 'completada' and not reserva.calificado %}
+        {% if reserva.estado == 'completada' and not reserva.calificado and  dif_dias < 31 %}
         <form action="{{ url_for('views.calificar', id=reserva.id_reserva) }}">
           <button type="submit" class="btn btn-custom">calificar</button>
         </form>

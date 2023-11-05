@@ -1,33 +1,16 @@
 {% extends "base.html" %}
-{% block title %} calificar {% endblock %}
+{% block title %} calificar al arrendatario {% endblock %}
 
 {% block content %}
 <h2>Panel de calificaciones</h2>
   
   <div class="contact-container">
-    <h3>Estas calificando al {{auto.marca}} {{ auto.modelo }} de {{ auto.owner.nombre }} {{ auto.owner.apellido }}</h3>
+    <h3>Estas calificando a {{ arrendatario.nombre }} {{ arrendatario.apellido }}</h3>
 
-    <div class="auto-details">
-      <div class="auto-image">
-          {% if imagenes[0] %}
-            <img src="/{{ imagenes[0].url }}" alt="Imagen del Auto" width="150" height="100">
-          {% else %}
-            <p>No hay imágenes disponibles</p>
-          {% endif %}
-      </div>
-    </div>
   </div>
 <form method="post">
     <div class="form-group">
-      <label for="calificacion">Calificación para el estado del vehiculo:</label>
-      <select class="form-control" id="calificacion_estado" name="calificacion_estado">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-      <label for="calificacion">Calificación para la limpieza del vehiculo:</label>
+      <label for="calificacion">Calificación para la limpieza del vehiculo en la devolucion:</label>
       <select class="form-control" id="calificacion_limpieza" name="calificacion_limpieza">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -35,7 +18,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-      <label for="calificacion">Calificación para la puntualidad de entrega del vehiculo:</label>
+      <label for="calificacion">Calificación para la puntualidad de entrega del vehiculo en la devolucion:</label>
       <select class="form-control" id="calificacion_puntualidad" name="calificacion_puntualidad">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -43,7 +26,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-      <label for="calificacion">Calificación para la comunicacion del dueño del vehiculo:</label>
+      <label for="calificacion">Calificación para la comunicacion del arrendatario del vehiculo:</label>
       <select class="form-control" id="calificacion_comunicacion" name="calificacion_comunicacion">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -51,7 +34,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-      <label for="calificacion">Desea dejar algun comentario para el dueño del vehiculo? Este comentario sera publico y podran verlo desde su perfil:</label>
+      <label for="calificacion">Desea dejar algun comentario para el arrendatario del vehiculo? Este comentario sera publico y podran verlo desde su perfil:</label>
       <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
     
     <button type="submit" class="btn btn-primary">Enviar Calificación</button>

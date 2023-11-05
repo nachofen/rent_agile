@@ -339,7 +339,7 @@ def mostrar_reserva(id):
     dif_dias = (fecha_hoy - fecha_fin).days
     print (f"{dif_dias}")
 
-    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario, fecha_ahora=fecha_ahora)
+    return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario, fecha_ahora=fecha_ahora, dif_dias=dif_dias)
 
 @views.route('/editar-vehiculo/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -806,13 +806,15 @@ def conversar(id):
 @views.route('/calificar/<int:id>', methods=['GET', 'POST'])
 @login_required
 def calificar(id):
-    from .models import Reserva, Reseña
+    from .models import Reserva, Reseña, Auto
     """dejar una calificacion al dueño del vehiculo"""
-    
+
     reserva = Reserva.query.get(id)
     if current_user.id != reserva.id_usuario:
         flash('Esta reserva no le pertenece.', 'error')
         return redirect(url_for('views.mis_reservas'))
+    car_to_msg = Auto.query.get_or_404(reserva.id_auto)
+    imagenes = car_to_msg.imagenes_auto
     if request.method == 'POST':
         calificacion_estado = request.form.get('calificacion_estado')
         calificacion_limpieza = request.form.get('calificacion_limpieza')
@@ -832,6 +834,7 @@ def calificar(id):
             calificacion_puntualidad=calificacion_puntualidad,
             comentario=comentario,
             calificacion=promedio,
+            id_auto=reserva.id_auto
         )
         db.session.add(nueva_reseña)
         reserva.calificado = True
@@ -839,6 +842,46 @@ def calificar(id):
         
         flash('Has calificado con exito!', 'success')
 
-    return render_template("calificar.html", user=current_user)
-            
+    return render_template("calificar.html", user=current_user, auto=car_to_msg, imagenes=imagenes)
+
+@views.route('/calificar-host/<int:id>', methods=['GET', 'POST'])
+@login_required
+def calificar_host(id):
+    from .models import Reserva, Reseña, Auto, User
+    """dejar una calificacion al dueño del vehiculo"""
+
+    reserva = Reserva.query.get(id)
+    car_to_review = Auto.query.get(reserva.id_auto)
+    owner_id = User.query.get(car_to_review.usuario_id)
+    arrendatario = User.query.get(reserva.id_usuario)
+    
+    if current_user.id != owner_id.id:
+        flash('Esta reserva no le pertenece.', 'error')
+        return redirect(url_for('views.mis_reservas'))
+    if request.method == 'POST':
+        calificacion_limpieza = request.form.get('calificacion_limpieza')
+        calificacion_puntualidad = request.form.get('calificacion_puntualidad')
+        calificacion_comunicacion = request.form.get('calificacion_comunicacion')
+        promedio = None
+        if (calificacion_limpieza is not None and 
+        calificacion_puntualidad is not None and calificacion_comunicacion is not None):
+            promedio = (int(calificacion_limpieza) + int(calificacion_puntualidad) + int(calificacion_comunicacion)) / 3.0
+
+        comentario = request.form.get('comentario')
+        nueva_reseña = Reseña(
+            reserva_id = id,
+            calificacion_comunicacion=calificacion_comunicacion,
+            calificacion_limpieza=calificacion_limpieza,
+            calificacion_puntualidad=calificacion_puntualidad,
+            comentario=comentario,
+            calificacion=promedio,
+            id_arrendatario=reserva.id_usuario
+        )
+        db.session.add(nueva_reseña)
+        reserva.calificado = True
+        db.session.commit()
+        
+        flash('Has calificado con exito!', 'success')
+
+    return render_template("calificarhost.html", user=current_user, arrendatario=arrendatario)
                 

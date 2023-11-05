@@ -76,7 +76,8 @@ class Reseña(db.Model):
     reserva_id = db.Column(db.Integer, db.ForeignKey('reserva.id_reserva'))
     calificacion = db.Column(db.Integer)
     comentario = db.Column(db.Text)
-    
+    id_auto = db.Column(db.Integer)
+    id_arrendatario = db.Column(db.Integer)
     calificacion_estado = db.Column(db.Integer)
     calificacion_puntualidad = db.Column(db.Integer)
     calificacion_limpieza = db.Column(db.Integer)
