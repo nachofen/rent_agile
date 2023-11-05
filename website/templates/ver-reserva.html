@@ -49,7 +49,7 @@
         <p class="contact-info">Apellido: {{ propietario.apellido }}</p>
         <p class "contact-info">Teléfono: {{ propietario.telefono }}</p>
         {% if reserva.estado == 'completada' and not reserva.calificado %}
-        <form action="{{ url_for('views.calificar', id=reserva.id_reserva) }}" method="POST">
+        <form action="{{ url_for('views.calificar', id=reserva.id_reserva) }}">
           <button type="submit" class="btn btn-custom">calificar</button>
         </form>
         {% endif %}
