@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} calificar {% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="form-group">
+      <label for="calificacion">Calificación para el estado del vehiculo:</label>
+      <select class="form-control" id="calificacion_estado" name="calificacion_estado">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label for="calificacion">Calificación para la limpieza del vehiculo:</label>
+      <select class="form-control" id="calificacion_limpieza" name="calificacion_limpieza">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label for="calificacion">Calificación para la puntualidad de entrega del vehiculo:</label>
+      <select class="form-control" id="calificacion_puntualidad" name="calificacion_puntualidad">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label for="calificacion">Calificación para la comunicacion del dueño del vehiculo:</label>
+      <select class="form-control" id="calificacion_comunicacion" name="calificacion_comunicacion">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <label for="calificacion">Desea dejar algun comentario para el dueño del vehiculo? Este comentario sera publico y podran verlo desde su perfil:</label>
+      <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Calificación</button>
+  </form>
+
+{% endblock %}

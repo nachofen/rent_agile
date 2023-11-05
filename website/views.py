@@ -334,6 +334,10 @@ def mostrar_reserva(id):
     primera_imagen = Imagenes_auto.query.filter_by(auto_id=id_auto).first()
     propietario_id = auto.usuario_id
     propietario = User.query.get(propietario_id)
+    fecha_hoy = datetime.now().date()
+    fecha_fin = reserva.fecha_fin
+    dif_dias = (fecha_hoy - fecha_fin).days
+    print (f"{dif_dias}")
 
     return render_template("ver-reserva.html", reserva=reserva, user=current_user, auto=auto, propietario=propietario, primera_imagen=primera_imagen, arrendatario=arrendatario, fecha_ahora=fecha_ahora)
 
@@ -729,6 +733,17 @@ def bandeja_entrada():
 def conversar(id):
     """Todos los mensajes de una misma conversación"""
     from .models import Mensaje, Conversacion, Auto
+    conversacion = Conversacion.query.get(id)
+
+    if not conversacion:
+        # Manejar el caso en que la conversación no existe
+        flash('La conversación no existe o no tienes permiso para acceder a ella.', 'error')
+        return redirect(url_for('views.bandeja_entrada'))  
+
+    # Verificar si el usuario actual tiene permiso para ver la conversación
+    if conversacion.usuario_id != current_user.id and conversacion.destinatario_id != current_user.id:
+        flash('No tienes permiso para acceder a esta conversación.', 'error')
+        return redirect(url_for('views.bandeja_entrada'))  
     if request.method == 'POST':
         # Obtener el contenido del mensaje enviado por el usuario
         contenido_mensaje = request.form.get('nuevo-mensaje')
@@ -759,11 +774,13 @@ def conversar(id):
             # Redirigir nuevamente a la página de conversación para mostrar el mensaje enviado
             return redirect(url_for('views.conversar', id=id))
     # Obtener todos los mensajes de la conversación con el ID especificado
+
     mensajes = Mensaje.query.filter_by(conversacion_id=id).all()
     destinatarios = []
     emisores = []
     # Consulta para obtener el nombre del destinatario
     for mensaje in mensajes:
+        
         destinatario = User.query.get(mensaje.destinatario_id)  # Supongamos que el destinatario_id se encuentra en el primer mensaje
         destinatarios.append(destinatario)
         emisor = User.query.get(mensaje.id_usuario)
@@ -785,3 +802,43 @@ def conversar(id):
     mensajes_con_destinatarios = zip(mensajes, destinatarios, emisores)
 
     return render_template("mensaje.html", mensajes_con_destinatarios=mensajes_con_destinatarios, user=current_user, primer_destinatario=primer_destinatario)
+
+@views.route('/calificar/<int:id>', methods=['GET', 'POST'])
+@login_required
+def calificar(id):
+    from .models import Reserva, Reseña
+    """dejar una calificacion al dueño del vehiculo"""
+    
+    reserva = Reserva.query.get(id)
+    if current_user.id != reserva.id_usuario:
+        flash('Esta reserva no le pertenece.', 'error')
+        return redirect(url_for('views.mis_reservas'))
+    if request.method == 'POST':
+        calificacion_estado = request.form.get('calificacion_estado')
+        calificacion_limpieza = request.form.get('calificacion_limpieza')
+        calificacion_puntualidad = request.form.get('calificacion_puntualidad')
+        calificacion_comunicacion = request.form.get('calificacion_comunicacion')
+        promedio = None
+        if (calificacion_estado is not None and calificacion_limpieza is not None and 
+        calificacion_puntualidad is not None and calificacion_comunicacion is not None):
+            promedio = (int(calificacion_estado) + int(calificacion_limpieza) + int(calificacion_puntualidad) + int(calificacion_comunicacion)) / 4.0
+
+        comentario = request.form.get('comentario')
+        nueva_reseña = Reseña(
+            reserva_id = id,
+            calificacion_comunicacion=calificacion_comunicacion,
+            calificacion_estado=calificacion_estado,
+            calificacion_limpieza=calificacion_limpieza,
+            calificacion_puntualidad=calificacion_puntualidad,
+            comentario=comentario,
+            calificacion=promedio,
+        )
+        db.session.add(nueva_reseña)
+        reserva.calificado = True
+        db.session.commit()
+        
+        flash('Has calificado con exito!', 'success')
+
+    return render_template("calificar.html", user=current_user)
+            
+                

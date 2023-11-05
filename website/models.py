@@ -69,13 +69,20 @@ class Reserva(db.Model):
     fecha_fin = db.Column(db.Date, nullable=False)
     reseña = db.relationship('Reseña', backref='reserva', uselist=False)
     estado = db.Column(db.String(10), default="activa")
-    
+    calificado = db.Column(db.Boolean, default=False)
 
 class Reseña(db.Model):
     id_resena = db.Column(db.Integer, primary_key=True)
     reserva_id = db.Column(db.Integer, db.ForeignKey('reserva.id_reserva'))
     calificacion = db.Column(db.Integer)
     comentario = db.Column(db.Text)
+    
+    calificacion_estado = db.Column(db.Integer)
+    calificacion_puntualidad = db.Column(db.Integer)
+    calificacion_limpieza = db.Column(db.Integer)
+    calificacion_comunicacion = db.Column(db.Integer)
+
+
 
 class FechasBloqueadas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
