@@ -2,6 +2,11 @@
 {% block title %} calificar al arrendatario {% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/static/css/styles.css">
+
+<body class="body-calificar">
+
 <h2>Panel de calificaciones</h2>
   
   <div class="contact-container">
@@ -9,7 +14,7 @@
 
   </div>
 <form method="post">
-    <div class="form-group">
+    <div class="form-calificar">
       <label for="calificacion">Calificación para la limpieza del vehiculo en la devolucion:</label>
       <select class="form-control" id="calificacion_limpieza" name="calificacion_limpieza">
         <option value="1">1</option>
@@ -40,5 +45,5 @@
     <button type="submit" class="btn btn-primary">Enviar Calificación</button>
     </div>
   </form>
-
+</body>
 {% endblock %}
