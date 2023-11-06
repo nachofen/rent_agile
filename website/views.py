@@ -111,7 +111,7 @@ def agregar_vehiculo():
 @login_required
 def perfil_usuario(id):
     """perfil de usuario"""
-    from .models import Reseña, Reserva, User
+    from .models import Reseña, Reserva, User, Auto
     usuario = User.query.get(id)
     reseñas = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).all()
     dueños_reseñas = []
@@ -119,27 +119,53 @@ def perfil_usuario(id):
     imagen_perfil = usuario.image_path
     promedio = 0
     puntaje = 0
+    primeras_dos_reseñas = []
+    primer_reseña = []
     contador = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).count()
     for reseña in reseñas:
         if len(reseñas) == 0:
             break
+        print(f"{reseña.id_resena}")
         calificacion = reseña.calificacion
         puntaje = puntaje + calificacion
-
+        
     if contador == 0:
         print("sin reseñas")
     else:
         promedio = puntaje / contador
     print (f"puntaje:{puntaje}contador: {contador}promedio: {promedio}")
-    primeras_dos_reseñas = reseñas[:2]
-    
-    for reseña in primeras_dos_reseñas:
+    if contador < 1:
+        primeras_dos_reseñas = None
+    elif contador == 1:
+        primer_reseña = reseñas
+        auto = Auto.query.filter_by(id_auto=primer_reseña[0].id_auto).first()
         dueño = User.query.get(reseña.id_arrendatario)
-        dueño_auto = User.query.get(reseña.calificado_por)
-        dueños_reseñas.append(dueño)
-        dueños_autos.append(dueño_auto)
-    primeros_dos_dueños = dueños_reseñas[:2]
-    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,primeros_dos_dueños=primeros_dos_dueños,primeras_dos_reseñas=primeras_dos_reseñas)
+        if auto:
+                dueño_auto = auto.owner
+                print(f"ID del dueño del auto: {dueño_auto.id}")
+                dueños_autos.append(dueño_auto)
+        else:
+            print("Auto no encontrado para la reseña") 
+        
+    else:
+        primeras_dos_reseñas = reseñas[:2]
+        for reseña in primeras_dos_reseñas:
+            print(f"{reseña.id_resena}")
+            auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
+            dueño_auto = User.query.get(reseña.id_arrendatario)
+            
+            # Verifica si el auto fue encontrado
+            if auto:
+                dueño_auto = auto.owner
+                print(f"ID del dueño del auto: {dueño_auto.id}")
+                dueños_autos.append(dueño_auto)
+            else:
+                print("Auto no encontrado para la reseña") 
+            dueños_reseñas.append(dueño)
+    
+        
+    
+    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,primeras_dos_reseñas=primeras_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto)
 
 marcas = [
     "Alfa Romeo",
@@ -908,6 +934,9 @@ def calificar_host(id):
             comentario=comentario,
             calificacion=promedio,
             id_arrendatario=reserva.id_usuario,
+            id_auto=car_to_review.id_auto,
+            calificado_por=current_user.id,
+            calificando_a=reserva.id_usuario
         )
         db.session.add(nueva_reseña)
         reserva.calificado_por_dueño = True

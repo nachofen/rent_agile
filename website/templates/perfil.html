@@ -60,16 +60,26 @@
         </ul>
     </div>
     <div id="todo-list">
-        <h3>Evaluaciones de {{user.nombre}}</h3>
-        
-    {% for i in range(2) %}
-        {% set reserva = primeras_dos_reseñas[i] %}
-        {% set dueño = dueños_autos[i] %}
-        <li>
-            <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
-            <p>{{ reserva.comentario }}</p>
-        </li>
-    {% endfor %}
+        <h3>Evaluaciones a {{user.nombre}}</h3>
+            {% if contador >= 2 %} 
+                {% for i in range(2) %}
+                    
+                    {% set reseña = primeras_dos_reseñas[i] %}
+                    {% set dueño = dueños_autos[i] %}
+                    <li>
+                        <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
+                        <p>{{ reseña.comentario }}</p>
+                    </li>
+                {% endfor %}
+            {% elif contador == 1 %}
+                <li>
+                    <img src="/{{ dueño_auto.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
+                    <p>{{ dueños_reseñas.comentario }}</p>
+                </li>
+            {% else %}
+                <p> no tiene reseñas</p>
+            {% endif %}
+        <h4>Ver todas las ({{contador}}) Reseñas</h4>
     </div>
 </div>
     <br> <br>
