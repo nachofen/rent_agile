@@ -13,8 +13,6 @@
 
 <div class="car-details-container">
   
-  
-
   <div class="buttons-container">
     {% if current_user.id == vehiculo.usuario_id %}
     <br>
@@ -30,6 +28,8 @@
     {% else %}
     <div class="message-rent-container">
       <h3> Reserva y Descubre Nuevos Destinos</h3>
+    </div>
+      
       <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
       <br>
       <h6>Selecciona las Fechas de Reserva</h6>
@@ -47,16 +47,14 @@
         </div>
         
         <button type="submit" class="btn btn-primary-ver">Alquilar</button>
-
+   
         <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
           <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button> 
         </form>
         <br>
-        
       </form>
-    </div>
-    {% endif %}
-  </div>
+   
+   {% endif %}
  <!-- Tarjeta de detalles de vehículo (puedes repetir esto para cada vehículo) -->
  <div class="car-card">
   <h4>Características del Auto</h4>

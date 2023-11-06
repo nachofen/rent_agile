@@ -605,18 +605,20 @@ ul.image-gallery img {
   text-align: center;
   padding: 20px;
   margin: 0 auto;
-  max-width: 75%;
+  max-width: 90%; 
   height: auto;
-  background-color: rgba(255, 255, 255, 0.4); 
-  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #530808;
   border-radius: 5px;
-  box-shadow: 0 1 10px rgba(0, 0, 0, 0.2);
-  overflow-x: hidden;  /* mantiene todo al margane del div, include footer */
+  box-shadow: 0 1 10px rgba(0, 0, 0, 0.3);
+  overflow-x: hidden;
 }
+
+
 /* body para el fondo personalizado */
 .custom-background-ver {
   background-color: #333333;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23DD0000'/%3E%3Cstop offset='1' stop-color='%23333333'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23000000'/%3E%3Cstop offset='1' stop-color='%23270000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF0000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF0000' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
@@ -625,9 +627,11 @@ ul.image-gallery img {
 
 /* Estilo para el título del automóvil */
 .car-title {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: #ffffff; /* Color rojo */
+  font-size: 28px; 
+  font-weight: 600; 
+  margin-bottom: 10px; 
+  text-shadow: 2px 2px 3px rgba(255, 51, 51, 0.582);
 }
 
 /* Estilos para el contenedor de botones */
@@ -638,15 +642,29 @@ ul.image-gallery img {
 /* Estilos para los detalles del automóvil */
 
 /* Estilos para los detalles del automóvil en una tarjeta */
- .car-card {
+.car-card {
   background-color: rgba(255, 255, 255, 0.295);
   border: none;
   display: inline-block;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding: 20px;
   transform: scale(1);
   border-radius: 14px;
   transition: transform 0.3s;
+  width: 45%; 
+}
+
+/* Estilos para los detalles del automóvil en una tarjeta en dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .car-card {
+    max-width: 100%; /* En dispositivos móviles, permite que la tarjeta ocupe todo el ancho de la pantalla */
+    padding: 10px; /* Reduce aún más el espacio interno para dar más espacio al contenido en dispositivos móviles */
+  }
+}
+
+
+label {
+  color: rgb(36, 1, 1);
 }
 
 .car-card h4 {
@@ -750,12 +768,25 @@ form input[type="date"] {
   border: 1px solid #ccc;
 }
 
-/* Estilos para la sección de mensajes y alquiler */
+/* Estilos para la sección de mensajes y alquiler   /ver-vehiculo */
 .message-rent-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 14px;
+  background-image: url('/static/img/uploads/banner-ver.jpg');
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
+
+.message-rent-container h3 {
+  margin: 0; /* Elimina el margen predeterminado del encabezado h3 */
+}
+
+
 /* Estilos para el contenedor de fechas */
 .date-container {
   display: flex;
@@ -866,8 +897,7 @@ footer {
   font-family: 'MuseoModerno', sans-serif;
   font-size: 14px;
   background: linear-gradient(to bottom, #888 50%, #000000 50%);
-  margin-left: -50vw; 
-  margin-right: -50vw; 
+  
   border-top-left-radius: 10px; 
   border-top-right-radius: 10px; 
   border-radius: 70% 1% 0 0 / 100% 100% 0 0;
