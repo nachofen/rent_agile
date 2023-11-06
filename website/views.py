@@ -113,6 +113,10 @@ def perfil_usuario(id):
     """perfil de usuario"""
     from .models import Reseña, Reserva, User, Auto
     usuario = User.query.get(id)
+    if not usuario:
+        flash('El usuario no existe.', category='error')
+        return redirect(url_for('views.home'))
+
     reseñas = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).all()
     dueños_reseñas = []
     dueños_autos = []
@@ -122,14 +126,17 @@ def perfil_usuario(id):
     primeras_dos_reseñas = []
     primer_reseña = []
     contador = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).count()
+    dueño_auto = None
+
     for reseña in reseñas:
         if len(reseñas) == 0:
             break
         print(f"{reseña.id_resena}")
         calificacion = reseña.calificacion
         puntaje = puntaje + calificacion
-        
+    
     if contador == 0:
+        dueño_auto = None
         print("sin reseñas")
     else:
         promedio = puntaje / contador
@@ -153,7 +160,7 @@ def perfil_usuario(id):
             print(f"{reseña.id_resena}")
             auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
             dueño_auto = User.query.get(reseña.id_arrendatario)
-            
+            dueño = User.query.get(reseña.id_arrendatario)
             # Verifica si el auto fue encontrado
             if auto:
                 dueño_auto = auto.owner
