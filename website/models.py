@@ -69,7 +69,8 @@ class Reserva(db.Model):
     fecha_fin = db.Column(db.Date, nullable=False)
     reseña = db.relationship('Reseña', backref='reserva', uselist=False)
     estado = db.Column(db.String(10), default="activa")
-    calificado = db.Column(db.Boolean, default=False)
+    calificado_por_dueño = db.Column(db.Boolean, default=False)
+    calificado_por_arrendatario = db.Column(db.Boolean, default=False)
 
 class Reseña(db.Model):
     id_resena = db.Column(db.Integer, primary_key=True)
@@ -82,6 +83,9 @@ class Reseña(db.Model):
     calificacion_puntualidad = db.Column(db.Integer)
     calificacion_limpieza = db.Column(db.Integer)
     calificacion_comunicacion = db.Column(db.Integer)
+    calificado_por = db.Column(db.Integer)
+    calificando_a = db.Column(db.Integer)
+
 
 
 

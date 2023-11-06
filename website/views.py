@@ -107,12 +107,40 @@ def agregar_vehiculo():
 
     return render_template("agregar-vehiculo.html", user=current_user)
 
-@views.route('/perfil')
+@views.route('/perfil/<int:id>')
 @login_required
-def perfil_usuario():
+def perfil_usuario(id):
     """perfil de usuario"""
-    print(current_user.nombre)
-    return render_template("perfil.html", user=current_user)
+    from .models import Reseña, Reserva, User
+    usuario = User.query.get(id)
+    reseñas = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).all()
+    dueños_reseñas = []
+    dueños_autos = []
+    imagen_perfil = usuario.image_path
+    promedio = 0
+    puntaje = 0
+    contador = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).count()
+    for reseña in reseñas:
+        if len(reseñas) == 0:
+            break
+        calificacion = reseña.calificacion
+        puntaje = puntaje + calificacion
+
+    if contador == 0:
+        print("sin reseñas")
+    else:
+        promedio = puntaje / contador
+    print (f"puntaje:{puntaje}contador: {contador}promedio: {promedio}")
+    primeras_dos_reseñas = reseñas[:2]
+    
+    for reseña in primeras_dos_reseñas:
+        dueño = User.query.get(reseña.id_arrendatario)
+        dueño_auto = User.query.get(reseña.calificado_por)
+        dueños_reseñas.append(dueño)
+        dueños_autos.append(dueño_auto)
+    primeros_dos_dueños = dueños_reseñas[:2]
+    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,primeros_dos_dueños=primeros_dos_dueños,primeras_dos_reseñas=primeras_dos_reseñas)
+
 marcas = [
     "Alfa Romeo",
     "Audi",
@@ -834,13 +862,17 @@ def calificar(id):
             calificacion_puntualidad=calificacion_puntualidad,
             comentario=comentario,
             calificacion=promedio,
-            id_auto=reserva.id_auto
+            id_auto=reserva.id_auto,
+            id_arrendatario=current_user.id,
+            calificado_por=current_user.id,
+            calificando_a=car_to_msg.usuario_id
         )
         db.session.add(nueva_reseña)
-        reserva.calificado = True
+        reserva.calificado_por_arrendatario = True
         db.session.commit()
         
         flash('Has calificado con exito!', 'success')
+        return redirect(url_for('views.mis_reservas'))
 
     return render_template("calificar.html", user=current_user, auto=car_to_msg, imagenes=imagenes)
 
@@ -875,13 +907,14 @@ def calificar_host(id):
             calificacion_puntualidad=calificacion_puntualidad,
             comentario=comentario,
             calificacion=promedio,
-            id_arrendatario=reserva.id_usuario
+            id_arrendatario=reserva.id_usuario,
         )
         db.session.add(nueva_reseña)
-        reserva.calificado = True
+        reserva.calificado_por_dueño = True
         db.session.commit()
         
         flash('Has calificado con exito!', 'success')
+        return redirect(url_for('views.mis_reservas'))
 
     return render_template("calificarhost.html", user=current_user, arrendatario=arrendatario)
                 

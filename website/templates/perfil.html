@@ -40,32 +40,37 @@
           </a>
       </div>
 <br>
-<div id="todo-list">
-    <h3>Tareas Pendientes</h3>
-    <ul>
+<div id="todito">
+    <div id="todo-list">
+        <h3>Perfil</h3>
+        <ul>
+            <li>
+                <img src="/{{ imagen_perfil }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
+                <div class="derecha">
+                <p> {{contador}} evaluaciones</p>
+                <p>Calificacion {{promedio}} puntos</p>
+                </div>
+            </li>
+            <li>
+                <h3>{{user.nombre}} {{user.apellido}} </h3>
+            </li>
+            <li>
+                
+            </li>      
+        </ul>
+    </div>
+    <div id="todo-list">
+        <h3>Evaluaciones de {{user.nombre}}</h3>
+        
+    {% for i in range(2) %}
+        {% set reserva = primeras_dos_reseñas[i] %}
+        {% set dueño = dueños_autos[i] %}
         <li>
-            <input type="checkbox">
-            <label>Tarea 1</label>
-            <button class="delete">Eliminar</button>
+            <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
+            <p>{{ reserva.comentario }}</p>
         </li>
-        <li>
-            <input type="checkbox">
-            <label>Tarea 2</label>
-            <button class="delete">Eliminar</button>
-        </li>
-        <li>
-            <input type="checkbox">
-            <label>Tarea 3</label>
-            <button class="delete">Eliminar</button>
-        </li>
-        <li>
-            <input type="checkbox">
-            <label>Tarea 4</label>
-            <button class="delete">Eliminar</button>
-        </li>
-    </ul>
-    <input type="text" id="new-task" placeholder="Nueva tarea ( falta el back a la base de datos  y recuepracion de datos de la bs)">
-    <button id="add-task">Agregar Tarea</button>
+    {% endfor %}
+    </div>
 </div>
     <br> <br>
     <br><br><br>

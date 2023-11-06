@@ -45,7 +45,7 @@
           </form>
         
         {% else %}
-          {% if reserva.estado == 'completada' and not reserva.calificado and  dif_dias < 31 %}
+          {% if reserva.estado == 'completada' and not reserva.calificado_por_dueño and  dif_dias < 31 %}
           <form action="{{ url_for('views.calificar_host', id=reserva.id_reserva) }}">
             <button type="submit" class="btn btn-custom">calificar</button>
           </form>
@@ -55,7 +55,7 @@
         <p class="contact-info">Nombre: {{ propietario.nombre }}</p>
         <p class="contact-info">Apellido: {{ propietario.apellido }}</p>
         <p class "contact-info">Teléfono: {{ propietario.telefono }}</p>
-        {% if reserva.estado == 'completada' and not reserva.calificado and  dif_dias < 31 %}
+        {% if reserva.estado == 'completada' and not reserva.calificado_por_arrendatario and  dif_dias < 31 %}
         <form action="{{ url_for('views.calificar', id=reserva.id_reserva) }}">
           <button type="submit" class="btn btn-custom">calificar</button>
         </form>

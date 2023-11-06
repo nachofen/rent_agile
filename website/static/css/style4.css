@@ -267,11 +267,15 @@
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     padding: 16px;
-    max-width: 700px; /* Aumenta el ancho del contenedor */
+    max-width: 500px; /* Aumenta el ancho del contenedor */
     margin-top: -20px; 
     margin: 0 auto;
   }
-  
+  #todito {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
   #todo-list h2 {
     text-align: center;
     color: red;
