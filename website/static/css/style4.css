@@ -205,7 +205,7 @@
 
 .inbox-title {
   font-size: 24px;
-  color: #333;
+  color: #db0909;
   margin-bottom: 20px;
 }
 
@@ -233,7 +233,7 @@
 
 .message-sender {
   font-weight: bold;
-  color: #333;
+  color: #333333;
 }
 
 .message-date {
@@ -242,7 +242,7 @@
 
 /* Estilos del contenido del mensaje */
 .message-content {
-  color: #444;
+  color: #df0000;
 }
 
 /* Estilos personalizados para el botón "Responder" */
