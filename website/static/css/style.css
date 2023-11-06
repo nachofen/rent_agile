@@ -45,6 +45,24 @@ body {
   padding: 20px;
 }
 
+/* texto en div */
+.texto-destacado {
+  background-color: #F5A623;
+  color: #FFF;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  display: block; 
+  align-items: center; 
+  width: 100%;
+}
+
+/* Cambiar el color de los íconos fa fa */
+
+.texto-destacado i.fa-check {
+  color: #026107; 
+}
+
 
 /* Estilo para las tarjetas de autos en el home  flip card-info*/
 .cardsgallery {
