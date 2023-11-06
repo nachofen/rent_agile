@@ -1,5 +1,4 @@
-
-![rent agile](https://github.com/nachofen/rent_agile/assets/124454895/990a7ef0-55c4-41db-a54e-223be57d2ab7)
+![rent_agile-png trasnparent](https://github.com/nachofen/rent_agile/assets/124454895/ab0b9b5e-fdd8-4ce6-a6cd-a2cc40f52f13)
 
 ## Car Rental Application Engineering Overview
 
