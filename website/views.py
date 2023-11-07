@@ -123,7 +123,7 @@ def perfil_usuario(id):
     imagen_perfil = usuario.image_path
     promedio = 0
     puntaje = 0
-    primeras_dos_reseñas = []
+    ultimas_dos_reseñas = []
     primer_reseña = []
     contador = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).count()
     dueño_auto = None
@@ -155,8 +155,8 @@ def perfil_usuario(id):
             print("Auto no encontrado para la reseña") 
         
     else:
-        primeras_dos_reseñas = reseñas[:2]
-        for reseña in primeras_dos_reseñas:
+        ultimas_dos_reseñas = reseñas[-2:]
+        for reseña in ultimas_dos_reseñas:
             print(f"{reseña.id_resena}")
             auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
             dueño_auto = User.query.get(reseña.id_arrendatario)
@@ -172,7 +172,7 @@ def perfil_usuario(id):
     
         
     
-    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,primeras_dos_reseñas=primeras_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto)
+    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto)
 
 marcas = [
     "Alfa Romeo",
