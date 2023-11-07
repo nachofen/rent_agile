@@ -61,12 +61,12 @@
         </ul>
     </div>
     <div id="todo-listo">
-        <h3>Evaluaciones a {{user.nombre}} como arrendatario</h3>
+        <h3>Evaluaciones a {{user.nombre}} como propietario</h3>
         {% if contador >= 2 %}
             <div class="evaluaciones-container">
                 {% for i in range(2) %}
                     {% set reseña = ultimas_dos_reseñas[i] %}
-                    {% set dueño = dueños_autos[i] %}
+                    {% set dueño = arrendatarios[i] %}
                     <div class="evaluacion">
                         <p>"{{ reseña.comentario }}"</p>
                         <br>
@@ -79,9 +79,9 @@
         {% elif contador == 1 %}
             <div class="evaluacion">
                 <p>"{{ reseñas[0].comentario }}"</p>
-                <img src="/{{ dueño_auto.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                <img src="/{{ arrendatarios[0].image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
                 <br><br>
-                <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+                <p>{{arrendatarios[0].nombre}} - {{reseñas[0].fecha}}</p>
             </div>
         {% else %}
             <p> no tiene reseñas</p>
