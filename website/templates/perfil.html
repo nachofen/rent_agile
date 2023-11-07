@@ -62,11 +62,24 @@
     </div>
     <div id="todo-listo">
         <h3>Evaluaciones a {{user.nombre}} como arrendatario</h3>
-        {% if contador >= 2 %}
+        
             <div class="evaluaciones-container">
-                {% for i in range(2) %}
-                    {% set reseña = ultimas_dos_reseñas[i] %}
-                    {% set dueño = dueños_autos[i] %}
+                {% if contador > 2 %}
+                    {% for i in range(2) %}
+                        {% set reseña = reseñas[i] %}
+                        {% set dueño = todos_los_dueños[i] %}
+                        <div class="evaluacion">
+                            <p>"{{ reseña.comentario }}"</p>
+                            <br>
+                            <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                            <br><br>
+                            <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for i in range(contador) %}
+                    {% set reseña = reseñas[i] %}
+                    {% set dueño = todos_los_dueños[i] %}
                     <div class="evaluacion">
                         <p>"{{ reseña.comentario }}"</p>
                         <br>
@@ -74,19 +87,34 @@
                         <br><br>
                         <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
-        {% elif contador == 1 %}
-            <div class="evaluacion">
-                <p>"{{ reseñas[0].comentario }}"</p>
-                <img src="/{{ dueño_auto.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
-                <br><br>
-                <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+        
+        <a href="#" id="ver-todas-las-resenas">Ver todas las ({{ contador }}) reseñas</a>
+    </div>
+    
+    <div id="popup-background" class="popup-background"></div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="close-popup" style="font-size: 50px; color: white;">&times;</span>
+                <h2>Todas las reseñas ({{ contador }})</h2>
+                <ul>
+                    {% for i in range(contador) %}
+                        {% set reseña = reseñas[i] %}
+                        {% set dueño = todos_los_dueños[i] %}
+                    <div class="evaluaciones">
+                        <p>"{{ reseña.comentario }}"</p>
+                        <br>
+                        <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                        <br><br>
+                        <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+                        <hr style="color: rgb(177, 177, 194); background-color: rgb(187, 187, 209); height: 1px;">
+                    </div>
+                    {% endfor %}
+                </ul>
             </div>
-        {% else %}
-            <p> no tiene reseñas</p>
-        {% endif %}
-        <h4>Ver todas las ({{contador}}) Reseñas</h4>
+        </div>
     </div>
 
 </div>
@@ -96,24 +124,17 @@
     <br>
 
         <script>
-    // Función para agregar una nueva tarea
-    function addTask() {
-        const taskText = prompt("Nueva tarea:");
-            if (taskText) {
-            const ul = document.querySelector("#todo-list ul");
-            const li = document.createElement("li");
-            li.innerHTML = `
-            <input type="checkbox">
-             <label>${taskText}</label>
-                <button class="delete">Eliminar</button>
-                `;
-                ul.appendChild(li);
-                    li.querySelector(".delete").addEventListener("click", () => {
-                        ul.removeChild(li);
-                });
-            }
-        }
-                             document.querySelector("#add-task").addEventListener("click", addTask);
+// Cuando se hace clic en "Ver todas las reseñas"
+document.getElementById("ver-todas-las-resenas").addEventListener("click", function () {
+    document.getElementById("popup-background").style.display = "block";
+    document.getElementById("popup").style.display = "block";
+});
+
+// Cuando se hace clic en el botón de cierre ("x")
+document.getElementById("close-popup").addEventListener("click", function () {
+    document.getElementById("popup-background").style.display = "none";
+    document.getElementById("popup").style.display = "none";
+});
 </script>
 
  <!-- Footer -->

@@ -281,6 +281,48 @@
     margin-top: -20px; 
     margin: 0 auto;
   }
+  /* Estilo para el contenedor del popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 500px;
+    top: 200px;
+    width: 30%;
+  
+    max-height: 80%; /* Altura máxima de la ventana emergente */
+    overflow: auto; /* Agrega barras de desplazamiento cuando sea necesario */
+
+    
+}
+.popup-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  z-index: 1; /* Asegura que esté por encima del contenido */
+}
+
+.popup-content {
+    background-color: rgba(236, 15, 15, 0.8);
+    color: white;
+    border-radius: 20px;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
   #todito {
     display: flex;
     justify-content: space-between;

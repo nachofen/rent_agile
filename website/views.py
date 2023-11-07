@@ -125,6 +125,7 @@ def perfil_usuario(id):
     puntaje = 0
     ultimas_dos_reseñas = []
     primer_reseña = []
+    todos_los_dueños = []
     contador = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).count()
     dueño_auto = None
 
@@ -134,6 +135,12 @@ def perfil_usuario(id):
         print(f"{reseña.id_resena}")
         calificacion = reseña.calificacion
         puntaje = puntaje + calificacion
+        auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
+        dueño = User.query.get(reseña.id_arrendatario)
+        if auto:
+                dueño_auto = auto.owner
+                print(f"ID del dueño del auto: {dueño_auto.id}")
+                todos_los_dueños.append(dueño_auto)
     
     if contador == 0:
         dueño_auto = None
@@ -141,37 +148,22 @@ def perfil_usuario(id):
     else:
         promedio = puntaje / contador
     print (f"puntaje:{puntaje}contador: {contador}promedio: {promedio}")
-    if contador < 1:
-        primeras_dos_reseñas = None
-    elif contador == 1:
-        primer_reseña = reseñas
-        auto = Auto.query.filter_by(id_auto=primer_reseña[0].id_auto).first()
+    ultimas_dos_reseñas = reseñas[-2:]
+    for reseña in ultimas_dos_reseñas:
+        print(f"{reseña.id_resena}")
+        auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
+        dueño_auto = User.query.get(reseña.id_arrendatario)
         dueño = User.query.get(reseña.id_arrendatario)
+        # Verifica si el auto fue encontrado
         if auto:
-                dueño_auto = auto.owner
-                print(f"ID del dueño del auto: {dueño_auto.id}")
-                dueños_autos.append(dueño_auto)
+            dueño_auto = auto.owner
+            print(f"ID del dueño del auto: {dueño_auto.id}")
+            dueños_autos.append(dueño_auto)
         else:
             print("Auto no encontrado para la reseña") 
-    else:
-        ultimas_dos_reseñas = reseñas[-2:]
-        for reseña in ultimas_dos_reseñas:
-            print(f"{reseña.id_resena}")
-            auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
-            dueño_auto = User.query.get(reseña.id_arrendatario)
-            dueño = User.query.get(reseña.id_arrendatario)
-            # Verifica si el auto fue encontrado
-            if auto:
-                dueño_auto = auto.owner
-                print(f"ID del dueño del auto: {dueño_auto.id}")
-                dueños_autos.append(dueño_auto)
-            else:
-                print("Auto no encontrado para la reseña") 
-            dueños_reseñas.append(dueño)
+        dueños_reseñas.append(dueño)
     
-        
-    
-    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto, reseñas=reseñas)
+    return render_template("perfil.html", user=usuario, todos_los_dueños=todos_los_dueños, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto, reseñas=reseñas)
 
 @views.route('/perfilhost/<int:id>')
 @login_required
@@ -184,7 +176,7 @@ def perfil_host(id):
         return redirect(url_for('views.home'))
 
     reseñas = Reseña.query.filter_by(id_dueño=id, calificando_a=id).all()
-    dueños_reseñas = []
+    
     arrendatarios = []
     dueños = []
     imagen_perfil = usuario.image_path
@@ -192,6 +184,7 @@ def perfil_host(id):
     puntaje = 0
     ultimas_dos_reseñas = []
     primer_reseña = []
+    todos_los_arrendatarios = []
     contador = Reseña.query.filter_by(id_dueño=id, calificando_a=id).count()
 
     for reseña in reseñas:
@@ -200,6 +193,12 @@ def perfil_host(id):
         print(f"{reseña.id_resena}")
         calificacion = reseña.calificacion
         puntaje = puntaje + calificacion
+        auto = Auto.query.filter_by(id_auto=reseña.id_auto).first()
+        arrendatario = User.query.get(reseña.id_arrendatario)
+         # Verifica si el auto fue encontrado
+        if auto:
+            print(f"ID del dueño del auto: {arrendatario.id}")
+            todos_los_arrendatarios.append(arrendatario)
     
     if contador == 0:
         dueño_auto = None
@@ -234,11 +233,8 @@ def perfil_host(id):
                 arrendatarios.append(arrendatario)
             else:
                 print("Auto no encontrado para la reseña") 
-            
     
-        
-    
-    return render_template("perfilhost.html", user=usuario, contador=contador, promedio=promedio,ultimas_dos_reseñas=ultimas_dos_reseñas, imagen_perfil=imagen_perfil,dueños=dueños,arrendatarios=arrendatarios, reseñas=reseñas)
+    return render_template("perfilhost.html", user=usuario, todos_los_arrendatarios=todos_los_arrendatarios, contador=contador, promedio=promedio,ultimas_dos_reseñas=ultimas_dos_reseñas, imagen_perfil=imagen_perfil,dueños=dueños,arrendatarios=arrendatarios, reseñas=reseñas)
 
 marcas = [
     "Alfa Romeo",
