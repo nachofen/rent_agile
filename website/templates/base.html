@@ -71,7 +71,7 @@
             
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                     {% if request.path == '/host' or request.path == '/agregar-vehiculo' or request.path == '/mis-vehiculos' or request.path == '/ver-vehiculo' %}
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        <a class="dropdown-item" href="/perfilhost/{{ current_user.id }}"">Perfil(propietario)</a>
                         <a class="dropdown-item" href="/mis-datos">Cuenta</a>
                         <a class="dropdown-item" href="host/mis-reservas">Mis Reservas</a>
                         <a class="dropdown-item" href="/agregar-vehiculo">Agregar Vehiculo</a>
