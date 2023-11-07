@@ -85,6 +85,7 @@ class Reseña(db.Model):
     calificacion_comunicacion = db.Column(db.Integer)
     calificado_por = db.Column(db.Integer)
     calificando_a = db.Column(db.Integer)
+    fecha = db.Column(db.Date, nullable=False)
 
 
 

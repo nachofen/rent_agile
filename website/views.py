@@ -873,6 +873,7 @@ def calificar(id):
     if current_user.id != reserva.id_usuario:
         flash('Esta reserva no le pertenece.', 'error')
         return redirect(url_for('views.mis_reservas'))
+    fecha_hoy = datetime.now().date()
     car_to_msg = Auto.query.get_or_404(reserva.id_auto)
     imagenes = car_to_msg.imagenes_auto
     if request.method == 'POST':
@@ -897,7 +898,8 @@ def calificar(id):
             id_auto=reserva.id_auto,
             id_arrendatario=current_user.id,
             calificado_por=current_user.id,
-            calificando_a=car_to_msg.usuario_id
+            calificando_a=car_to_msg.usuario_id,
+            fecha=fecha_hoy
         )
         db.session.add(nueva_reseña)
         reserva.calificado_por_arrendatario = True
@@ -922,6 +924,7 @@ def calificar_host(id):
     if current_user.id != owner_id.id:
         flash('Esta reserva no le pertenece.', 'error')
         return redirect(url_for('views.mis_reservas'))
+    fecha_hoy = datetime.now().date()
     if request.method == 'POST':
         calificacion_limpieza = request.form.get('calificacion_limpieza')
         calificacion_puntualidad = request.form.get('calificacion_puntualidad')
@@ -942,7 +945,8 @@ def calificar_host(id):
             id_arrendatario=reserva.id_usuario,
             id_auto=car_to_review.id_auto,
             calificado_por=current_user.id,
-            calificando_a=reserva.id_usuario
+            calificando_a=reserva.id_usuario,
+            fecha=fecha_hoy
         )
         db.session.add(nueva_reseña)
         reserva.calificado_por_dueño = True

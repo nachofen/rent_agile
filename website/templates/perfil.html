@@ -69,7 +69,10 @@
                     {% set dueño = dueños_autos[i] %}
                     <div class="evaluacion">
                         <p>"{{ reseña.comentario }}"</p>
+                        <br>
                         <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                        <br><br>
+                        <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
                     </div>
                 {% endfor %}
             </div>
