@@ -48,6 +48,7 @@
                 <img src="/{{ imagen_perfil }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
                 <div class="derecha">
                 <p> {{contador}} evaluaciones</p>
+                <hr style="color: rgb(177, 177, 194); background-color: rgb(187, 187, 209); height: 1px;">
                 <p>Calificacion {{promedio}} puntos</p>
                 </div>
             </li>
@@ -59,28 +60,30 @@
             </li>      
         </ul>
     </div>
-    <div id="todo-list">
+    <div id="todo-listo">
         <h3>Evaluaciones a {{user.nombre}}</h3>
-            {% if contador >= 2 %} 
+        {% if contador >= 2 %}
+            <div class="evaluaciones-container">
                 {% for i in range(2) %}
-                    
                     {% set reseña = ultimas_dos_reseñas[i] %}
                     {% set dueño = dueños_autos[i] %}
-                    <li>
-                        <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
-                        <p>{{ reseña.comentario }}</p>
-                    </li>
+                    <div class="evaluacion">
+                        <p>"{{ reseña.comentario }}"</p>
+                        <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                    </div>
                 {% endfor %}
-            {% elif contador == 1 %}
-                <li>
-                    <img src="/{{ dueño_auto.image_path }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
-                    <p>{{ dueños_reseñas.comentario }}</p>
-                </li>
-            {% else %}
-                <p> no tiene reseñas</p>
-            {% endif %}
+            </div>
+        {% elif contador == 1 %}
+            <div class="evaluacion">
+                <p>"{{ reseñas[0].comentario }}"</p>
+                <img src="/{{ dueño_auto.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+            </div>
+        {% else %}
+            <p> no tiene reseñas</p>
+        {% endif %}
         <h4>Ver todas las ({{contador}}) Reseñas</h4>
     </div>
+    
 </div>
     <br> <br>
     <br><br><br>

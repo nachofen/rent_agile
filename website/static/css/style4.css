@@ -263,11 +263,21 @@
 }
 /* Estilos para la lista de tareas */
 #todo-list {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  background-color: rgba(236, 15, 15, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     padding: 16px;
-    max-width: 500px; /* Aumenta el ancho del contenedor */
+    width: 350px; /* Aumenta el ancho del contenedor */
+    margin-bottom: -20px; 
+    margin: 0 auto;
+  }
+  #todo-listo {
+    background-color: rgba(236, 15, 15, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    padding: 16px;
+    color: white;
+    max-width: 800px; /* Aumenta el ancho del contenedor */
     margin-top: -20px; 
     margin: 0 auto;
   }
@@ -275,7 +285,26 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    color: white;
   }
+  .evaluaciones-container {
+    display: flex; /* Esto muestra los contenedores en una línea horizontal */
+    width: 700px;
+    
+    
+    /* Puedes ajustar el espaciado y otros estilos según tus necesidades */
+}
+
+.evaluacion {
+    margin-right: 20px; /* Espaciado entre las evaluaciones */
+    
+    border-radius: 15px;
+    padding: 3px 6px; 
+    width: 700px;
+    border: 2px solid rgba(240, 233, 233, 0.158);
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
   #todo-list h2 {
     text-align: center;
     color: red;

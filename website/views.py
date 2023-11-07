@@ -153,7 +153,6 @@ def perfil_usuario(id):
                 dueños_autos.append(dueño_auto)
         else:
             print("Auto no encontrado para la reseña") 
-        
     else:
         ultimas_dos_reseñas = reseñas[-2:]
         for reseña in ultimas_dos_reseñas:
@@ -172,7 +171,7 @@ def perfil_usuario(id):
     
         
     
-    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto)
+    return render_template("perfil.html", user=usuario, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto, reseñas=reseñas)
 
 marcas = [
     "Alfa Romeo",
