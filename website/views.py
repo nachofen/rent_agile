@@ -112,7 +112,9 @@ def agregar_vehiculo():
 def perfil_usuario(id):
     """perfil de usuario"""
     from .models import Reseña, Reserva, User, Auto
-    usuario = User.query.get(id)
+    usuario = User.query.get(current_user.id)
+
+    usuario_perfil = User.query.get(id)
     if not usuario:
         flash('El usuario no existe.', category='error')
         return redirect(url_for('views.home'))
@@ -120,7 +122,7 @@ def perfil_usuario(id):
     reseñas = Reseña.query.filter_by(id_arrendatario=id, calificando_a=id).all()
     dueños_reseñas = []
     dueños_autos = []
-    imagen_perfil = usuario.image_path
+    imagen_perfil = usuario_perfil.image_path
     promedio = 0
     puntaje = 0
     ultimas_dos_reseñas = []
@@ -163,14 +165,16 @@ def perfil_usuario(id):
             print("Auto no encontrado para la reseña") 
         dueños_reseñas.append(dueño)
     
-    return render_template("perfil.html", user=usuario, todos_los_dueños=todos_los_dueños, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto, reseñas=reseñas)
+    return render_template("perfil.html", user=usuario, usuario_perfil=usuario_perfil ,todos_los_dueños=todos_los_dueños, contador=contador, promedio=promedio, imagen_perfil=imagen_perfil,dueños_autos=dueños_autos,ultimas_dos_reseñas=ultimas_dos_reseñas,dueños_reseñas=dueños_reseñas, dueño_auto=dueño_auto, reseñas=reseñas)
 
 @views.route('/perfilhost/<int:id>')
 @login_required
 def perfil_host(id):
     """perfil de usuario"""
     from .models import Reseña, Reserva, User, Auto
-    usuario = User.query.get(id)
+    usuario = User.query.get(current_user.id)
+
+    usuario_perfil = User.query.get(id)
     if not usuario:
         flash('El usuario no existe.', category='error')
         return redirect(url_for('views.home'))
@@ -179,7 +183,7 @@ def perfil_host(id):
     
     arrendatarios = []
     dueños = []
-    imagen_perfil = usuario.image_path
+    imagen_perfil = usuario_perfil.image_path
     promedio = 0
     puntaje = 0
     ultimas_dos_reseñas = []
@@ -234,7 +238,7 @@ def perfil_host(id):
             else:
                 print("Auto no encontrado para la reseña") 
     
-    return render_template("perfilhost.html", user=usuario, todos_los_arrendatarios=todos_los_arrendatarios, contador=contador, promedio=promedio,ultimas_dos_reseñas=ultimas_dos_reseñas, imagen_perfil=imagen_perfil,dueños=dueños,arrendatarios=arrendatarios, reseñas=reseñas)
+    return render_template("perfilhost.html", user=usuario,usuario_perfil=usuario_perfil, todos_los_arrendatarios=todos_los_arrendatarios, contador=contador, promedio=promedio,ultimas_dos_reseñas=ultimas_dos_reseñas, imagen_perfil=imagen_perfil,dueños=dueños,arrendatarios=arrendatarios, reseñas=reseñas)
 
 marcas = [
     "Alfa Romeo",
