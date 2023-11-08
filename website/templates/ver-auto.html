@@ -22,12 +22,15 @@
     <br>
     <h4> Tus Autos Disponibles</h4>
     <h6> Edita y Borra</h6>
+
     <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
     <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET">
       <button type="submit" class="btn btn-primary-ver">Editar Vehículo</button>
     </form><br>
     <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
-      <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
+     
+      <button type="submit" class="btn btn-danger">Borrar Vehículo</button> 
+      <br><hr>
     </form> 
     {% else %}
     <div class="message-rent-container">
