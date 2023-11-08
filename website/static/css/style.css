@@ -881,8 +881,15 @@ form input[type="date"] {
 .date-container .form-group {
   margin-bottom: 10px;
 }
-
-
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* Ajusta el espacio entre los campos de fecha y los botones */
+}
+.button-container button {
+  margin-right: 5px; /* Espacio entre los botones "Alquilar" y "Enviar mensaje" */
+}
 /* Estilos para las etiquetas más pequeñas */
 .small-label {
   font-size: 9px; 
