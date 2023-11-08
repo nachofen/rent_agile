@@ -670,6 +670,7 @@ ul.image-gallery img {
   border-radius: 14px;
   transition: transform 0.3s;
   width: 45%; 
+  
 }
 
 /* Estilos para los detalles del automóvil en una tarjeta en dispositivos móviles */
@@ -754,7 +755,7 @@ label {
 
 .image-gallery img {
   max-width: 100%;
-  max-height: 250px;
+  max-height: 380px;
   height: auto;
 }
 
@@ -881,18 +882,51 @@ form input[type="date"] {
   margin-bottom: 10px;
 }
 
+
 /* Estilos para las etiquetas más pequeñas */
 .small-label {
   font-size: 9px; 
 }
+/* Estilos para el contenedor de fechas */
+.date-containero {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  margin-bottom: 20px; /* Espacio entre las cajas de fecha */
+}
 
+.date-containero .form-group {
+  margin-right: 0px; /* Espacio entre las cajas de fecha */
+  display: flex;
+  flex-direction: column; /* Alinea el contenido verticalmente */
+}
+
+/* Estilos para las etiquetas más pequeñas */
+.small-label {
+  font-size: 10px;
+}
+
+#fecha_inicio,
+#fecha_fin {
+  width: 120px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  transition: all 0.3s; /* Agrega una transición suave de 0.3 segundos */
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+#fecha_inicio:hover,
+#fecha_fin:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 70px;
+}
 /* Estilos para las cajas de fecha */
 form input[type="date"] {
   width: 100%;
   height: 30px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+
   transition: border 0.2s;
 }
 
