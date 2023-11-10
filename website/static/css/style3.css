@@ -6,6 +6,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 body {
   font-family: 'MuseoModerno', sans-serif;
   margin: 0;
@@ -13,6 +14,7 @@ body {
   color: #fff;
   background-color: white;
   overflow-x: hidden; 
+  
 }
 
 /* Estilos para la barra de navegación en pantallas pequeñas */
@@ -287,177 +289,98 @@ p {
   margin-right: 5px; /* Espacio entre las estrellas */
 }
 
-
+/* pantallas  */
 
 
 /* Estilos para las secciones como-funciona */
+
+/* Contenedor para los elementos */
+
+.como-funciona-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para los divs como-funciona */
 .como-funciona-card {
-  position: relative; /* Necesario para el uso de pseudo-elemento ::before */
   padding: 20px;
-  margin: 20px 0;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); 
   transition: background-color 0.4s;
-  color: #fff;
+  color: #ffffff;
+  width: 40%; 
+  height: 90%; /* Ajusta altura */
+  margin-right: 200px; /* Ajusta el espacio entre los divs */
+}
+
+.img-fondo {
+  background-color: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(2px); 
+  border-radius: 19px;
+  
+}
+
+#publicar-auto {
+  background: url('/static/img/uploads/fondo-como-fun.jpg') center/cover no-repeat; 
+}
+
+#buscar-auto {
+  background: url('/static/img/uploads/carcomo.jpg') center/cover no-repeat; 
+}
+
+
+/* Estilo para el div mediafrase */
+.mediafrase {
+  text-align: center;
+  margin: 20px 0;
+}
+.mediafrase {
+  padding-top: 20px;    
+  padding-bottom: 20px;
 }
 
 h2 {
   color: rgb(255, 0, 0); 
 }
 
-.como-funciona-card::before {
+.como-funciona-card p {
+  color: rgb(252, 255, 216);
+  font-size: 18px;
+  line-height: 1.5;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* titulos tarjetas como funciona */.titulo-contenedor {
+  overflow: hidden;
+  position: relative; /* Añadido para asegurar posición relativa */
+}
+
+.titulo-llamativo {
+  color: #ff0000;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.titulo-llamativo::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/static/img/uploads/comoroute2.jpg'); 
-  background-color: rgba(0, 0, 0, 0.001);
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-  z-index: -1; 
-} 
-
-.como-funciona-card p {
-  color: #fdffe9c0;
-  font-size: 18px;
-  line-height: 1.5;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-/* destellos */
-.como-funciona-card span {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  color: #fff78c; 
-}
-
-/* destello en cards */@keyframes destello {
-    0% {
-      text-shadow: 0 0 15px rgba(250, 194, 73, 0.8);
-      color: #fff;
-  }
-  25% {
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-      color: #d6b637;
-  }
-  50% {
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); 
-      color: #fff; 
-  }
-  75% {
-      text-shadow: 0 0 15px rgba(165, 159, 159, 0.8);
-      color: #e7d489; 
-  }
-  100% {
-      text-shadow: 0 0 15px rgba(252, 121, 121, 0.8);
-      color: #f59d9d; 
-  }
-}
-
-.como-funciona-card span {
-  animation: destello 2 infinite; 
-}
-
-
-.como-funciona-card span {
-  animation: destello 3s infinite; /* Aplica la animación de destello */
-}
-
-
-/* Define la animación */
-@keyframes entradaDesdeAbajo {
-  from {
-    transform: translateY(100%); /* Empieza fuera de la vista, debajo */
-  }
-  to {
-    transform: translateY(0); /* Termina en su posición normal */
-  }
-}
-
-/* Aplica la animación a las tarjetas */
-.como-funciona-card {
-  animation: entradaDesdeAbajo 1s ease forwards;
-}
-
-/* Establece un retraso para que las tarjetas entren una por una */
-.como-funciona-card:nth-child(1) {
-  animation-delay: 1.5s; 
-}
-
-.como-funciona-card:nth-child(1) {
-  animation-delay: 1.7s; 
-}
-
-/* slider estrellas en como-funciona */
-.star-slider {
-  text-align: center;
-  padding: 20px 0;
-  overflow: hidden;
+  left: -10px; 
   width: 100%;
-}
-.star {
-  font-size: 24px;
-  color: gold;
-  display: inline-block;
-  margin: 0 20px;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 2%, rgba(255, 0, 0, 0) 22%);
+  animation: movimientoReflejo 9s linear infinite;
 }
 
-/* slider frases en como-funciona */
-
-.testimonial-title, .testimonial-slide p {
-  color: #fff; 
-}
-
-.testimonial-title-in {
-  text-align: center;
-  font-size: 16px; 
-  color: white;
-  position: relative;
-  margin-top: 40px;
-}
-
-.testimonial-title-in::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 2px; /* Ajusta el grosor de la línea, por ejemplo, 2px para hacerla más fina */
-  background: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.7) 100%);
-  animation: shine 3s linear infinite;
-}
-
-@keyframes shine {
+@keyframes movimientoReflejo {
   0% {
-    transform: translateX(-150%);
-    background-position: 200% 0;
+    transform: translateX(-88%);
   }
   100% {
-    transform: translateX(150%);
-    background-position: -200% 0;
+    transform: translateX(78%);
   }
 }
-
-.testimonial-slider {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top:45px;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 100%;
-}
-
-.testimonial-slide {
-  display: none;
-  font-size: 16px; /* Ajusta el tamaño del texto a tu preferencia */
-  color: white;
-}
-
-/* Estilo mis-vehiculos.html */
-
 
 /* body para el fondo personalizado */
 .custom-background-ver {
@@ -539,10 +462,10 @@ h2 {
 }
 
 .mediafrasecustomtext {
-  font-size: 19px;
+  font-size: 22px;
   color: white;
   opacity: 0; 
-  animation: fade-in 3s ease-in-out 3.2s forwards; 
+  animation: fade-in 1.5s ease-in-out 2s forwards; 
 }
 
 @keyframes fade-in {
