@@ -1,62 +1,49 @@
 {% extends "base.html" %}
-{% block title %} Inicio {% endblock %}
+{% block title %} Enviar Mensaje {% endblock %}
 
 {% block content %}
-  <p>¿Tienes alguna duda? Escríbele al anfitrión</p>
-  
-  <div class="contact-container">
-    <h3>Ponte en contacto con {{ auto.owner.nombre }} {{ auto.owner.apellido }}</h3>
-    <img src="/{{ imagen_perfil }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
-    
-    <!-- Sección para el precio y la descripción del auto -->
-    <div class="auto-details">
-      <div class="auto-price">
-        <p>{{auto.marca}} {{ auto.modelo }}</p>
-      </div>
-      <div class="auto-price">
-        <p>Precio: {{ auto.tarifa }}$</p>
-      </div>
-      <div class="auto-description">
-        <p>Descripción: {{ auto.descripcion }}</p>
-      </div>
-      <div class="auto-image">
+
+<link rel="stylesheet" href="/static/css/login.css">
+
+  <div class="fondo-mensaje custom-container">
+    <p class="conversation-title">¿Tienes alguna duda? Escríbele al anfitrión</p>
+
+    <div class="custom-contact-container">
+      <h3>Ponte en contacto con {{ auto.owner.nombre }} {{ auto.owner.apellido }}</h3>
+      <img src="/{{ imagen_perfil }}" alt="Foto de perfil" class="custom-rounded-circle" width="60" height="60">
+
+      <!-- Contenedor para información e imágenes del auto -->
+      <div class="custom-auto-container">
+        <!-- Sección para el precio y la descripción del auto -->
+        <div class="custom-auto-details">
+          <div class="custom-auto-price">
+            <p>{{auto.marca}} {{ auto.modelo }}</p>
+          </div>
+          <div class="custom-auto-price">
+            <p>Precio: {{ auto.tarifa }}$</p>
+          </div>
+          <div class="custom-auto-description">
+            <p>Descripción: {{ auto.descripcion }}</p>
+          </div>
+        </div>
+
+        <!-- Sección para la imagen del auto -->
+        <div class="custom-auto-image">
           {% if imagenes[0] %}
-            <img src="/{{ imagenes[0].url }}" alt="Imagen del Auto" width="150" height="100">
+            <img src="/{{ imagenes[0].url }}" alt="Imagen del Auto">
           {% else %}
             <p>No hay imágenes disponibles</p>
           {% endif %}
+        </div>
       </div>
     </div>
+
+    <form action="/enviar-mensaje/{{ auto.id_auto }}" method="post" class="custom-form-group message-form">
+      <label for="mensaje" class="message-content">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" cols="50" class="custom-textarea" required></textarea>
+      <button type="submit" class="send-button">Enviar mensaje</button>
+      <br>
+    </form>
   </div>
-  
-  <form action="/enviar-mensaje/{{ auto.id_auto }}" method="post">
-    <div class="form-group">
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea>
-    </div>
-    <button type="submit">Enviar mensaje</button>
-  </form>
-  
-  <!-- Estilos CSS para organizar el contenido -->
-  <style>
-    .contact-container {
-      display: flex;
-      
-    }
-
-    .auto-details {
-      margin-left: 20px; /* Ajusta el margen según tu preferencia */
-      display: flex;
-      flex-direction: column; /* Coloca los elementos uno encima del otro */
-      align-items: center; /* Centra horizontalmente */
-    }
-
-    .auto-details .auto-price {
-      margin-bottom: 10px; /* Espacio entre el precio y la descripción */
-    }
-
-    .auto-details img {
-      margin-top: 10px; /* Espacio entre la descripción y la imagen */
-    }
-  </style>
+  <br>
 {% endblock %}

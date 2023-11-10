@@ -2,87 +2,86 @@
 {% block title %} Calificar {% endblock %}
 
 {% block content %}
-
 <link rel="stylesheet" href="/static/css/styles.css">
 
 <body class="body-calificar">
+  <div class="contact-container">
+    <h2>Panel de Calificaciones</h2>
 
+    <div class="auto-details">
+      <div class="rating-and-image">
+        <div class="auto-image">
+          {% if imagenes[0] %}
+          <div class="auto-image">
+            <img src="/{{ imagenes[0].url }}" alt="Imagen del Auto">
+          </div>
+          {% else %}
+            <p>No hay imágenes disponibles</p>
+          {% endif %}
+        </div>
 
-  
-<div class="contact-container">
+        <div class="text-center">
+          <div class="rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </div>
+    
 
-  <h2>Panel de Calificaciones</h2>
-  <div class="rating">
-    <span class="star">&#9733;</span>
-    <span class="star">&#9733;</span>
-    <span class="star">&#9733;</span>
-    <span class="star">&#9733;</span>
-    <span class="star">&#9733;</span>
-  </div>
-  <h3>Estás calificando al {{ auto.marca }} {{ auto.modelo }} de {{ auto.owner.nombre }} {{ auto.owner.apellido }}</h3>
+      <h3>Estás calificando al {{ auto.marca }} {{ auto.modelo }} de {{ auto.owner.nombre }} {{ auto.owner.apellido }}</h3>
 
-  <div class="auto-details">
-    <div class="auto-image">
-      {% if imagenes[0] %}
-        <img src="/{{ imagenes[0].url }}" alt="Imagen del Auto">
-      {% else %}
-        <p>No hay imágenes disponibles</p>
-      {% endif %}
+      <form method="post" class="form-calificar">
+        <!-- Calificaciones y comentarios aquí -->
+        <!-- Calificación para el estado del vehículo -->
+        <label for="calificacion_estado">Calificación para el estado del vehículo:</label>
+        <select class="form-control" id="calificacion_estado" name="calificacion_estado">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <!-- Calificación para la limpieza del vehículo -->
+        <label for="calificacion_limpieza">Calificación para la limpieza del vehículo:</label>
+        <select class="form-control" id="calificacion_limpieza" name="calificacion_limpieza">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <!-- Calificación para la puntualidad de entrega del vehículo -->
+        <label for="calificacion_puntualidad">Calificación para la puntualidad de entrega del vehículo:</label>
+        <select class="form-control" id="calificacion_puntualidad" name="calificacion_puntualidad">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <!-- Calificación para la comunicación del dueño del vehículo -->
+        <label for="calificacion_comunicacion">Calificación para la comunicación del dueño del vehículo:</label>
+        <select class="form-control" id="calificacion_comunicacion" name="calificacion_comunicacion">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <!-- Comentario público para el dueño del vehículo -->
+        <br>
+        <label for="comentario">¿Desea dejar algún comentario para el dueño del vehículo? Este comentario será público y podrá ser visto desde su perfil:</label>
+        <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
+        
+        <button type="submit" class="btn btn-primary">Enviar Calificación</button>
+      </form>
     </div>
   </div>
-</div>
-
-<form method="post">
-  <div class="form-calificar">
-    <!-- Calificación para el estado del vehículo -->
-    <label for="calificacion_estado">Calificación para el estado del vehículo:</label>
-    <select class="form-control" id="calificacion_estado" name="calificacion_estado">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <!-- Calificación para la limpieza del vehículo -->
-    <label for="calificacion_limpieza">Calificación para la limpieza del vehículo:</label>
-    <select class="form-control" id="calificacion_limpieza" name="calificacion_limpieza">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <!-- Calificación para la puntualidad de entrega del vehículo -->
-    <label for="calificacion_puntualidad">Calificación para la puntualidad de entrega del vehículo:</label>
-    <select class="form-control" id="calificacion_puntualidad" name="calificacion_puntualidad">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <!-- Calificación para la comunicación del dueño del vehículo -->
-    <label for="calificacion_comunicacion">Calificación para la comunicación del dueño del vehículo:</label>
-    <select class="form-control" id="calificacion_comunicacion" name="calificacion_comunicacion">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <!-- Comentario público para el dueño del vehículo -->
-    <br>
-    <label for="comentario">¿Desea dejar algún comentario para el dueño del vehículo? Este comentario será público y podrá ser visto desde su perfil:</label>
-    <textarea class="form-control" id="comentario" name="comentario" rows="4"></textarea>
-    
-    <button type="submit" class="btn btn-primary">Enviar Calificación</button>
-  </div>
-</form>
-
-<br><br>
 </body>
 {% endblock %}

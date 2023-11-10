@@ -1,35 +1,104 @@
-html,
-body {
-  height: 100%;
-}
+/* Estilos generales y enviar mensaje */
 
 body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF9777' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF9777' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
+.custom-container {
   margin: auto;
+  max-width: 800px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.795);
+  border-radius: 10px;
+  margin-top: 50px;
+  box-shadow: 0 0 17px rgba(255, 255, 255, 0.4);
+  outline: 1px solid rgba(240, 240, 240, 0.856);
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.conversation-title {
+  font-size: 24px;
+  margin-top: 20px;
+  color: rgb(12, 11, 11);
 }
 
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.custom-contact-container {
+  background: linear-gradient(rgb(255, 0, 0), rgba(80, 0, 0, 0.911));
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-.form-signin input[type="password"] {
+.custom-contact-container h3 {
+  color: white;
+}
+
+.custom-rounded-circle {
+  border-radius: 50%;
+}
+
+.custom-auto-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border: 3px solid rgb(255, 255, 255); 
+  border-radius: 15px;
+  padding: 10px; 
+}
+
+.custom-auto-details {
+  width: 60%;
+  color: white;
+  font-weight: 500;
+}
+
+.custom-auto-price p,
+.custom-auto-description p {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+}
+
+.custom-auto-image {
+  width: 30%;
+}
+
+.custom-auto-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.custom-form-group {
+  margin-top: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.custom-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.send-button {
+  background-color: #a71010;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.send-button:hover {
+  background-color: #00b318;
+}
+
+/* Estilo de fondo-mensaje */
+
+.fondo-mensaje {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
