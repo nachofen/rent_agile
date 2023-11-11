@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, login_user, logout_user, current_user
 import os
+from decimal import Decimal
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
@@ -435,6 +436,7 @@ def mis_reservas_host():
 
     return render_template("mis-reservashost.html", user=current_user, reservas_con_imagenes=reservas_con_imagenes, arrendatario=arrendatario)
 
+
 @views.route('/ver-vehiculo/<int:id>', methods=['GET', 'POST'])
 def mostrar_vehiculo(id):
     """shows one car by id"""
@@ -442,8 +444,35 @@ def mostrar_vehiculo(id):
     vehiculo = Auto.query.get_or_404(id)
     imagenes_url = [imagen.url for imagen in vehiculo.imagenes_auto]
     print("Imágenes asociadas:", imagenes_url)
+    
+    if request.method == 'POST':
+        # Obtener las fechas de inicio y fin desde el formulario
+        fecha_inicio = request.form['fecha_inicio']
+        fecha_fin = request.form['fecha_fin']
+
+        # Realizar el cálculo del total (esto depende de cómo manejes las tarifas y las fechas)
+        tarifa_diaria = vehiculo.tarifa  
+        total = calcular_total(fecha_inicio, fecha_fin, tarifa_diaria)
+
+        # Pasa el total y otras variables necesarias a la plantilla
+        return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url, total=format(total,))
 
     return render_template("ver-auto.html", vehiculo=vehiculo, user=current_user, imagenes_url=imagenes_url)
+
+def calcular_total(fecha_inicio, fecha_fin, tarifa_diaria):
+    try:
+        fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+        fecha_fin = datetime.strptime(fecha_fin, '%Y-%m-%d')
+
+        if fecha_inicio >= fecha_fin:
+            raise ValueError("La fecha de inicio debe ser anterior a la fecha de fin.")
+    except ValueError as e:
+        return f"Error: {e}"
+
+    dias_alquiler = (fecha_fin - fecha_inicio).days
+    total = dias_alquiler * Decimal(str(tarifa_diaria))
+    return total
+
 
 @views.route('/ver-auto', methods=['GET'])
 def ver_auto():
