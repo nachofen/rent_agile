@@ -21,7 +21,7 @@ psutil==5.9.5
 pycodestyle==2.10.0
 PyGObject==3.36.0
 pymongo==4.5.0
-python-apt==2.0.1+ubuntu0.20.4.1
+#python-apt==2.0.1+ubuntu0.20.4.1
 requests==2.22.0
 requests-unixsocket==0.2.0
 six==1.14.0
