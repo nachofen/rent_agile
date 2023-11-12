@@ -647,7 +647,37 @@ ul.image-gallery img {
   background-size: cover;
   overflow-x: hidden;
 }
+/* estilos para el info importante pop up */
 
+.popup {
+  display: none;
+  position: fixed;
+  border-radius: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 10px; /* Añade bordes redondeados */
+  z-index: 1000;
+}
+.popup button#info-button {
+  padding: 8px 12px;
+  border-radius: 5px !important;
+  font-size: 14px;
+  cursor: pointer; 
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
 
 /* Estilo para el título del automóvil */
 .car-title {
@@ -747,7 +777,8 @@ label {
 
 /* Estilos para el contenedor de imágenes del vehículo */
 .car-image-gallery {
-  margin-top: 20px;
+  margin-top: -15px;
+  margin-bottom: 200px;;
 }
 
 /* Estilos para la galería de imágenes */
