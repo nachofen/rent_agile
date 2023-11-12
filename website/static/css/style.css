@@ -48,8 +48,10 @@ body {
 
 /* texto en div */
 .texto-destacado {
-  background-color: #F5A623;
-  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); 
+  background: linear-gradient(45deg, #2c2c2c, #918f8f);
   padding: 5px;
   border-radius: 5px;
   text-align: center;
@@ -639,7 +641,7 @@ ul.image-gallery img {
 
 /* body para el fondo personalizado */
 .custom-background-ver {
-  background-color: #333333;
+  background-color: #ff0000;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23000000'/%3E%3Cstop offset='1' stop-color='%23270000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF0000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF0000' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
@@ -653,8 +655,13 @@ ul.image-gallery img {
   font-size: 28px; 
   font-weight: 600; 
   margin-bottom: 10px; 
+  padding-top: 12px;
+  margin: 0 auto;
   text-shadow: 2px 2px 3px rgba(255, 51, 51, 0.582);
 }
+
+
+
 
 /* Estilos para el contenedor de botones */
 .buttons-container {
@@ -792,9 +799,15 @@ form input[type="date"] {
 }
 
 /* Estilos para la sección de mensajes y alquiler   /ver-vehiculo */
+
+/* Estilos para la sección de mensajes y alquiler */
+.rental-section {
+  margin-top: 20px;
+}
+
 .message-rent-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   border-radius: 14px;
   background-image: url('/static/img/uploads/banner-ver.jpg');
@@ -806,54 +819,24 @@ form input[type="date"] {
 }
 
 .message-rent-container h3 {
-  margin: 0; /* Elimina el margen predeterminado del encabezado h3 */
-}
-
-
-/* Estilos para el contenedor de fechas */
-.date-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.date-container .form-group {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.date-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-
-/* Estilos para el contenedor de fechas */
-.date-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.date-container .form-group {
-  flex: 1;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: column; /* Alinea el contenido verticalmente */
-}
-
-.date-container label {
-  margin-bottom: 5px;
+  margin: 0;
 }
 
 /* Estilos para el contenedor de fechas */
+.date-containero,
 .date-container {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
 }
 
+.date-containero .form-group,
 .date-container .form-group {
-  flex: 1;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .date-container label {
@@ -862,76 +845,163 @@ form input[type="date"] {
 }
 
 
-/* Estilos para el contenedor de fechas */
-.date-container {
-  margin-bottom: 20px; /* Agrega espacio entre las cajas de fecha */
-}
 
-.date-container .form-group {
-  margin-bottom: 10px; /* Espacio entre las cajas de fecha y las etiquetas */
-}
-
-.date-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-
-/* Estilos para el contenedor de fechas */
-.date-container {
-  margin-bottom: 20px;
-}
-
-.date-container .form-group {
+/* Estilo para el contenedor de los elementos Total, Alquilar y Enviar mensaje */
+.form-groupp {
+  display: flex;
+  align-items: center; 
   margin-bottom: 10px;
 }
-.button-container {
+
+#total {
+  width: 100px; 
+  height: 21px; 
+  margin-top: 15px;
+  border-radius: 5px;
+  border-color: rgb(182, 1, 1);
+  background-color: rgba(143, 140, 140, 0.1); 
+  box-shadow: 0 0 5px rgb(202, 32, 2); 
+}
+.form-groupp label {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.719); /
+}
+
+/* Estilo para el contenedor de botones */
+
+.button-container2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px; /* Ajusta el espacio entre los campos de fecha y los botones */
-}
-.button-container button {
-  margin-right: 5px; /* Espacio entre los botones "Alquilar" y "Enviar mensaje" */
-}
-/* Estilos para las etiquetas más pequeñas */
-.small-label {
-  font-size: 9px; 
-}
-/* Estilos para el contenedor de fechas */
-.date-containero {
-  display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente */
-  align-items: center; /* Centra los elementos verticalmente */
-  margin-bottom: 20px; /* Espacio entre las cajas de fecha */
+  margin: auto;
 }
 
-.date-containero .form-group {
-  margin-right: 0px; /* Espacio entre las cajas de fecha */
-  display: flex;
-  flex-direction: column; /* Alinea el contenido verticalmente */
+.button-container2 form {
+  margin-right: 5px;
 }
+
+.button-container2 button {
+  font-size: 14px; /* Ajusta el tamaño del texto del botón */
+  padding: 5px 15px; 
+  margin-left: 20px;
+  margin-right: 20px;
+  margin: 0 5px;
+}
+
+
+
+
+#fecha_inicio,
+#fecha_fin {
+  width: 8em; 
+  height: 20px; 
+  background-color: rgb(93, 255, 44);
+  border: none;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+/* Estilos para las cajas de fecha seleccionadas */
+#fecha_inicio:valid,
+#fecha_fin:valid {
+  color: #ffffff; 
+  background: linear-gradient(to right, rgba(170, 3, 3, 0.5), rgb(0, 0, 0)); 
+  color: white; 
+}
+
+#fecha_inicio:hover,
+#fecha_fin:hover {
+  background-color: rgb(253, 5, 5);
+  border-radius: 70px;
+}
+
+
+
+/* Estilos para las cajas de fecha */
+form input[type="date"] {
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  transition: border 0.2s;
+}
+
+/* Estilos cuando se enfoca en la caja de fecha */
+form input[type="date"]:focus {
+  border: 1px solid #33cc33;
+  outline: none;
+}
+
+/* Estilos para el contenedor de botones */
+.button-container {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+  margin: 5px;
+}
+
+
+/* Ajustes para mantener los botones en la misma línea */
+@media (min-width: 768px) {
+  .button-container {
+    flex-direction: row;
+  }
+
+  .button-container button {
+    margin: 5px;
+  }
+}
+
+
 
 /* Estilos para las etiquetas más pequeñas */
 .small-label {
   font-size: 10px;
 }
-
 #fecha_inicio,
 #fecha_fin {
-  width: 120px;
-  height: 40px;
-  background-color: white;
-  border: none;
-  transition: all 0.3s; /* Agrega una transición suave de 0.3 segundos */
-  text-align: center; /* Centra el texto horizontalmente */
+  width: 80px;
+  height: 30px;
+  background-color: rgb(99, 1, 1);
+  border: 1px solid transparent;
+  border-radius: 20px; 
+  border-color: white;
+  text-align: center;
+  font-size: 0.8em;
+  transition: all 0.3s;
+  text-align: center;
 }
 
 #fecha_inicio:hover,
 #fecha_fin:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 70px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px; 
 }
+
+
+#fecha_inicio:hover,
+#fecha_fin:hover {
+  background-color: rgba(221, 12, 12, 0.712);
+  border-radius: 70px;
+  color: rgb(255, 255, 255);
+}
+
+#fecha_inicio::placeholder,
+#fecha_fin::placeholder {
+  font-size: 0.9em; 
+  color: #ffffff; 
+}
+
+#fecha_inicio:hover::placeholder,
+#fecha_fin:hover::placeholder {
+  color: #03ee03; 
+}
+
+
 /* Estilos para las cajas de fecha */
 form input[type="date"] {
   width: 100%;

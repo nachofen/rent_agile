@@ -34,43 +34,43 @@
             <br><hr>
         </form>
         {% else %}
+
+        <div class="rental-section">
         <div class="message-rent-container">
             <h3> Reserva y Descubre Nuevos Destinos</h3>
         </div>
-        <br>
-
-        <br>
+       
+        <div class="car-details">
+            <br>
         <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
-
+        </div>
         <div id="fecha-fields">
             <h6>Selecciona las Fechas de Reserva</h6>
             <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
                 <div class="date-containero">
                     <div class="form-group">
-                        <input type="text" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" required>
+                        <input type="text" id="fecha_inicio" name="fecha_inicio" placeholder="Check-In" required>
                     </div>
                     &nbsp; &nbsp;
                     <div class="form-group">
-                        <input type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha de Fin" required>
+                        <input type="text" id="fecha_fin" name="fecha_fin" placeholder="Check-Out" required>
                     </div>
                 </div>
-
-                <!-- Agrega un campo para mostrar el total -->
-                <div class="form-group">
-                  <label>Total:</label>
-                  <input type="text" id="total" name="total" readonly>
-              </div>
-              
-
-                <div class="button-container">
-                    <button type="submit" class="btn btn-primary-ver">Alquilar</button>
-                </div>
-            </form>
-            <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
-                <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button>
-            </form>
-        </div>
-        </div>
+                            
+                    <div class="button-container2">
+                        <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
+                        <button type="submit" class="btn btn-primary-ver">Alquilar</button>
+                        </form>
+                        <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
+                        <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button>
+                        </form>
+                        <div class="form-groupp">
+                            <label>Total &nbsp;</label>
+                            <input type="text" id="total" name="total" readonly>
+                        </div>
+                    </div>
+                
+                    <hr>  
         {% endif %}
         <!-- Tarjeta de detalles de vehículo (puedes repetir esto para cada vehículo) -->
         <div class="car-card">

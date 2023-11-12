@@ -13,6 +13,7 @@
   <div class="centered-text2">
       <p class="lead">  <!-- saludo  -->
         {% if user.is_authenticated %}
+        
             <small>Bienvenido, {{ user.nombre }}</small> {% endif %} </p>
     <p class="lead">Tu Auto, Tu Aventura</p>
 </div>
@@ -50,10 +51,14 @@
                       </div>
                        </div>
                           </div>
+                          <br>
                           
               <script src="/static/js/divscroll.js"></script>
         
                 <br>
+              <hr>
+              <div class="texto-destacado">
+                <p>Alquiler de Autos:&nbsp; Busca, Compara  y Ahorra </p>
                 <div style="display: flex; justify-content: center;">
                   <section id="seccionalquilar"></section>
                    <!-- Boton buscar auto svg lupa symbol -->
@@ -64,15 +69,9 @@
                       &nbsp;Buscar &nbsp; auto &nbsp;
                   </button>
               </div>
-              <hr>
-              <div class="texto-destacado">
-                <p>Alquiler de Autos:&nbsp; Busca, Compara  y Ahorra </p>
-                <hr>
                 <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
             </div>
-            
-              
-              
+
         <!-- cards autos publicados disponibles --> 
   <div class="cardsgallery" id="autoContainer">
     {% for auto in autos %}
