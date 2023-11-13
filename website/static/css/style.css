@@ -638,6 +638,67 @@ ul.image-gallery img {
   overflow-x: hidden;
 }
 
+/* Estilos para dispositivos móviles  ######### */
+@media screen and (max-width: 768px) {
+  /* Estilos para el contenedor principal */
+  .car-details-container {
+    padding: 10px; /* Reduzca el espacio interno en dispositivos móviles */
+  }
+
+  /* Estilos para la sección de mensajes y alquiler */
+  .rental-section {
+    margin-top: 10px;
+  }
+
+  /* Estilos para el contenedor de fechas */
+  .date-containero,
+  .date-container {
+    flex-direction: column; /* Cambiar a diseño de columna en dispositivos móviles */
+    align-items: center;
+  }
+
+  /* Estilos para las cajas de fecha */
+  #fecha_inicio,
+  #fecha_fin {
+    width: 100%; 
+    margin-bottom: 10px; 
+  }
+
+  /* Estilos para el contenedor de botones */
+  .button-container2 {
+    flex-direction: column;
+  }
+
+  .button-container2 button {
+    margin: 5px 0; 
+  }
+
+  /* Estilo para el contenedor de los elementos Total, Alquilar y Enviar mensaje */
+  .form-groupp {
+    flex-direction: column; 
+  }
+
+  #total {
+    width: 100%; /* Ajuste el ancho para ocupar todo el ancho disponible */
+    margin-top: 10px; /* Agregue espacio entre los elementos en dispositivos móviles */
+  }
+
+  /* Estilo para el contenedor de botones */
+  .button-container2 {
+    flex-direction: column; /* Cambiar a diseño de columna en dispositivos móviles */
+  }
+
+  .button-container2 form {
+    margin-right: 0; /* Elimine el margen derecho en dispositivos móviles */
+  }
+
+  /* Estilos para las etiquetas más pequeñas */
+  .small-label {
+    font-size: 8px; /* Reduzca el tamaño de la etiqueta en dispositivos móviles */
+  }
+}
+
+/* fin estilos dispotivos moviles */
 
 /* body para el fondo personalizado */
 .custom-background-ver {
@@ -649,6 +710,7 @@ ul.image-gallery img {
 }
 /* estilos para el info importante pop up */
 
+
 .popup {
   display: none;
   position: fixed;
@@ -656,18 +718,25 @@ ul.image-gallery img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-width: 70%; 
+  width: 300px; 
+  max-height: 90%;
   padding: 20px;
   background-color: #ffffff;
   border: 2px solid #000000;
-  border-radius: 10px; /* Añade bordes redondeados */
+  border-radius: 10px;
   z-index: 1000;
+  overflow-y: auto; 
 }
+
+
 .popup button#info-button {
   padding: 8px 12px;
   border-radius: 5px !important;
   font-size: 14px;
-  cursor: pointer; 
+  cursor: pointer;
 }
+
 .overlay {
   display: none;
   position: fixed;
@@ -677,6 +746,31 @@ ul.image-gallery img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 900;
+}
+
+/* Estilo para el botón de cerrar en el pop-up */
+.popup button#close-button {
+  background-color: #ccc;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .popup {
+    width: 90%; /* Hacer el pop-up más ancho en dispositivos móviles */
+    max-width: none; /* Eliminar el límite máximo de ancho */
+  }
+
+  .popup button#info-button {
+    width: 100%; /* Hacer que el botón ocupe todo el ancho disponible */
+    margin-bottom: 10px; /* Agregar espacio entre el botón y el contenido */
+  }
 }
 
 /* Estilo para el título del automóvil */
