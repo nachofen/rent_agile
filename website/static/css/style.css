@@ -519,14 +519,26 @@ body.fondo-agregar-auto  {
   align-items: center;
   justify-content: center;
 }
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: none;
+}
 
 #overlay-text {
   font-size: 24px;
   padding: 10px;
 }
 /* Estilo filtro pop-up home */
+
+
 #filtersPopup {
-  display: none; /* Oculta el filtro por defecto */
+  display: none; 
+  z-index: 1000; 
 }
 
 .custom-alert {
@@ -535,7 +547,7 @@ body.fondo-agregar-auto  {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -711,7 +723,7 @@ ul.image-gallery img {
 /* estilos para el info importante pop up */
 
 
-.popup {
+.popup2 {
   display: none;
   position: fixed;
   border-radius: 16px;
@@ -730,7 +742,7 @@ ul.image-gallery img {
 }
 
 
-.popup button#info-button {
+.popup2 button#info-button {
   padding: 8px 12px;
   border-radius: 5px !important;
   font-size: 14px;
@@ -749,7 +761,7 @@ ul.image-gallery img {
 }
 
 /* Estilo para el botón de cerrar en el pop-up */
-.popup button#close-button {
+.popup2 button#close-button {
   background-color: #ccc;
   border: none;
   padding: 5px 10px;

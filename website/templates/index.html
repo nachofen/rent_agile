@@ -191,30 +191,27 @@
         </div>
         <button id="searchButton">Realizar Búsqueda</button>
         <a href="/"><button>Cancelar Búsqueda</button></a>
-  </div>
-
-  <!-- Fondo oscuro detrás del popup -->
-  <div id="overlay" class="overlay"></div>
-   
-</div>
+        <div id="overlay" class="overlay"></div>
+      </div>
+  
   <script>
-    function openFiltersPopup() {
-      var popup = document.getElementById('filtersPopup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'block';
-      overlay.style.display = 'block';
-    }
+   function openFiltersPopup() {
+  var popup = document.getElementById('filtersPopup');
+  var overlay = document.getElementById('overlay');
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+}
 
-    function closeFiltersPopup() {
-      var popup = document.getElementById('filtersPopup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'none';
-      overlay.style.display = 'none';
-    }
-
+function closeFiltersPopup() {
+  var popup = document.getElementById('filtersPopup');
+  var overlay = document.getElementById('overlay');
+  popup.style.display = 'none';
+  overlay.style.display = 'none';
+}
+  
     var openButton = document.getElementById('openFiltersButton');
     openButton.addEventListener('click', openFiltersPopup);
-
+  
     var searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function() {
       var precioMinimo = document.getElementById('precioMinimo').value;
@@ -226,18 +223,11 @@
       // Construye la URL con los parámetros de filtro
       var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca + '&depto=' + filtroDepto;
 
-      // Cierra el popup de filtros
-      closeFiltersPopup();
-
-      // Redirige a la página de resultados con los parámetros
-      window.location.href = url;
     });
-
+  
     var overlay = document.getElementById('overlay');
     overlay.addEventListener('click', closeFiltersPopup);
   </script>
-  
-    
       <!-- Footer -->
       <footer class="footer">
         <p>Conduciendo hacia tus sueños desde 2023 </p>
