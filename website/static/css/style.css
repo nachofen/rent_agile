@@ -527,56 +527,133 @@ body.fondo-agregar-auto  {
 
 
 
-/* Estilos para el panel de búsqueda */
 
-.filter-panel {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 20px black;
-  padding: 20px;
-  width: 80%;
-  margin: 20px auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  max-width: 400px;
-}
 
-/* Estilos para los campos de filtro */
-.filter-panel label,
-.filter-panel input,
-.filter-panel select {
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: black;
-}
+  /* Estilo Contenedor flex para la barra de búsqueda */
 
-/* Estilos para el botón de búsqueda */
-.filter-panel button {
-  width: 100%;
-  padding: 10px;
-  background-color: rgb(196, 16, 16);
-  border: 0;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
+    /* Contenedor flex para la barra de búsqueda */
+    .filter-panel {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      background-color: transparent;
+      padding: 10px;
+    }
 
-/* Estilo al pasar el mouse sobre el botón de búsqueda */
-.filter-panel button:hover {
-  background-color: black;
-}
+    /* Contenido de la barra de búsqueda */
+    .filter-panel-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      justify-content: center;
+      width: 100%;
+    }
 
-/* Media queries para hacer responsive el diseño */
-@media screen and (max-width: 768px) {
-  .filter-panel {
-    width: 90%;
+    /* Contenedor para las etiquetas y selectores */
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 5px;
+    }
+
+    /* Estilos para las etiquetas */
+    label {
+      color: black; /* Color por defecto para las etiquetas */
+    }
+
+    /* Estilo específico para la etiqueta de Marca */
+    label[for="filtroMarca"] {
+      color: white; 
+    }
+
+   
+    label[for="precioMinimo"] {
+      color: white; 
+    }
+
+
+    
+  /* Estilo específico para la caja de Precio Mínimo */
+  label[for="precioMinimo"],
+  input[type="number"]#precioMinimo {
+    margin-right: -60px; 
   }
-}
 
+  input[type="number"]#precioMinimo {
+    width: 90px; 
+  }
+    /* Estilo específico para la etiqueta de Precio Máximo */
+    label[for="precioMaximo"] {
+      color: white; 
+      
+    }
+
+    /* Estilo específico para la etiqueta de Fecha de Inicio */
+    label[for="fechaInicio"] {
+      color: white; 
+    }
+
+    /* Estilo específico para la etiqueta de Fecha de Fin */
+    label[for="fechaFin"] {
+      color: white; /* Cambiado a blanco */
+    }
+
+
+    input[type="date"] {
+      width: 150px; 
+    }
+    /* Estilo específico para la etiqueta de Departamento */
+    label[for="filtroDepto"] {
+      color: white; 
+    }
+
+
+    input[type="number"],
+    select,
+    input[type="date"] {
+      border-radius: 5px; 
+    }
+
+    /* Estilos para los selectores e inputs */
+    select {
+      margin: 9px;
+      width: 100%; 
+    }
+
+    input {
+      margin: 5px;
+      width: calc(50% - 10px);
+    }
+
+    /* Estilos para el botón de búsqueda */
+   
+   .custom-search-button {
+    background-color: #000000; 
+    color: white; 
+    padding: 9px 14px; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    align-items: center;
+   
+  }
+    /* Cambiar el color del botón al pasar el ratón sobre él */
+    .custom-search-button:hover {
+      background-color: rgb(255, 0, 0);
+    }
+
+    /* Media query para ajustar estilos en pantallas más pequeñas */
+    @media (max-width: 600px) {
+      .filter-panel-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-item {
+        width: 100%;
+      }
+    }
 
 
 

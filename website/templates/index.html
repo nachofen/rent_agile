@@ -58,103 +58,121 @@
                 <br>
               <hr>
               <div class="texto-destacado">
-                <p>Alquiler de Autos:&nbsp; Busca, Compara  y Ahorra </p>
-                <div style="display: flex; justify-content: center;">
-                  <section id="seccionalquilar"></section>
-                   <!-- Boton buscar auto svg lupa symbol -->
-                 
-                  
-                      <!-- Filtro panel (inicialmente visible y fijo) -->
-  <div id="filtersPanel" class="filter-panel">
-    <div class="filter-panel-content">
-      <label for="filtroMarca">Marca:</label>
-      <select id="filtroMarca">
-        <option value="todas">Todas las marcas</option>
-                <option value="alfa-romeo">Alfa Romeo</option>
-                <option value="audi">Audi</option>
-                <option value="bmw">BMW</option>
-                <option value="bentley">Bentley</option>
-                <option value="byd">BYD</option>
-                <option value="chevrolet">Chevrolet</option>
-                <option value="chana">Chana</option>
-                <option value="chery">Chery</option>
-                <option value="chrysler">Chrysler</option>
-                <option value="dodge">Dodge</option>
-                <option value="faw">FAW</option>
-                <option value="fiat">Fiat</option>
-                <option value="ford">Ford</option>
-                <option value="geely">Geely</option>
-                <option value="gmc">GMC</option>
-                <option value="honda">Honda</option>
-                <option value="hyundai">Hyundai</option>
-                <option value="isuzu">Isuzu</option>
-                <option value="jac">JAC</option>
-                <option value="jaguar">Jaguar</option>
-                <option value="jeep">Jeep</option>
-                <option value="kia">Kia</option>
-                <option value="landrover">Land Rover</option>
-                <option value="mazda">Mazda</option>
-                <option value="mercedesbenz">Mercedes-Benz</option>
-                <option value="mitsubishi">Mitsubishi</option>
-                <option value="mini">Mini</option>
-                <option value="mg5">MG5</option>
-                <option value="mgt">MG-GT</option>
-                <option value="nissan">Nissan</option>
-                <option value="peugeot">Peugeot</option>
-                <option value="porsche">Porsche</option>
-                <option value="ram">Ram</option>
-                <option value="renault">Renault</option>
-                <option value="seat">Seat</option>
-                <option value="subaru">Subaru</option>
-                <option value="suzuki">Suzuki</option>
-                <option value="lexus">Lexus</option>
-                <option value="lincoln">Lincoln</option>
-                <option value="tata">Tata</option>
-                <option value="tesla">Tesla</option>
-                <option value="toyota">Toyota</option>
-                <option value="volkswagen">Volkswagen</option>
-                <option value="volvo">Volvo</option>
-      </select>
-      <label for="precioMinimo">Precio Mínimo:</label>
-      <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
-      <label for="precioMaximo">Precio Máximo:</label>
-      <input type="number" id="precioMaximo" placeholder="Precio Máximo">
-      <label for="fechaInicio">Fecha de Inicio:</label>
-      <input type="date" id="fechaInicio">
-      <label for="fechaFin">Fecha de Fin:</label>
-      <input type="date" id="fechaFin">
-      <label for="filtroDepto">Departamento:</label>
-      <select id="filtroDepto">
-             <option value="todos">Todos los departamentos</option>
-                <option value="artigas">Artigas</option>
-                <option value="canelones">Canelones</option>
-                <option value="cerro-largo">Cerro Largo</option>
-                <option value="colonia">Colonia</option>
-                <option value="duran">Durazno</option>
-                <option value="flores">Flores</option>
-                <option value="florida">Florida</option>
-                <option value="lavalleja">Lavalleja</option>
-                <option value="maldonado">Maldonado</option>
-                <option value="montevideo">Montevideo</option>
-                <option value="paysandu">Paysandú</option>
-                <option value="rio-negro">Río Negro</option>
-                <option value="rivera">Rivera</option>
-                <option value="rocha">Rocha</option>
-                <option value="salto">Salto</option>
-                <option value="san-jose">San José</option>
-                <option value="soriano">Soriano</option>
-                <option value="tacuarembo">Tacuarembó</option>
-                <option value="treinta-y-tres">Treinta y Tres</option>
-      </select>
-      <button id="searchButton" class="custom-search-button">Realizar Búsqueda</button>
+                <h3>Alquiler de Autos: Busca, Compara y Ahorra &nbsp;  🔍︎</h3>
+                <hr>
 
-    </div>
-  </div>
-    <hr>
+                      <!-- Panel de busqueda - Filtro visible y fijo) -->
+                      <div id="filtersPanel" class="filter-panel">
+                        <div class="filter-panel-content">
+                          <div class="filter-item">
+                            <label for="filtroMarca">Marca:</label>
+                            <select id="filtroMarca">
+                              <option value="todas">Todas las marcas</option>
+                              <option value="alfa-romeo">Alfa Romeo</option>
+                              <option value="audi">Audi</option>
+                              <option value="bmw">BMW</option>
+                              <option value="bentley">Bentley</option>
+                              <option value="byd">BYD</option>
+                              <option value="chevrolet">Chevrolet</option>
+                              <option value="chana">Chana</option>
+                              <option value="chery">Chery</option>
+                              <option value="chrysler">Chrysler</option>
+                              <option value="dodge">Dodge</option>
+                              <option value="faw">FAW</option>
+                              <option value="fiat">Fiat</option>
+                              <option value="ford">Ford</option>
+                              <option value="geely">Geely</option>
+                              <option value="gmc">GMC</option>
+                              <option value="honda">Honda</option>
+                              <option value="hyundai">Hyundai</option>
+                              <option value="isuzu">Isuzu</option>
+                              <option value="jac">JAC</option>
+                              <option value="jaguar">Jaguar</option>
+                              <option value="jeep">Jeep</option>
+                              <option value="kia">Kia</option>
+                              <option value="landrover">Land Rover</option>
+                              <option value="mazda">Mazda</option>
+                              <option value="mercedesbenz">Mercedes-Benz</option>
+                              <option value="mitsubishi">Mitsubishi</option>
+                              <option value="mini">Mini</option>
+                              <option value="mg5">MG5</option>
+                              <option value="mgt">MG-GT</option>
+                              <option value="nissan">Nissan</option>
+                              <option value="peugeot">Peugeot</option>
+                              <option value="porsche">Porsche</option>
+                              <option value="ram">Ram</option>
+                              <option value="renault">Renault</option>
+                              <option value="seat">Seat</option>
+                              <option value="subaru">Subaru</option>
+                              <option value="suzuki">Suzuki</option>
+                              <option value="lexus">Lexus</option>
+                              <option value="lincoln">Lincoln</option>
+                              <option value="tata">Tata</option>
+                              <option value="tesla">Tesla</option>
+                              <option value="toyota">Toyota</option>
+                              <option value="volkswagen">Volkswagen</option>
+                              <option value="volvo">Volvo</option>
+                            </select>
+                          </div>
+                      
+                          <div class="filter-item">
+                            <label for="precioMinimo">Precio Mínimo:</label>
+                            <input type="number" id="precioMinimo" placeholder="Desde $">
+                          </div>
+                      
+                          <div class="filter-item">
+                            <label for="precioMaximo">Precio Máximo</label>
+                            <input type="number" id="precioMaximo" placeholder="Hasta $">
+                           
+                          </div>
+                      
+                          <div class="filter-item">
+                            <label for="fechaInicio">Fecha de Inicio:</label>
+                            <input type="date" id="fechaInicio">
+                          </div>
+                      
+                          <div class="filter-item">
+                            <label for="fechaFin">Fecha de Fin:</label>
+                            <input type="date" id="fechaFin">
+                          </div>
+                      
+                          <div class="filter-item">
+                            <label for="filtroDepto">Departamento:</label>
+                            <select id="filtroDepto">
+                              <option value="todos">Todos los departamentos</option>
+                              <option value="artigas">Artigas</option>
+                              <option value="canelones">Canelones</option>
+                              <option value="cerro-largo">Cerro Largo</option>
+                              <option value="colonia">Colonia</option>
+                              <option value="duran">Durazno</option>
+                              <option value="flores">Flores</option>
+                              <option value="florida">Florida</option>
+                              <option value="lavalleja">Lavalleja</option>
+                              <option value="maldonado">Maldonado</option>
+                              <option value="montevideo">Montevideo</option>
+                              <option value="paysandu">Paysandú</option>
+                              <option value="rio-negro">Río Negro</option>
+                              <option value="rivera">Rivera</option>
+                              <option value="rocha">Rocha</option>
+                              <option value="salto">Salto</option>
+                              <option value="san-jose">San José</option>
+                              <option value="soriano">Soriano</option>
+                              <option value="tacuarembo">Tacuarembó</option>
+                              <option value="treinta-y-tres">Treinta y Tres</option>
+                            </select>
+                          </div>
+                      
+                          <button id="searchButton" class="custom-search-button">Realizar Búsqueda</button>
+                        </div>
+                      </div>
+                      <hr>
               </div>
+              <div style="text-align: center;">
                 <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
+              </div>
             </div>
 
+            <hr><br>
         <!-- cards autos publicados disponibles --> 
   <div class="cardsgallery" id="autoContainer">
     {% for auto in autos %}
