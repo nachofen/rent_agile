@@ -62,48 +62,14 @@
                 <div style="display: flex; justify-content: center;">
                   <section id="seccionalquilar"></section>
                    <!-- Boton buscar auto svg lupa symbol -->
-                  <button id="openFiltersButton" class="openFiltersButton">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                      </svg>
-                      &nbsp;Buscar &nbsp; auto &nbsp;
-                  </button>
-              </div>
-                <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
-            </div>
-
-        <!-- cards autos publicados disponibles --> 
-  <div class="cardsgallery" id="autoContainer">
-    {% for auto in autos %}
-      {% if auto.imagenes_auto %}
-        <div class="auto">
-          <a href="/ver-vehiculo/{{ auto.id_auto }}">
-            <div class="auto-inner">
-              <div class="auto-front">
-                <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
-              </div>
-              <div class="auto-back">
-                <h2>Rent Agile</h2> 
-                <p>{{ auto.marca }} {{ auto.modelo }}</p> 
-                <p>Precio: {{ auto.tarifa }}$</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-   
-  <br><br> <br>
-  
-  <!-- Popup de filtros (inicialmente oculto) -->
-  <div id="filtersPopup" class="popup custom-alert">
-    <div class="custom-alert-content">
-        <h2>Filtros</h2>
-        <div id="linea1">
-            <label for="filtroMarca">Marca:</label>
-            <select id="filtroMarca">
-                <option value="todas">Todas las marcas</option>
+                 
+                  
+                      <!-- Filtro panel (inicialmente visible y fijo) -->
+  <div id="filtersPanel" class="filter-panel">
+    <div class="filter-panel-content">
+      <label for="filtroMarca">Marca:</label>
+      <select id="filtroMarca">
+        <option value="todas">Todas las marcas</option>
                 <option value="alfa-romeo">Alfa Romeo</option>
                 <option value="audi">Audi</option>
                 <option value="bmw">BMW</option>
@@ -148,26 +114,18 @@
                 <option value="toyota">Toyota</option>
                 <option value="volkswagen">Volkswagen</option>
                 <option value="volvo">Volvo</option>
-                <!-- Agrega más opciones de marca según tus datos -->
-            </select>
-            <!-- Filtro de Precio Mínimo -->
-            <label for="precioMinimo">Precio Mínimo:</label>
-            <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
-            <!-- Filtro de Precio Máximo -->
-            <label for="precioMaximo">Precio Máximo:</label>
-            <input type="number" id="precioMaximo" placeholder="Precio Máximo">
-        </div>
-        <div id="linea2">
-            <!-- Filtro de búsqueda por fechas -->
-            <label for="fechaInicio">Fecha de Inicio:</label>
-            <input type="date" id="fechaInicio">
-
-            <label for="fechaFin">Fecha de Fin:</label>
-            <input type="date" id="fechaFin">
-
-            <label for="filtroDepto">Departamento:</label>
-            <select id="filtroDepto">
-                <option value="todos">Todos los departamentos</option>
+      </select>
+      <label for="precioMinimo">Precio Mínimo:</label>
+      <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
+      <label for="precioMaximo">Precio Máximo:</label>
+      <input type="number" id="precioMaximo" placeholder="Precio Máximo">
+      <label for="fechaInicio">Fecha de Inicio:</label>
+      <input type="date" id="fechaInicio">
+      <label for="fechaFin">Fecha de Fin:</label>
+      <input type="date" id="fechaFin">
+      <label for="filtroDepto">Departamento:</label>
+      <select id="filtroDepto">
+             <option value="todos">Todos los departamentos</option>
                 <option value="artigas">Artigas</option>
                 <option value="canelones">Canelones</option>
                 <option value="cerro-largo">Cerro Largo</option>
@@ -187,47 +145,58 @@
                 <option value="soriano">Soriano</option>
                 <option value="tacuarembo">Tacuarembó</option>
                 <option value="treinta-y-tres">Treinta y Tres</option>
-            </select>
-        </div>
-        <button id="searchButton">Realizar Búsqueda</button>
-        <a href="/"><button>Cancelar Búsqueda</button></a>
-        <div id="overlay" class="overlay"></div>
-      </div>
-  
-  <script>
-   function openFiltersPopup() {
-  var popup = document.getElementById('filtersPopup');
-  var overlay = document.getElementById('overlay');
-  popup.style.display = 'block';
-  overlay.style.display = 'block';
-}
+      </select>
+      <button id="searchButton" class="custom-search-button">Realizar Búsqueda</button>
 
-function closeFiltersPopup() {
-  var popup = document.getElementById('filtersPopup');
-  var overlay = document.getElementById('overlay');
-  popup.style.display = 'none';
-  overlay.style.display = 'none';
-}
-  
-    var openButton = document.getElementById('openFiltersButton');
-    openButton.addEventListener('click', openFiltersPopup);
-  
+    </div>
+  </div>
+    <hr>
+              </div>
+                <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
+            </div>
+
+        <!-- cards autos publicados disponibles --> 
+  <div class="cardsgallery" id="autoContainer">
+    {% for auto in autos %}
+      {% if auto.imagenes_auto %}
+        <div class="auto">
+          <a href="/ver-vehiculo/{{ auto.id_auto }}">
+            <div class="auto-inner">
+              <div class="auto-front">
+                <img src="{{ auto.imagenes_auto[0].url }}" alt="{{ auto.marca }} {{ auto.modelo }}">
+              </div>
+              <div class="auto-back">
+                <h2>Rent Agile</h2> 
+                <p>{{ auto.marca }} {{ auto.modelo }}</p> 
+                <p>Precio: {{ auto.tarifa }}$</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+   
+  <br><br> <br>
+  <script>
+    // Función para abrir el panel de filtros
     var searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function() {
-      var precioMinimo = document.getElementById('precioMinimo').value;
-      var precioMaximo = document.getElementById('precioMaximo').value;
-      var fechaInicio = document.getElementById('fechaInicio').value;
-      var fechaFin = document.getElementById('fechaFin').value;
-      var filtroMarca = document.getElementById('filtroMarca').value;
-      var filtroDepto = document.getElementById('filtroDepto').value;
-      // Construye la URL con los parámetros de filtro
-      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca + '&depto=' + filtroDepto;
+        var precioMinimo = document.getElementById('precioMinimo').value;
+        var precioMaximo = document.getElementById('precioMaximo').value;
+        var fechaInicio = document.getElementById('fechaInicio').value;
+        var fechaFin = document.getElementById('fechaFin').value;
+        var filtroMarca = document.getElementById('filtroMarca').value;
+        var filtroDepto = document.getElementById('filtroDepto').value;
 
+        // Construye la URL con los parámetros de filtro
+        var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca + '&depto=' + filtroDepto;
+
+        // Redirecciona a la URL construida
+        window.location.href = url;
     });
-  
-    var overlay = document.getElementById('overlay');
-    overlay.addEventListener('click', closeFiltersPopup);
-  </script>
+</script>
+
       <!-- Footer -->
       <footer class="footer">
         <p>Conduciendo hacia tus sueños desde 2023 </p>
