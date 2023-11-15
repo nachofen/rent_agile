@@ -46,6 +46,7 @@
             <br>
         <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
         </div>
+        {% if vehiculo.disponible == 1 %}
         <div id="fecha-fields">
             <h6>Selecciona las Fechas de Reserva</h6>
             <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
@@ -101,6 +102,7 @@
                     <script src="/static/js/popinfo.js"></script>
                     <hr>  
         {% endif %}
+    {% endif %}
         <!-- Tarjeta de detalles de vehículo (puedes repetir esto para cada vehículo) -->
         <div class="car-card">
             <h4 style="color: #ffffff;">Características del Auto</h4>

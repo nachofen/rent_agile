@@ -22,7 +22,7 @@ def allowed_file(filename):
 def home():
     """home url"""
     from .models import Auto
-    autos = Auto.query.all()
+    autos = Auto.query.filter_by(disponible=True).all()
     return render_template("index.html", user=current_user, autos=autos)
 
 @views.route('/')
@@ -695,7 +695,7 @@ def alquilar_vehiculo(id):
         )
     ).all()
     
-    if fechas_bloqueadas or fecha_inicio < today or fecha_fin < fecha_inicio:
+    if fechas_bloqueadas or fecha_inicio < today or fecha_fin < fecha_inicio or auto.disponible == False:
         flash('El vehículo no está disponible para las fechas seleccionadas.', 'error')
         #aca agregar la ruta con #
         
