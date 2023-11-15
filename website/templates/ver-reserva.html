@@ -33,13 +33,13 @@
         <p class="contact-info">Nombre: {{ arrendatario.nombre }}</p>
         <p class="contact-info">Apellido: {{ arrendatario.apellido }}</p>
         <p class="contact-info">Teléfono: {{ arrendatario.telefono }}</p>
-        {% if reserva.estado == 'activa' %}
+        {% if reserva.estado == 'activa'  %}
           <form action="{{ url_for('views.cancelar_reserva', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta reserva?\nCancelar reservas podría afectar tu reputación')">
             <button type="submit" class="btn btn-custom">Cancelar Reserva</button>
           </form>
           <br>
         {% endif %}
-        {% if reserva.estado != 'completada' %}
+        {% if reserva.estado != 'completada' and  dif_dias > 0 %}
           <form action="{{ url_for('views.devolver_vehiculo', id=reserva.id_reserva) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas confirmar la recepción de tu vehículo?')">
             <button type="submit" class="btn btn-custom">Recibí mi vehículo</button>
           </form>
