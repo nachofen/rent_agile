@@ -19,7 +19,7 @@
 
 <div class="car-details-container">
 
-    <div class="buttons-container">
+    <div class="buttons-container0">
         {% if current_user.id == vehiculo.usuario_id %}
         <br>
         <div class="message-rent-container">
@@ -29,8 +29,9 @@
 
         <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
         <br>
+        <div class="buttons-container0">
         <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET">
-            <button type="submit" class="btn btn-primary-ver4">Editar Vehículo</button>
+            <button type="submit" class="btn btn-primary-ver5">Editar Vehículo</button>
         </form><br>
         <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST"
             onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
@@ -38,6 +39,7 @@
             <button type="submit" class="btn btn-danger">Borrar Vehículo</button>
             <br><hr>
         </form>
+    </div>
         {% else %}
 
         <div class="rental-section">
@@ -66,6 +68,9 @@
                         <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
                         <button type="submit" class="btn btn-primary-ver3">Alquilar</button>
                         </form>
+                        <a href="#seccionDestino">
+                            <button type="button" class="btn btn-primary-ver6">Ver</button>
+                        </a>
                         <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
                         <button type="submit" class="btn btn-primary-ver4">Enviar mensaje</button>
                         </form>
@@ -104,6 +109,10 @@
                         <div id="overlay" class="overlay"></div>
                     </div>
                     <script src="/static/js/popinfo.js"></script>
+
+                    <div style="text-align: center;">
+                        <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
+                      </div>
                     <hr>  
         {% endif %}
     {% endif %}
@@ -111,14 +120,14 @@
         <div class="car-cards-container">
             <div class="car-card">
                 <h4 style="color: #a30606;">Características del Auto</h4>
-                <ul>
+                <ul> <div id="seccionDestino"></div>
                     <li><strong>Marca y Modelo:</strong> {{ vehiculo.marca }} {{ vehiculo.modelo }}</li>
                     <li><strong>Año:</strong> {{ vehiculo.año }}</li>
                     <li><strong>Categoría:</strong> {{ vehiculo.categoria }}</li>
                     <li><strong>Departamento:</strong> {{ vehiculo.departamento }}</li>
                     <li><strong>Tarifa:</strong> {{ vehiculo.tarifa }}$</li>
                 </ul>
-                <!-- Contenedor para las imágenes y tarjetas de detalles de vehículos -->
+            <!-- Contenedor para las imágenes y tarjetas de detalles de vehículos -->
                 <div class="car-image-gallery">
                     <ul class="image-gallery">
                         {% for imagen in imagenes_url %}

@@ -866,8 +866,32 @@ ul.image-gallery img {
 
 
 /* Estilos para el contenedor de botones */
-.buttons-container {
+.buttons-container0 {
   margin-bottom: 20px;
+}
+
+.buttons-container0 {
+  margin-bottom: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between; /* Opcional: ajusta el espacio entre los botones */
+  align-items: center; /* Centra verticalmente los botones */
+}
+
+/* Estilos para los botones */
+button {
+  margin-bottom: 10px; /* Espaciado entre los botones, ajusta según sea necesario */
+  /* Otros estilos específicos para tus botones */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .buttons-container {
+      flex-direction: column; /* Cambia a una disposición de columna en dispositivos más pequeños */
+      align-items: stretch; /* Ajusta el estiramiento vertical en dispositivos más pequeños */
+  }
 }
 
 /* Estilos para los detalles del automóvil en una tarjeta */
@@ -1003,6 +1027,27 @@ label {
 
 .btn-primary-ver4 {
   background-color: #159c04e0; /* Color de fondo del botón */
+  color: #ffffff; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+
+.btn-primary-ver5 {
+  background-color: #b15c0d; /* Color de fondo del botón */
+  color: #ffffff; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.btn-primary-ver6 {
+  background-color: #b1a9a2; 
   color: #ffffff; 
   padding: 10px 20px;
   border: none; 
