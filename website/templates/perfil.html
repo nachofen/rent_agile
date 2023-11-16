@@ -41,58 +41,66 @@
       </div>
 <br>
 <div id="todito">
-    <div id="todo-list">
+    <div id="todo-list3">
         <h3>Perfil</h3>
-        <ul>
-            <li>
+        
                 <img src="/{{ imagen_perfil }}" alt="Foto de perfil" class="rounded-circle" width="60" height="60">
                 <div class="derecha">
                 <p> {{contador}} evaluaciones</p>
-                <hr style="color: rgb(177, 177, 194); background-color: rgb(187, 187, 209); height: 1px;">
                 <p>Calificacion {{promedio}} puntos</p>
                 </div>
-            </li>
-            <li>
-                <h3>{{usuario_perfil.nombre}} {{usuario_perfil.apellido}} </h3>
-            </li>
-            <li>
-                
-            </li>      
-        </ul>
+            
+                <h3>{{usuario_perfil.nombre}} {{usuario_perfil.apellido}} </h3>    
+                 
+       
     </div>
-    <div id="todo-listo">
-        <h3>Evaluaciones a {{usuario_perfil.nombre}} como arrendatario</h3>
-        
-            <div class="evaluaciones-container">
-                {% if contador > 2 %}
-                    {% for i in range(2) %}
-                        {% set reseña = reseñas[i] %}
-                        {% set dueño = todos_los_dueños[i] %}
-                        <div class="evaluacion">
-                            <p>"{{ reseña.comentario }}"</p>
-                            <br>
-                            <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
-                            <br><br>
-                            <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    {% for i in range(contador) %}
-                    {% set reseña = reseñas[i] %}
-                    {% set dueño = todos_los_dueños[i] %}
-                    <div class="evaluacion">
-                        <p>"{{ reseña.comentario }}"</p>
-                        <br>
-                        <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
-                        <br><br>
-                        <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        
-        <a href="#" id="ver-todas-las-resenas">Ver todas las ({{ contador }}) reseñas</a>
-    </div>
+    <div id="todito">
+        <div id="todo-listo">
+          <h3>
+
+            Evaluaciones a {{usuario_perfil.nombre}} como arrendatario
+            <br>
+            {% for _ in range(promedio | int) %}
+            <i class="fas fa-star" style="color: #EABE3F;"></i>
+            {% endfor %}
+            {% if promedio % 1 != 0 %}
+            <i class="fas fa-star-half-alt" style="color: #EABE3F;"></i>
+            {% endif %}
+            
+          </h3>
+      
+          <div class="evaluaciones-container">
+            {% if contador > 2 %}
+              {% for i in range(2) %}
+                {% set reseña = reseñas[i] %}
+                {% set dueño = todos_los_dueños[i] %}
+                <div class="evaluacion">
+                  <p>"{{ reseña.comentario }}"</p>
+                  <br>
+                  <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                  <br><br>
+                  <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+                </div>
+              {% endfor %}
+            {% else %}
+              {% for i in range(contador) %}
+                {% set reseña = reseñas[i] %}
+                {% set dueño = todos_los_dueños[i] %}
+                <div class="evaluacion">
+                  <p>"{{ reseña.comentario }}"</p>
+                  <br>
+                  <img src="/{{ dueño.image_path }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                  <br><br>
+                  <p>{{dueño.nombre}} - {{reseña.fecha}}</p>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+      
+          <a href="#" id="ver-todas-las-resenas">Ver todas las ({{ contador }}) reseñas</a>
+        </div>
+      </div>
+      
     
     <div id="popup-background" class="popup-background"></div>
         <div id="popup" class="popup">
