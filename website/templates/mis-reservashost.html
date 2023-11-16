@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="/static/css/style5.css">
 <body class="custom-background-reservas">
   <br>
-  <h3 style="text-align: center; color: white;">Detalles de Tus Alquileres</h3>
-<h5 style="text-align: center; color: white;">Optimiza tus tarifas y el calendario de disponibilidad para aumentar tus reservas</h5>
+  <div class="message-rent-container">
+    <h3>Detalles de Tus Alquileres</h3>
+<h4> Optimiza tus tarifas y el calendario de disponibilidad para aumentar tus reservas</h4>
+</div>
 
-  
-  <h3 align="center">Mis Reservas</h3>
   <div class="container-reserva">
     <div class="row mb-3">
       <div class="col-12">
@@ -29,7 +29,27 @@
     </div>
     <div class="row">
       {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
+       <div class="row">
+      {% for reserva, imagen_auto, auto in reservas_con_imagenes %}
       <div class="col-md-3 mb-3">
+        <div class="card mb-3 h-100 custom-transparent-card">
+          <img src="/{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
+          <div class="card-body">
+            <h5 class="card-title">Reserva ID: {{ reserva.id_reserva }}</h5>
+            <p>Auto: {{ auto.marca }} {{ auto.modelo }}</p>
+            <p>Fecha de inicio: {{ reserva.fecha_inicio }}</p>
+            <p>Fecha de fin: {{ reserva.fecha_fin }}</p>
+            <p>Reservado por: {{ arrendatario.nombre }} {{ arrendatario.apellido }}</p>
+            <p>Estado: {{ reserva.estado }}</p>
+            <form action="/ver-reserva/{{ reserva.id_reserva }}" method="GET" style="display: inline-block;">
+              <button type="submit" class="btn btn-custom">Ver reserva</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
         <div class="card mb-3 h-100 custom-transparent-card">
           <img src="/{{ imagen_auto.url }}" class="card-img-top" alt="Imagen del auto">
           <div class="card-body">

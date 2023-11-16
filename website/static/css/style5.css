@@ -165,6 +165,40 @@ ul {
     
 }
 
+
+/* title and banner mis reservas */
+.message-rent-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  background-image: url('/static/img/uploads/comoroute2.jpg');
+  background-size: cover; 
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: 1vw; 
+  box-shadow: 0 0 2vw rgba(219, 6, 6, 0.5); 
+}
+
+.span {
+  text-shadow: 2vw 2vw 2vw black; 
+}
+
+.message-rent-container h3 {
+  margin: 0;
+}
+
+/* Media Query para tamaños de pantalla más pequeños */
+@media (max-width: 600px) {
+  .message-rent-container {
+    padding: 10px; 
+    box-shadow: 0 0 10px rgba(219, 6, 6, 0.5);
+  }
+}
+
 .custom-transparent-card {
     background-color: rgba(255, 255, 255, 0.3); 
     border-radius: 15px; 
@@ -187,7 +221,7 @@ ul {
 
 
 .btn-custom {
-    background-color: #ff0000; 
+    background-color: #bb0c0cb2; 
     color: #fff; 
     border-color: #ffffff; 
   }

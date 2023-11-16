@@ -710,10 +710,10 @@ ul.image-gallery img {
   margin: 0 auto;
   max-width: 90%; 
   height: auto;
-  background-color: rgba(236, 15, 15, 0.6);
-  border: 1px solid #530808;
-  border-radius: 5px;
-  box-shadow: 0 1 10px rgba(0, 0, 0, 0.3);
+  border: none;
+  background-color: rgba(255, 255, 255, 0.85); /* fondo del contenedor principar ver auto */
+  border-radius: 10px;
+  box-shadow: 0 1 10px rgba(53, 3, 3, 0.8);
   overflow-x: hidden;
 }
 
@@ -721,7 +721,7 @@ ul.image-gallery img {
 @media screen and (max-width: 768px) {
   /* Estilos para el contenedor principal */
   .car-details-container {
-    padding: 10px; /* Reduzca el espacio interno en dispositivos móviles */
+    padding: 10px; 
   }
 
   /* Estilos para la sección de mensajes y alquiler */
@@ -732,7 +732,7 @@ ul.image-gallery img {
   /* Estilos para el contenedor de fechas */
   .date-containero,
   .date-container {
-    flex-direction: column; /* Cambiar a diseño de columna en dispositivos móviles */
+    flex-direction: column; 
     align-items: center;
   }
 
@@ -758,22 +758,22 @@ ul.image-gallery img {
   }
 
   #total {
-    width: 100%; /* Ajuste el ancho para ocupar todo el ancho disponible */
-    margin-top: 10px; /* Agregue espacio entre los elementos en dispositivos móviles */
+    width: 100%; 
+    margin-top: 10px; 
   }
 
   /* Estilo para el contenedor de botones */
   .button-container2 {
-    flex-direction: column; /* Cambiar a diseño de columna en dispositivos móviles */
+    flex-direction: column; 
   }
 
   .button-container2 form {
-    margin-right: 0; /* Elimine el margen derecho en dispositivos móviles */
+    margin-right: 0; 
   }
 
   /* Estilos para las etiquetas más pequeñas */
   .small-label {
-    font-size: 8px; /* Reduzca el tamaño de la etiqueta en dispositivos móviles */
+    font-size: 9px; 
   }
 }
 
@@ -781,8 +781,8 @@ ul.image-gallery img {
 
 /* body para el fondo personalizado */
 .custom-background-ver {
-  background-color: #ff0000;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23000000'/%3E%3Cstop offset='1' stop-color='%23270000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FF0000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF0000' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='100%25' gradientTransform='rotate(180,683,303)'%3E%3Cstop offset='0' stop-color='%23000000'/%3E%3Cstop offset='1' stop-color='%23D90000'/%3E%3C/linearGradient%3E%3Cpattern patternUnits='userSpaceOnUse' id='b' width='1230' height='1025' x='0' y='0' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='0.21'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' fill='url(%23b)' width='100%25' height='100%25'/%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
@@ -802,7 +802,6 @@ ul.image-gallery img {
   max-height: 90%;
   padding: 20px;
   background-color: #ffffff;
-  border: 2px solid #000000;
   border-radius: 10px;
   z-index: 1000;
   overflow-y: auto; 
@@ -854,13 +853,13 @@ ul.image-gallery img {
 
 /* Estilo para el título del automóvil */
 .car-title {
-  color: #ffffff; /* Color rojo */
+  color: #ff0000e1; 
   font-size: 28px; 
   font-weight: 600; 
   margin-bottom: 10px; 
   padding-top: 12px;
   margin: 0 auto;
-  text-shadow: 2px 2px 3px rgba(255, 51, 51, 0.582);
+  text-shadow: 2px 2px 3px rgb(5, 4, 4);
 }
 
 
@@ -871,21 +870,34 @@ ul.image-gallery img {
   margin-bottom: 20px;
 }
 
-/* Estilos para los detalles del automóvil */
-
 /* Estilos para los detalles del automóvil en una tarjeta */
+
+
+
 .car-card {
   background-color: rgba(255, 255, 255, 0.295);
   border: none;
-  display: inline-block;
+  display: inline-block; 
+  flex-direction: column;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transform: scale(1);
-  border-radius: 14px;
+  border-radius: 18px;
   transition: transform 0.3s;
-  width: 45%; 
-  
+  /* Elimina el width: 45% */
 }
+
+
+.car-card {
+  margin: 10px;
+}
+
+.car-card {
+  width: 45%;
+  margin: 10px;
+}
+
+
 
 /* Estilos para los detalles del automóvil en una tarjeta en dispositivos móviles */
 @media screen and (max-width: 768px) {
@@ -897,7 +909,7 @@ ul.image-gallery img {
 
 
 label {
-  color: rgb(36, 1, 1);
+  color: rgb(209, 4, 4);
 }
 
 .car-card h4 {
@@ -986,20 +998,42 @@ label {
 }
 
 .btn-danger {
-  background-color: #ff3333;
+  background-color: #961111;
 }
 
-.btn-primary-ver {
-  background-color: #33cc33;
+.btn-primary-ver4 {
+  background-color: #159c04e0; /* Color de fondo del botón */
+  color: #ffffff; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Cambio de estilo al pasar el mouse sobre el botón */
+.btn-primary-ver4:hover {
+  background-color: #000000; 
+  color: #ffffff; 
+}
+
+.btn-primary-ver3 {
+  background-color: #961111;
+  color: #ffffff; 
+  transition: color 0.3s; 
+}
+
+.btn-primary-ver3:hover {
+  color: #3b2020; 
 }
 
 /* Estilos para los campos de formulario */
 form input[type="date"] {
   width: 100%;
-  height: 30px;
+  height: 45px;
   padding: 10px;
   margin: 5px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #6d0101e7;
 }
 
 /* Estilos para la sección de mensajes y alquiler   /ver-vehiculo */
@@ -1016,6 +1050,7 @@ form input[type="date"] {
   border-radius: 14px;
   background-image: url('/static/img/uploads/banner-ver.jpg');
   background-size: cover;
+  background-repeat: no-repeat; /* En lugar de background: no-repeat; */
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   text-align: center;
@@ -1026,6 +1061,31 @@ form input[type="date"] {
   margin: 0;
 }
 
+
+/* estilo para banner en ediciion de auto  ver auto */
+
+
+.message-rent-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 14px;
+  background-image: url('/static/img/uploads/fondo-como-fun.jpg');
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.message-rent-container h3 {
+  margin: 0;
+}
+
+
+
 /* Estilos para el contenedor de fechas */
 .date-containero,
 .date-container {
@@ -1033,7 +1093,7 @@ form input[type="date"] {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .date-containero .form-group,
@@ -1045,7 +1105,7 @@ form input[type="date"] {
 
 .date-container label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 
@@ -1062,13 +1122,32 @@ form input[type="date"] {
   height: 21px; 
   margin-top: 15px;
   border-radius: 5px;
-  border-color: rgb(182, 1, 1);
+  border-color: grey;
   background-color: rgba(143, 140, 140, 0.1); 
-  box-shadow: 0 0 5px rgb(202, 32, 2); 
 }
-.form-groupp label {
+
+::placeholder {
+  font-size: 80%; /
+}
+
+
+/* boton informacion importante */
+.custom-button3 {
+  background-color: #cfcaca; 
+  color: #39416d; 
+  padding: 10px 15px; 
+  border: none; 
+  border-radius: 9px;
+  cursor: pointer; 
+}
+
+.custom-button:hover {
+  background-color: #2980b9; 
+}
+
+label {
   margin-top: 20px;
-  color: rgba(255, 255, 255, 0.719); /
+  color: rgba(0, 0, 0, 0.719); /
 }
 
 /* Estilo para el contenedor de botones */
@@ -1085,7 +1164,7 @@ form input[type="date"] {
 }
 
 .button-container2 button {
-  font-size: 14px; /* Ajusta el tamaño del texto del botón */
+  font-size: 18px; /* Ajusta el tamaño del texto del botón */
   padding: 5px 15px; 
   margin-left: 20px;
   margin-right: 20px;
@@ -1097,9 +1176,9 @@ form input[type="date"] {
 
 #fecha_inicio,
 #fecha_fin {
-  width: 8em; 
-  height: 20px; 
-  background-color: rgb(93, 255, 44);
+  width: 9em; 
+  height: 25px; 
+  background-color: rgb#1a921ada;
   border: none;
   transition: all 0.3s;
   text-align: center;
@@ -1109,7 +1188,7 @@ form input[type="date"] {
 #fecha_inicio:valid,
 #fecha_fin:valid {
   color: #ffffff; 
-  background: linear-gradient(to right, rgba(170, 3, 3, 0.5), rgb(0, 0, 0)); 
+  background: linear-gradient(to right, rgba(87, 86, 86, 0.658), rgb(211, 2, 2)); 
   color: white; 
 }
 
@@ -1124,14 +1203,14 @@ form input[type="date"] {
 /* Estilos para las cajas de fecha */
 form input[type="date"] {
   width: 100%;
-  height: 20px;
+  height: 25px;
   padding: 10px;
   transition: border 0.2s;
 }
 
 /* Estilos cuando se enfoca en la caja de fecha */
 form input[type="date"]:focus {
-  border: 1px solid #33cc33;
+  border: 1px solid #1a921ada;
   outline: none;
 }
 
@@ -1168,9 +1247,9 @@ form input[type="date"]:focus {
 }
 #fecha_inicio,
 #fecha_fin {
-  width: 80px;
-  height: 30px;
-  background-color: rgb(99, 1, 1);
+  width: 85px;
+  height: 35px;
+  background-color: rgb(0, 0, 0);
   border: 1px solid transparent;
   border-radius: 20px; 
   border-color: white;
@@ -1189,7 +1268,7 @@ form input[type="date"]:focus {
 
 #fecha_inicio:hover,
 #fecha_fin:hover {
-  background-color: rgba(221, 12, 12, 0.712);
+  background-color: rgb(177, 5, 5);
   border-radius: 70px;
   color: rgb(255, 255, 255);
 }
@@ -1202,7 +1281,7 @@ form input[type="date"]:focus {
 
 #fecha_inicio:hover::placeholder,
 #fecha_fin:hover::placeholder {
-  color: #03ee03; 
+  color: #ffffffda;
 }
 
 
@@ -1217,13 +1296,13 @@ form input[type="date"] {
 
 /* Estilos cuando se enfoca en la caja de fecha */
 form input[type="date"]:focus {
-  border: 1px solid #33cc33;
+  border: 1px solid #1a921ada;
   outline: none;
 }
 
 
 h6{
-  color:#ffffff;
+  color:#000000;
 }
 
 

@@ -22,12 +22,15 @@
     <div class="buttons-container">
         {% if current_user.id == vehiculo.usuario_id %}
         <br>
-        <h4> Tus Autos Disponibles</h4>
-        <h6> Edita y Borra</h6>
+        <div class="message-rent-container">
+            <h3>Tus Autos Disponibles<h4 class="car-title">Edita y Borra</h4></h3>
+        </div>
+        
 
         <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+        <br>
         <form action="/editar-vehiculo/{{ vehiculo.id_auto }}" method="GET">
-            <button type="submit" class="btn btn-primary-ver">Editar Vehículo</button>
+            <button type="submit" class="btn btn-primary-ver4">Editar Vehículo</button>
         </form><br>
         <form action="/delete-vehiculo/{{ vehiculo.id_auto }}" method="POST"
             onsubmit="return confirm('¿Estás seguro de que deseas eliminar este vehículo?')">
@@ -39,16 +42,15 @@
 
         <div class="rental-section">
         <div class="message-rent-container">
-            <h3> Reserva y Descubre Nuevos Destinos</h3>
+            <h3>Reserva y Descubre Nuevos Destinos<h4 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h4></h3>
         </div>
        
         <div class="car-details">
-            <br>
-        <h3 class="car-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
         </div>
         {% if vehiculo.disponible == 1 %}
         <div id="fecha-fields">
-            <h6>Selecciona las Fechas de Reserva</h6>
+            <h6>Selecciona las Fechas de Reserva</h6>   
+            <hr>
             <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
                 <div class="date-containero">
                     <div class="form-group">
@@ -62,17 +64,19 @@
                             
                     <div class="button-container2">
                         <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
-                        <button type="submit" class="btn btn-primary-ver">Alquilar</button>
+                        <button type="submit" class="btn btn-primary-ver3">Alquilar</button>
                         </form>
                         <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
-                        <button type="submit" class="btn btn-primary-ver">Enviar mensaje</button>
+                        <button type="submit" class="btn btn-primary-ver4">Enviar mensaje</button>
                         </form>
-                        <div class="form-groupp">
-                            <label>Total &nbsp;</label>
-                            <input type="text" id="total" name="total" readonly>
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="text" id="total" name="total" placeholder="Dias de alquiler" readonly>
                         </div>
                                 <!-- Boton pop up info -->
-                        <button id="info-button" onclick="openPopup()"> <small><strong>Información Importante</strong></small> </button>
+                                <button id="info-button" class="custom-button3" onclick="openPopup()">
+                                    <small><strong>Información Importante</strong></small>
+                                  </button>
                         <div id="popup" class="popup2">
                             
                             <h2><i class="fas fa-info-circle"></i> Información Importante</h2>
@@ -104,28 +108,29 @@
         {% endif %}
     {% endif %}
         <!-- Tarjeta de detalles de vehículo (puedes repetir esto para cada vehículo) -->
-        <div class="car-card">
-            <h4 style="color: #ffffff;">Características del Auto</h4>
-            <ul>
-                 <p>{{ vehiculo.marca }} {{ vehiculo.modelo }}</p>
-                <li><strong>Año:</strong> {{ vehiculo.año }}</li>
-                <li><strong>Categoría:</strong> {{ vehiculo.categoria }}</li>
-                <li><strong>Departamento:</strong> {{ vehiculo.departamento }}</li>
-                <li><strong>Tarifa:</strong> {{ vehiculo.tarifa }}$</li>
-            </ul>
-            <!-- Contenedor para las imágenes y tarjetas de detalles de vehículos -->
-            <div class="car-image-gallery">
-                <ul class="image-gallery">
-                    {% for imagen in imagenes_url %}
-                    <li>
-                        <a href="/{{ imagen }}" data-lightbox="gallery">
-                            <img src="/{{ imagen }}" alt="Imagen del Auto" class="lightbox">
-                        </a>
-                    </li>
-                    {% endfor %}
+        <div class="car-cards-container">
+            <div class="car-card">
+                <h4 style="color: #a30606;">Características del Auto</h4>
+                <ul>
+                    <li><strong>Marca y Modelo:</strong> {{ vehiculo.marca }} {{ vehiculo.modelo }}</li>
+                    <li><strong>Año:</strong> {{ vehiculo.año }}</li>
+                    <li><strong>Categoría:</strong> {{ vehiculo.categoria }}</li>
+                    <li><strong>Departamento:</strong> {{ vehiculo.departamento }}</li>
+                    <li><strong>Tarifa:</strong> {{ vehiculo.tarifa }}$</li>
                 </ul>
+                <!-- Contenedor para las imágenes y tarjetas de detalles de vehículos -->
+                <div class="car-image-gallery">
+                    <ul class="image-gallery">
+                        {% for imagen in imagenes_url %}
+                        <li>
+                            <a href="/{{ imagen }}" data-lightbox="gallery">
+                                <img src="/{{ imagen }}" alt="Imagen del Auto" class="lightbox">
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </div>
 
         
 <script>
