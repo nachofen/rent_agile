@@ -789,6 +789,14 @@ ul.image-gallery img {
 }
 /* estilos para el info importante pop up */
 
+.popup2 ul {
+  list-style: none; /* Elimina los puntos de la lista */
+  padding: 0; /* Elimina el relleno predeterminado de la lista */
+  margin-left: 0; /* Elimina el margen izquierdo */
+}
+.popup2 h2 {
+  padding-left: -15px;
+}
 
 .popup2 {
   display: none;
@@ -827,14 +835,15 @@ ul.image-gallery img {
 }
 
 /* Estilo para el botón de cerrar en el pop-up */
-.popup2 button#close-button {
-  background-color: #ccc;
+.close-button {
+  /* Estilos del botón de cerrar */
+  position: absolute; /* Posiciona el botón absolutamente con respecto al popup */
+  top: -10px; /* Ajusta la posición desde la parte superior */
+  right: -1px; /* Ajusta la posición desde la derecha */
+  background: none;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
   cursor: pointer;
 }
 

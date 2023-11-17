@@ -63,14 +63,13 @@
                         <input type="text" id="fecha_fin" name="fecha_fin" placeholder="Check-Out" required>
                     </div>
                 </div>
-                            
+
+                     
                     <div class="button-container2">
                         <form action="/alquilar-vehiculo/{{ vehiculo.id_auto }}" method="POST">
                         <button type="submit" class="btn btn-primary-ver3">Alquilar</button>
                         </form>
-                        <a href="#seccionDestino">
-                            <button type="button" class="btn btn-primary-ver6">Ver</button>
-                        </a>
+            </form>   
                         <form action="/enviar-mensaje/{{ vehiculo.id_auto }}" method="get">
                         <button type="submit" class="btn btn-primary-ver4">Enviar mensaje</button>
                         </form>
@@ -78,19 +77,20 @@
                             <label for="total">Total</label>
                             <input type="text" id="total" name="total" placeholder="Dias de alquiler" readonly>
                         </div>
-                                <!-- Boton pop up info -->
-                                <button id="info-button" class="custom-button3" onclick="openPopup()">
-                                    <small><strong>Información Importante</strong></small>
-                                  </button>
+                    </div>
+                        
                         <div id="popup" class="popup2">
+
                             
                             <h2><i class="fas fa-info-circle"></i> Información Importante</h2>
                         
                             <p><i class="fas fa-check-circle"></i> Documentación necesaria:</p>
+                            <ul>
                             
                                 <li><i class="fas fa-check"></i> Pasaporte o documento nacional de identidad</li>
                                 <li><i class="fas fa-check"></i> Permiso de conducir</li>
                                 <li><i class="fas fa-check"></i> Tarjeta de crédito</li>
+                            </ul>
                             <hr>
                             <p><i class="fas fa-dollar-sign"></i> Depósito de seguridad: USD $300,00</p>
                             <p>En el momento de la recogida, el conductor principal dejará un depósito de seguridad reembolsable de USD $300,00en su tarjeta de crédito. No se acepta efectivo ni tarjetas de débito.</p>
@@ -103,7 +103,7 @@
                             <p><i class="fa fa-infinity"></i> Kilometraje: Ilimitado</p>
                             <p>El alquiler incluye kilómetro sin límites gratis.</p>
                         
-                            <button onclick="closePopup()">Cerrar</button>
+
                         </div>
                         
                         <div id="overlay" class="overlay"></div>
@@ -127,6 +127,10 @@
                     <li><strong>Departamento:</strong> {{ vehiculo.departamento }}</li>
                     <li><strong>Tarifa:</strong> {{ vehiculo.tarifa }}$</li>
                 </ul>
+                 <!-- Boton pop up info -->
+                 <button id="info-button" class="custom-button3" onclick="openPopup()">
+                    <small><strong>Información Importante</strong></small>
+                  </button>
             <!-- Contenedor para las imágenes y tarjetas de detalles de vehículos -->
                 <div class="car-image-gallery">
                     <ul class="image-gallery">
