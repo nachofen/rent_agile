@@ -313,8 +313,28 @@ p {
   width: 40%; 
   height: 90%; /* Ajusta altura */
   margin-right: 200px; /* Ajusta el espacio entre los divs */
+  margin: 0 auto; /* Centra horizontalmente */
+  align-self: center; /
 }
 
+@media only screen and (max-width: 768px) {
+  .como-funciona-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .como-funciona-card {
+    width: 80%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .como-funciona-card {
+    width: 100%;
+  }
+}
 .img-fondo {
   background-color: rgba(0, 0, 0, 0.4); 
   backdrop-filter: blur(2px); 
@@ -324,6 +344,10 @@ p {
 
 #publicar-auto {
   background: url('/static/img/uploads/fondo-como-fun.jpg') center/cover no-repeat; 
+}
+
+#publicar-auto{
+  margin-right: auto;
 }
 
 #buscar-auto {
