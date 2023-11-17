@@ -640,7 +640,7 @@ body.fondo-agregar-auto  {
   }
     /* Cambiar el color del botón al pasar el ratón sobre él */
     .custom-search-button:hover {
-      background-color: rgb(255, 0, 0);
+      background-color: rgba(177, 6, 6, 0.836);
     }
 
     /* Media query para ajustar estilos en pantallas más pequeñas */

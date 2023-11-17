@@ -6,96 +6,120 @@
 
   <h3>Tus Busquedas</h3>
 
-  <!-- Botón para abrir el popup de filtros -->
-  <button id="openFiltersButton">Abrir Filtros</button>
+  <div class="texto-destacado">
+    <h3>Alquiler de Autos: Busca, Compara y Ahorra &nbsp;  🔍︎</h3>
+    <hr>
 
-  <!-- Popup de filtros (inicialmente oculto) -->
-  <div id="filtersPopup" class="popup">
-    <h2>Filtros</h2>
-    <div id="linea1">
-      <label for="filtroMarca">Marca:</label>
-      <select id="filtroMarca">
-        <option value="todas">Todas</option>
-        <option value="alfa-romeo">Alfa Romeo</option>
-        <option value="audi">Audi</option>
-        <option value="bmw">BMW</option>
-        <option value="byd">BYD</option>
-        <option value="chevrolet">Chevrolet</option>
-        <option value="chrysler">Chrysler</option>
-        <option value="dodge">Dodge</option>
-        <option value="fiat">Fiat</option>
-        <option value="ford">Ford</option>
-        <option value="gmc">GMC</option>
-        <option value="honda">Honda</option>
-        <option value="hyundai">Hyundai</option>
-        <option value="jaguar">Jaguar</option>
-        <option value="jeep">Jeep</option>
-        <option value="kia">Kia</option>
-        <option value="land-rover">Land Rover</option>
-        <option value="lexus">Lexus</option>
-        <option value="mazda">Mazda</option>
-        <option value="mercedes-benz">Mercedes-Benz</option>
-        <option value="mini">Mini</option>
-        <option value="nissan">Nissan</option>
-        <option value="peugeot">Peugeot</option>
-        <option value="porsche">Porsche</option>
-        <option value="subaru">Subaru</option>
-        <option value="tesla">Tesla</option>
-        <option value="toyota">Toyota</option>
-        <option value="volkswagen">Volkswagen</option>
-        <option value="volvo">Volvo</option>
-        <!-- Agrega más opciones de marca según tus datos -->
-      </select>
-      <!-- Filtro de Precio Mínimo -->
-      <label for="precioMinimo">Precio Mínimo:</label>
-      <input type="number" id="precioMinimo" placeholder="Precio Mínimo">
-
-      <!-- Filtro de Precio Máximo -->
-      <label for="precioMaximo">Precio Máximo:</label>
-      <input type="number" id="precioMaximo" placeholder="Precio Máximo">
-    </div>
-    <div id="linea2">
-      <!-- Filtro de busqueda por fechas -->
-      <label for="fechaInicio">Fecha de Inicio:</label>
-      <input type="date" id="fechaInicio">
-
-      <label for="fechaFin">Fecha de Fin:</label>
-      <input type="date" id="fechaFin">
-
-      <label for="filtroDepto">Departamento:</label>
-      <select id="filtroDepto">
-        <option value="todos">Todos los departamentos</option>
-        <option value="artigas">Artigas</option>
-        <option value="canelones">Canelones</option>
-        <option value="cerro-largo">Cerro Largo</option>
-        <option value="colonia">Colonia</option>
-        <option value="duran">Durazno</option>
-        <option value="flores">Flores</option>
-        <option value="florida">Florida</option>
-        <option value="lavalleja">Lavalleja</option>
-        <option value="maldonado">Maldonado</option>
-        <option value="montevideo">Montevideo</option>
-        <option value="paysandu">Paysandú</option>
-        <option value="rio-negro">Río Negro</option>
-        <option value="rivera">Rivera</option>
-        <option value="rocha">Rocha</option>
-        <option value="salto">Salto</option>
-        <option value="san-jose">San José</option>
-        <option value="soriano">Soriano</option>
-        <option value="tacuarembo">Tacuarembó</option>
-        <option value="treinta-y-tres">Treinta y Tres</option>
-        <!-- Agrega más opciones de marca según tus datos -->
-      </select>
-      
-    </div>
-
-
-    <button id="searchButton">Realizar Búsqueda</button>
+          <!-- Panel de busqueda - Filtro visible y fijo) -->
+          <div id="filtersPanel" class="filter-panel">
+            <div class="filter-panel-content">
+              <div class="filter-item">
+                <label for="filtroMarca">Marca:</label>
+                <select id="filtroMarca">
+                  <option value="todas">Todas las marcas</option>
+                  <option value="alfa-romeo">Alfa Romeo</option>
+                  <option value="audi">Audi</option>
+                  <option value="bmw">BMW</option>
+                  <option value="bentley">Bentley</option>
+                  <option value="byd">BYD</option>
+                  <option value="chevrolet">Chevrolet</option>
+                  <option value="chana">Chana</option>
+                  <option value="chery">Chery</option>
+                  <option value="chrysler">Chrysler</option>
+                  <option value="dodge">Dodge</option>
+                  <option value="faw">FAW</option>
+                  <option value="fiat">Fiat</option>
+                  <option value="ford">Ford</option>
+                  <option value="geely">Geely</option>
+                  <option value="gmc">GMC</option>
+                  <option value="honda">Honda</option>
+                  <option value="hyundai">Hyundai</option>
+                  <option value="isuzu">Isuzu</option>
+                  <option value="jac">JAC</option>
+                  <option value="jaguar">Jaguar</option>
+                  <option value="jeep">Jeep</option>
+                  <option value="kia">Kia</option>
+                  <option value="landrover">Land Rover</option>
+                  <option value="mazda">Mazda</option>
+                  <option value="mercedesbenz">Mercedes-Benz</option>
+                  <option value="mitsubishi">Mitsubishi</option>
+                  <option value="mini">Mini</option>
+                  <option value="mg5">MG5</option>
+                  <option value="mgt">MG-GT</option>
+                  <option value="nissan">Nissan</option>
+                  <option value="peugeot">Peugeot</option>
+                  <option value="porsche">Porsche</option>
+                  <option value="ram">Ram</option>
+                  <option value="renault">Renault</option>
+                  <option value="seat">Seat</option>
+                  <option value="subaru">Subaru</option>
+                  <option value="suzuki">Suzuki</option>
+                  <option value="lexus">Lexus</option>
+                  <option value="lincoln">Lincoln</option>
+                  <option value="tata">Tata</option>
+                  <option value="tesla">Tesla</option>
+                  <option value="toyota">Toyota</option>
+                  <option value="volkswagen">Volkswagen</option>
+                  <option value="volvo">Volvo</option>
+                </select>
+              </div>
+          
+              <div class="filter-item">
+                <label for="precioMinimo">Precio Mínimo:</label>
+                <input type="number" id="precioMinimo" placeholder="Desde $">
+              </div>
+          
+              <div class="filter-item">
+                <label for="precioMaximo">Precio Máximo</label>
+                <input type="number" id="precioMaximo" placeholder="Hasta $">
+               
+              </div>
+          
+              <div class="filter-item">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <input type="date" id="fechaInicio">
+              </div>
+          
+              <div class="filter-item">
+                <label for="fechaFin">Fecha de Fin:</label>
+                <input type="date" id="fechaFin">
+              </div>
+          
+              <div class="filter-item">
+                <label for="filtroDepto">Departamento:</label>
+                <select id="filtroDepto">
+                  <option value="todos">Todos los departamentos</option>
+                  <option value="artigas">Artigas</option>
+                  <option value="canelones">Canelones</option>
+                  <option value="cerro-largo">Cerro Largo</option>
+                  <option value="colonia">Colonia</option>
+                  <option value="duran">Durazno</option>
+                  <option value="flores">Flores</option>
+                  <option value="florida">Florida</option>
+                  <option value="lavalleja">Lavalleja</option>
+                  <option value="maldonado">Maldonado</option>
+                  <option value="montevideo">Montevideo</option>
+                  <option value="paysandu">Paysandú</option>
+                  <option value="rio-negro">Río Negro</option>
+                  <option value="rivera">Rivera</option>
+                  <option value="rocha">Rocha</option>
+                  <option value="salto">Salto</option>
+                  <option value="san-jose">San José</option>
+                  <option value="soriano">Soriano</option>
+                  <option value="tacuarembo">Tacuarembó</option>
+                  <option value="treinta-y-tres">Treinta y Tres</option>
+                </select>
+              </div>
+          
+              <button id="searchButton" class="custom-search-button">Realizar Búsqueda</button>
+            </div>
+          </div>
+          <hr>
   </div>
-
-  <!-- Fondo oscuro detrás del popup -->
-  <div id="overlay" class="overlay"></div>
-
+  <div style="text-align: center;">
+    <small><i class="fa fa-check"></i> Cancelaciones gratuitas en la mayoría de las reservas</small>
+  </div>
+</div>
 
 
   <div class="gallery">
@@ -115,50 +139,27 @@
   </div>
 
 
-
-  <script>
-    function openFiltersPopup() {
-      var popup = document.getElementById('filtersPopup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'block';
-      overlay.style.display = 'block';
-    }
-
-    function closeFiltersPopup() {
-      var popup = document.getElementById('filtersPopup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'none';
-      overlay.style.display = 'none';
-    }
-
-    var openButton = document.getElementById('openFiltersButton');
-    openButton.addEventListener('click', openFiltersPopup);
-
+<script>
+    // Función para abrir el panel de filtros
+    var searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function() {
-      var precioMinimo = document.getElementById('precioMinimo').value;
-      var precioMaximo = document.getElementById('precioMaximo').value;
-      var fechaInicio = document.getElementById('fechaInicio').value;
-      var fechaFin = document.getElementById('fechaFin').value;
-      var filtroMarca = document.getElementById('filtroMarca').value;
-      var filtroDepto = document.getElementById('filtroDepto').value;
+        var precioMinimo = document.getElementById('precioMinimo').value;
+        var precioMaximo = document.getElementById('precioMaximo').value;
+        var fechaInicio = document.getElementById('fechaInicio').value;
+        var fechaFin = document.getElementById('fechaFin').value;
+        var filtroMarca = document.getElementById('filtroMarca').value;
+        var filtroDepto = document.getElementById('filtroDepto').value;
 
-      // Construye la URL con los parámetros de filtro
-      var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca +'&depto=' + filtroDepto;
+        // Construye la URL con los parámetros de filtro
+        var url = '/resultados/?precioMinimo=' + precioMinimo + '&precioMaximo=' + precioMaximo + '&fechaInicio=' + fechaInicio + '&fechaFin=' + fechaFin + '&marca=' + filtroMarca + '&depto=' + filtroDepto;
 
-      // Agrega el parámetro "marca" solo si no es "todas"
-      
-
-      // Agrega el parámetro "depto" siempre (incluso si es "todas")
-      // Cierra el popup de filtros
-      closeFiltersPopup();
-
-      // Redirige a la página de resultados con los parámetros
-      window.location.href = url;
+        // Redirecciona a la URL construida
+        window.location.href = url;
     });
 
-    var overlay = document.getElementById('overlay');
-    overlay.addEventListener('click', closeFiltersPopup);
-  </script>
+</script>
+
+
 
   
 {% endblock %}
